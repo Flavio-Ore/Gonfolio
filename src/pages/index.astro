@@ -1,125 +1,209 @@
 ---
-import Background from '@components/svgs/Background.astro'
-import Layout from '../layouts/Layout.astro'
+import Portfolio from '@components/svgs/Portfolio.astro'
+import User from '@components/svgs/User.astro'
+import Layout from '@layouts/Layout.astro'
 ---
 
 <Layout title="Gon">
-	<main>
-		<h1>Flavio Gonzalo Oré Chávez</h1>
-		<p>I am a computer lover.</p>
-		<p>Since my childhood I've worked with computers.</p>
-		<p>
-			What I remember most about my computer is that it only has 2 GB of RAM and
-			it lasted 13 years.
-		</p>
-		<p>
-			Now I am working with a 10 GB RAM computer and a Linux laptop, I am very
-			happy with it 😅.
-		</p>
-		<div>
-			<img
-				src="https://via.placeholder.com/400x400"
-				alt="Flavio Gonzalo Oré Chávez"
-			/>
-		</div>
-		<Background />
-		<h2>Skills</h2>
-		<ul>
-			<li>Web Development</li>
-			<li>Linux</li>
-			<li>REST APIs</li>
-			<li>Git - Workflows</li>
-		</ul>
-		<h2>Projects</h2>
-		<ul>
-			<li>
-				<section>
-					<h3>Snapgram</h3>
-					<a href="">
-						<img src="https://via.placeholder.com/600x400" alt="Snapgram" />
-					</a>
-					<p>
-						Snapgram is a social network where you share unique moments in your
-						life with the world!
-					</p>
-					<h4>Technologies</h4>
-					<ul>
-						<li>Library: React</li>
-						<li>Tools: TypeScript, Node.js</li>
-						<li>UI: Shadcn</li>
-						<li>Global State: TankStack Query</li>
-						<li>Bundler: Vite</li>
-						<li>BaaS: Appwrite</li>
-					</ul>
-				</section>
-			</li>
-		</ul>
-		<h2>University projects</h2>
-		<p>
-			Here are some of the projects I've been working on during my college
-			years.
-		</p>
-		<ul>
-			<li>
-				<section>
-					<h3>
-						Database Design of the Loan System for the National Library of Peru
-					</h3>
-					<a href="">
+	<div
+		class="max-w-5xl mx-auto flex flex-col flex-1 items-center justify-center gap-10 py-10 px-5 md:px-8 lg:p-14"
+	>
+		<section class="flex flex-col justify-evenly gap-8 max-w-2xl">
+			<!--TOP -->
+			<header
+				class="flex flex-col xs:flex-row justify-between gap-4 w-full font-inder"
+			>
+				<div class="flex flex-col justify-center items-center">
+					<div class="flex items-center gap-4">
+						<User />
+						<h1
+							class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl dark:text-white"
+						>
+							Flavio Gonzalo Oré Chávez
+						</h1>
+					</div>
+					<h2 class="text-h3 font-medium leading-default tracking-tighter mt-2">
+						<div class="inline-flex gap-10">
+							<span>Computer Science</span>
+							<span>Systems</span>
+							<span>Software</span>
+						</div>
+					</h2>
+				</div>
+				<div class="flex flex-col justify-center items-center">
+					<div
+						class="flex flex-1 flex-col gap-8 p-2 justify-center items-center"
+					>
 						<img
-							src="https://via.placeholder.com/600x400"
-							alt="Database Design of the Loan System for the National Library of Peru"
+							class="aspect-square object-cover rounded-lg shadow-lg"
+							width={64}
+							height={64}
+							src="/assets/imgs/photo.jpg"
+							alt="Flavio Gonzalo Oré Chávez"
 						/>
+					</div>
+					<a
+						href=""
+						class="flex items-center transition md:justify-center md:hover:scale-105"
+					>
+						<span
+							class="relative inline-flex overflow-hidden rounded-full p-[1px]"
+						>
+							<span
+								class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
+							></span>
+							<div
+								class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-obscure bg-blue-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+							>
+								Open to work
+							</div>
+						</span>
 					</a>
-					<p>
-						<ul>
-							<li>SQL Server</li>
-							<li>SQL TSQL</li>
-							<li>Database Diagrams and Normalization</li>
+				</div>
+			</header>
+			<div class="flex flex-col gap-4 mt-2">
+				<p
+					class="text-xl text-obscure dark:[&>strong]:text-blue-200 [&>strong]:text-blue-500 [&>strong]:font-semibold dark:text-light"
+				>
+					I have been here for 19 years. I started programming when I was 14
+					years old in high school.
+					<strong
+						>I have been working with computers for as long as I can remember.</strong
+					>
+				</p>
+				<p class="text-xl font-medium leading-default">
+					What I remember most about my computer is that it only has 2 GB of RAM
+					and it lasted 13 years. Thirteen years of pure windows 7.
+				</p>
+				<p class="text-xl font-medium leading-default">
+					Currently, I'm using a computer I never imagined owning, along with a
+					Linux laptop. I'm really enjoying it 😅.
+				</p>
+			</div>
+		</section>
+		<!--Skills -->
+		<!-- <section class="bg-slate-400 rounded-lg p-8">
+			<h2 class="text-h2 leading-default font-bold tracking-tighter font-inder">
+				Skills
+			</h2>
+			<p class="text-small leading-default">The technologies I'm good at</p>
+			<ul
+				class="grid grid-cols-2 text-h3 font-bold tracking-tighter leading-default"
+			>
+				<li>Web Development</li>
+				<li>Linux</li>
+				<li>REST APIs</li>
+				<li class="">Git - Workflows</li>
+			</ul>
+		</section> -->
+		<!--Projects -->
+		<section class="container bg-slate-400 rounded-lg p-8">
+			<Portfolio />
+			<h2 class="text-h2 leading-default font-bold tracking-tighter font-inder">
+				Projects
+			</h2>
+			<ul class="flex flex-col">
+				<li class="flex flex-col">
+					<section class="flex flex-col bg-slate-400 rounded-lg p-4 gap-4">
+						<h3
+							class="text-h3 leading-default font-bold tracking-tighter font-inder"
+						>
+							Snapgram
+						</h3>
+						<a href="">
+							<img src="https://via.placeholder.com/600x400" alt="Snapgram" />
+						</a>
+						<p class="text-body font-bold">
+							Snapgram is a social network where you share unique moments in
+							your life with the world!
+						</p>
+						<h4
+							class="text-body leading-default font-bold tracking-tighter font-inder"
+						>
+							Technologies
+						</h4>
+						<ul class="">
+							<li>Library: <span>React</span></li>
+							<li>Tools: <span>TypeScript, Node.js</span></li>
+							<li>UI: <span>Shadcn</span></li>
+							<li>Global State: <span>TankStack Query</span></li>
+							<li>Bundler: <span>Vite</span></li>
+							<li>BaaS: <span>Appwrite</span></li>
 						</ul>
-					</p>
-				</section>
-			</li>
-		</ul>
-		<h2>That's all!</h2>
-		<p>
-			Thank you for reading my portfolio, I hope you liked it. If you want to
-			contact me, you can do it through my email:
-			<a href="mailto:pseudominio.go@gmail.com">pseudominio.go@gmail.com</a>
-		</p>
+					</section>
+				</li>
+			</ul>
+		</section>
+		<!--University projects -->
+		<section class="flex flex-col bg-slate-400 rounded-lg p-4 gap-8">
+			<div class="flex flex-col gap-4">
+				<h2
+					class="text-h2 leading-default font-bold tracking-tighter font-inder"
+				>
+					University projects
+				</h2>
+				<p class="text-body leading-default">
+					Here are some of the projects I've been working on during my college
+					years.
+				</p>
+			</div>
+			<ul>
+				<li>
+					<section>
+						<h3
+							class="text-h3 leading-default font-bold tracking-tighter font-inder"
+						>
+							Database Design of the Loan System for the National Library of
+							Peru
+						</h3>
+						<a href="">
+							<img
+								src="https://via.placeholder.com/600x400"
+								alt="Database Design of the Loan System for the National Library of Peru"
+							/>
+						</a>
+						<p>
+							<ul>
+								<li>SQL Server</li>
+								<li>SQL TSQL</li>
+								<li>Database Diagrams and Normalization</li>
+							</ul>
+						</p>
+					</section>
+				</li>
+			</ul>
+		</section>
+	</div>
+
+	<section class="flex bg-slate-400 rounded-lg p-4">
+		<div>
+			<h2 class="text-h2 leading-default font-bold tracking-tighter font-inder">
+				That's all!
+			</h2>
+			<p class="text-h3 leading-default tracking-tighter font-inder">
+				Thank you for reading my portfolio, I hope you liked it. If you want to
+				contact me, you can do it through my email:
+				<a href="mailto:pseudominio.go@gmail.com">pseudominio.go@gmail.com</a>
+			</p>
+		</div>
 		<div>
 			<img
 				src="https://via.placeholder.com/300x300"
 				alt="Flavio Gonzalo Oré Chávez"
 			/>
 		</div>
-		<footer>
-			<h3>Happy coding!</h3>
-			<p>
-				<small>
-					© 2021 Flavio Gonzalo Oré Chávez. All rights reserved. Made with ❤️
-					in Peru.
-				</small>
-			</p>
-		</footer>
-
-		<style>
-			main {
-				margin-inline: auto;
-				padding: 1rem;
-				width: 758px;
-				max-width: calc(100% - 2rem);
-				font-size: 20px;
-				line-height: 1.6;
-			}
-
-			h1 {
-				font-size: 4rem;
-				font-weight: 700;
-				line-height: 1;
-				text-align: center;
-				margin-bottom: 1em;
-			}
-		</style>
-	</main></Layout
->
+	</section>
+	<footer
+		class="bg-slate-500 text-white p-4 rounded-lg text-center"
+		<h3
+		class="text-body leading-default font-bold tracking-tighter font-inder"
+	>
+		Happy coding!
+		<p>
+			<small>
+				© 2021 Flavio Gonzalo Oré Chávez. All rights reserved. Made with ❤️ in
+				Peru.
+			</small>
+		</p>
+	</footer>
+</Layout>
