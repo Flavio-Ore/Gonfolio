@@ -1,60 +1,54 @@
-import anime from '@midudev/tailwind-animations';
-import defaultTheme from 'tailwindcss/defaultTheme';
-
+import animations from '@midudev/tailwind-animations'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	theme: {
-		extend: {
-			fontFamily: {
-				'inter': ['Inter Variable', ...defaultTheme.fontFamily.sans],
-				'inder': ['Inder', ...defaultTheme.fontFamily.sans]
-			},
-			fontSize: {
-				'h1': '36px',
-				'h2': '30px',
-				'h3': '24px',
-				'body': '18px',
-				'base': '16px',
-				'small': '14px',
-				'subtle': '12px',
-				'tiny': '10px',
-			},
-			lineHeight: {
-				'default': '140%',
-			},
-			colors: {
-				"light": "var(--color-light)",
-				"obscure": "var(--color-obscure)",
-				"golden": "var(--color-golden)",
-			},
-			screens: {
-				xs: "360px",
-				...defaultTheme.screens,
-				"3xl": "1650px",
-			},
-			animation: {
-				"text-gradient": "text-gradient 1.5s linear infinite"
-			},
-			keyframes: {
-				"text-gradient": {
-					to: {
-						backgroundPosition: "200% center"
-					}
-				}
-			}
-		},
-		plugins: [anime, function ({ addComponents, theme }) {
-			addComponents({
-				'h1-bold': {
-					fontSize: '36px',
-					fontWeight: '700',
-					lineHeight: '140%',
-				}
-			})
-		}],
-	},
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        inter: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+        inder: ['Inder', ...defaultTheme.fontFamily.sans]
+      },
+      fontSize: {
+        h1: '36px',
+        h2: '30px',
+        h3: '24px',
+        body: '18px',
+        base: '16px',
+        small: '14px',
+        subtle: '12px',
+        tiny: '10px'
+      },
+      lineHeight: {
+        default: '140%'
+      },
+      colors: {
+        light: 'var(--color-light)',
+        obscure: 'var(--color-obscure)',
+        golden: 'var(--color-golden)'
+      },
+      screens: {
+        xs: '360px',
+        ...defaultTheme.screens,
+        '3xl': '1650px'
+      },
+      animation: {
+        'background-shine': 'background-shine 2s linear infinite'
+      },
+      keyframes: {
+        'background-shine': {
+          from: {
+            backgroundPosition: '0 0'
+          },
+          to: {
+            backgroundPosition: '-200% 0'
+          }
+        }
+      }
+    }
+  },
+  plugins: [animations]
 }
 
 /*

@@ -1,6 +1,10 @@
 ---
-import Portfolio from '@components/svgs/Portfolio.astro'
-import User from '@components/svgs/User.astro'
+import Header from '@components/Header.astro'
+import DatabaseIcon from '@components/icons/DatabaseIcon.astro'
+import MicrosoftIcon from '@components/icons/MicrosoftIcon.astro'
+import SQLServerIcon from '@components/icons/SQLServerIcon.astro'
+import UniversityIcon from '@components/icons/UniversityIcon.astro'
+import Projects from '@components/Projects.astro'
 import Layout from '@layouts/Layout.astro'
 ---
 
@@ -10,74 +14,28 @@ import Layout from '@layouts/Layout.astro'
 	>
 		<section class="flex flex-col justify-evenly gap-8 max-w-2xl">
 			<!--TOP -->
-			<header
-				class="flex flex-col xs:flex-row justify-between gap-4 w-full font-inder"
-			>
-				<div class="flex flex-col justify-center items-center">
-					<div class="flex items-center gap-4">
-						<User />
-						<h1
-							class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl dark:text-white"
-						>
-							Flavio Gonzalo Oré Chávez
-						</h1>
-					</div>
-					<h2 class="text-h3 font-medium leading-default tracking-tighter mt-2">
-						<div class="inline-flex gap-10">
-							<span>Computer Science</span>
-							<span>Systems</span>
-							<span>Software</span>
-						</div>
-					</h2>
-				</div>
-				<div class="flex flex-col justify-center items-center">
-					<div
-						class="flex flex-1 flex-col gap-8 p-2 justify-center items-center"
-					>
-						<img
-							class="aspect-square object-cover rounded-lg shadow-lg"
-							width={64}
-							height={64}
-							src="/assets/imgs/photo.jpg"
-							alt="Flavio Gonzalo Oré Chávez"
-						/>
-					</div>
-					<a
-						href=""
-						class="flex items-center transition md:justify-center md:hover:scale-105"
-					>
-						<span
-							class="relative inline-flex overflow-hidden rounded-full p-[1px]"
-						>
-							<span
-								class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
-							></span>
-							<div
-								class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-obscure bg-blue-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
-							>
-								Open to work
-							</div>
-						</span>
-					</a>
-				</div>
-			</header>
-			<div class="flex flex-col gap-4 mt-2">
+			<Header />
+			<div class="flex flex-col gap-4 mt-2 text-xl text-pretty">
 				<p
-					class="text-xl text-obscure dark:[&>strong]:text-blue-200 [&>strong]:text-blue-500 [&>strong]:font-semibold dark:text-light"
+					class="dark:[&>strong]:text-blue-200 [&>strong]:text-blue-500 [&>strong]:font-semibold"
 				>
-					I have been here for 19 years. I started programming when I was 14
-					years old in high school.
+					I started programming when I was 14 years old in high school.
 					<strong
 						>I have been working with computers for as long as I can remember.</strong
 					>
 				</p>
-				<p class="text-xl font-medium leading-default">
-					What I remember most about my computer is that it only has 2 GB of RAM
-					and it lasted 13 years. Thirteen years of pure windows 7.
+				<p
+					class="dark:[&>strong]:text-red-200 [&>strong]:text-red-500 [&>strong]:font-semibold"
+				>
+					What I remember most about my computer is that it only <strong>
+						2 GB of RAM and it lasted 13 years</strong
+					>. Thirteen years of pure windows 7.
 				</p>
-				<p class="text-xl font-medium leading-default">
+				<p
+					class="dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold"
+				>
 					Currently, I'm using a computer I never imagined owning, along with a
-					Linux laptop. I'm really enjoying it 😅.
+					Linux laptop. <strong>I'm really enjoying it 😅.</strong>
 				</p>
 			</div>
 		</section>
@@ -97,113 +55,127 @@ import Layout from '@layouts/Layout.astro'
 			</ul>
 		</section> -->
 		<!--Projects -->
-		<section class="container bg-slate-400 rounded-lg p-8">
-			<Portfolio />
-			<h2 class="text-h2 leading-default font-bold tracking-tighter font-inder">
-				Projects
-			</h2>
-			<ul class="flex flex-col">
-				<li class="flex flex-col">
-					<section class="flex flex-col bg-slate-400 rounded-lg p-4 gap-4">
-						<h3
-							class="text-h3 leading-default font-bold tracking-tighter font-inder"
+		<Projects />
+		<!--University projects -->
+		<section class="mt-8">
+			<div class="inline-flex
+			gap-4
+			items-center
+			justify-center pl-8">
+				<UniversityIcon />
+				<h2
+					class="text-2xl leading-default font-bold tracking-tight sm:text-4xl font-inder"
+				>
+					University Projects
+				</h2>
+			</div>
+			<ul class="flex flex-col gap-2 mt-2">
+				<li class="mt-4">
+					<section
+						class="container flex flex-col justify-center rounded-lg p-4"
+					>
+						<div class="inline-flex justify-between items-center">
+							<h3
+								class="text-2xl leading-default font-medium tracking-tighter font-inder"
+							>
+								Database Design and Implementation
+							</h3>
+							<span
+								class="inline-flex items-center justify-center gap-2 text-lg font-bold"
+							>
+								<DatabaseIcon />National Library of Peru
+							</span>
+						</div>
+						<div
+							class="flex flex-col md:flex-row-reverse items-center gap-8 mt-8 md:mt-4"
 						>
-							Snapgram
-						</h3>
-						<a href="">
-							<img src="https://via.placeholder.com/600x400" alt="Snapgram" />
-						</a>
-						<p class="text-body font-bold">
-							Snapgram is a social network where you share unique moments in
-							your life with the world!
-						</p>
-						<h4
-							class="text-body leading-default font-bold tracking-tighter font-inder"
-						>
-							Technologies
-						</h4>
-						<ul class="">
-							<li>Library: <span>React</span></li>
-							<li>Tools: <span>TypeScript, Node.js</span></li>
-							<li>UI: <span>Shadcn</span></li>
-							<li>Global State: <span>TankStack Query</span></li>
-							<li>Bundler: <span>Vite</span></li>
-							<li>BaaS: <span>Appwrite</span></li>
-						</ul>
+							<a
+								href=""
+								class="flex flex-col transition md:hover:scale-110 md:hover:rotate-3"
+							>
+								<img
+									src="https://via.placeholder.com/500x350"
+									width="500"
+									height="350"
+									loading="lazy"
+									alt="Snapgram"
+									class="rounded-lg"
+								/>
+							</a>
+							<div
+								class="flex flex-1 basis-1/2 md:flex-col flex-col-reverse gap-8 items-center justify-center"
+							>
+								<div class="flex flex-col gap-4 text-pretty text-lg font-inder">
+									<p>
+										University work whose proposal was not implemented because
+										it was carried out for practical purposes but was not
+										implemented.
+									</p>
+									<p
+										class="[&>strong]:font-semibold
+										[&>strong]:bg-gradient-to-t [&>strong]:from-golden [&>strong]:to-cyan-500 [&>strong]:bg-clip-text text-xl [&>strong]:text-transparent"
+									>
+										In collaboration with <strong
+											>Esteban Eduardo Ruiz Quispe</strong
+										> and <strong>Juan Domingo Villanque Echegaray</strong>
+									</p>
+								</div>
+								<ul
+									class="flex items-center justify-center gap-6 md:cursor-crosshair group flex-wrap w-full"
+								>
+									<li
+										class="md:group-hover:animate-slide-out-right"
+										title="Typescript"
+									>
+										<SQLServerIcon />
+									</li>
+									<li
+										class="md:group-hover:animate-slide-out-left"
+										title="Tailwindcss"
+									>
+										<MicrosoftIcon />
+									</li>
+								</ul>
+							</div>
+						</div>
 					</section>
 				</li>
 			</ul>
 		</section>
-		<!--University projects -->
-		<section class="flex flex-col bg-slate-400 rounded-lg p-4 gap-8">
-			<div class="flex flex-col gap-4">
+
+		<section>
+			<div>
 				<h2
 					class="text-h2 leading-default font-bold tracking-tighter font-inder"
 				>
-					University projects
+					That's all!
 				</h2>
-				<p class="text-body leading-default">
-					Here are some of the projects I've been working on during my college
-					years.
+				<p class="text-h3 leading-default tracking-tighter font-inder">
+					Thank you for reading my portfolio, I hope you liked it. If you want
+					to contact me, you can do it through my email:
+					<a href="mailto:pseudominio.go@gmail.com">pseudominio.go@gmail.com</a>
 				</p>
 			</div>
-			<ul>
-				<li>
-					<section>
-						<h3
-							class="text-h3 leading-default font-bold tracking-tighter font-inder"
-						>
-							Database Design of the Loan System for the National Library of
-							Peru
-						</h3>
-						<a href="">
-							<img
-								src="https://via.placeholder.com/600x400"
-								alt="Database Design of the Loan System for the National Library of Peru"
-							/>
-						</a>
-						<p>
-							<ul>
-								<li>SQL Server</li>
-								<li>SQL TSQL</li>
-								<li>Database Diagrams and Normalization</li>
-							</ul>
-						</p>
-					</section>
-				</li>
-			</ul>
+			<div class="">
+				<img
+					src="https://via.placeholder.com/500x350"
+					alt="Flavio Gonzalo Oré Chávez"
+					class="rounded-lg transition rotate-3 aspect-video"
+				/>
+			</div>
 		</section>
-	</div>
-
-	<section class="flex bg-slate-400 rounded-lg p-4">
-		<div>
-			<h2 class="text-h2 leading-default font-bold tracking-tighter font-inder">
-				That's all!
-			</h2>
-			<p class="text-h3 leading-default tracking-tighter font-inder">
-				Thank you for reading my portfolio, I hope you liked it. If you want to
-				contact me, you can do it through my email:
-				<a href="mailto:pseudominio.go@gmail.com">pseudominio.go@gmail.com</a>
+		<footer class="bg-slate-500 text-white p-4 rounded-lg text-center">
+			<h3
+				class="text-body leading-default font-bold tracking-tighter font-inder"
+			>
+				Happy coding!
+			</h3>
+			<p>
+				<small>
+					© 2021 Flavio Gonzalo Oré Chávez. All rights reserved. Made with ❤️
+					in Peru.
+				</small>
 			</p>
-		</div>
-		<div>
-			<img
-				src="https://via.placeholder.com/300x300"
-				alt="Flavio Gonzalo Oré Chávez"
-			/>
-		</div>
-	</section>
-	<footer
-		class="bg-slate-500 text-white p-4 rounded-lg text-center"
-		<h3
-		class="text-body leading-default font-bold tracking-tighter font-inder"
-	>
-		Happy coding!
-		<p>
-			<small>
-				© 2021 Flavio Gonzalo Oré Chávez. All rights reserved. Made with ❤️ in
-				Peru.
-			</small>
-		</p>
-	</footer>
+		</footer>
+	</div>
 </Layout>
