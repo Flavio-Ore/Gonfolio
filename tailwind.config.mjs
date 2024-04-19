@@ -34,9 +34,20 @@ export default {
         '3xl': '1650px'
       },
       animation: {
-        'background-shine': 'background-shine 2s linear infinite'
+        'background-shine': 'background-shine 2s linear infinite',
+        'border-width': 'border-width 3s infinite alternate'
       },
       keyframes: {
+        'border-width': {
+          from: {
+            width: '10px',
+            opacity: '0'
+          },
+          to: {
+            width: '100px',
+            opacity: '1'
+          }
+        },
         'background-shine': {
           from: {
             backgroundPosition: '0 0'

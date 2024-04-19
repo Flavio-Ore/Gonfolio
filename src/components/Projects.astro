@@ -11,31 +11,27 @@ import TypeScriptIcon from './icons/TypeScriptIcon.astro'
 import ViteIcon from './icons/ViteIcon.astro'
 ---
 
-<section class="mt-8">
+<section class="my-8">
   <div class="inline-flex
   gap-4
   items-center
   justify-center pl-8">
-    <PortfolioIcon />
-    <h2
-      class="text-2xl leading-default font-bold tracking-tight sm:text-4xl font-inder"
-    >
+    <PortfolioIcon class="size-10" />
+    <h2 class="text-2xl leading-default font-bold tracking-tight sm:text-4xl">
       Projects
     </h2>
   </div>
   <ul class="flex flex-col gap-2 mt-2">
     <li class="mt-4">
-      <section class="container flex flex-col justify-center rounded-lg p-4">
+      <section class="flex flex-col justify-center rounded-lg p-4">
         <div class="inline-flex justify-between items-center">
-          <h3
-            class="text-2xl leading-default font-medium tracking-tighter font-inder"
-          >
+          <h3 class="text-2xl leading-default font-medium tracking-tighter">
             Social Media Application
           </h3>
-          <SnapgramLogo />
+          <SnapgramLogo class="fill-obscure dark:fill-light" />
         </div>
         <div
-          class="flex flex-col md:flex-row-reverse items-center gap-8 mt-8 md:mt-4"
+          class="flex flex-col md:flex-row-reverse items-center md:items-start gap-8 mt-8 md:mt-4"
         >
           <a
             href=""
@@ -53,12 +49,14 @@ import ViteIcon from './icons/ViteIcon.astro'
           <div
             class="flex flex-1 basis-1/2 md:flex-col flex-col-reverse gap-8 items-center justify-center"
           >
-            <div class="flex flex-col gap-4 text-pretty text-lg font-inder">
+            <div
+              class="flex flex-col gap-4 text-pretty text-lg text-gray-600 dark:text-gray-300"
+            >
               <p>
                 Snapgram is a social network where you share unique moments in
                 your life with the world!
               </p>
-              <p class="">
+              <p>
                 An improved version of the original Snapgram created by
                 <a
                   href="https://github.com/adrianhajdin"
@@ -66,39 +64,39 @@ import ViteIcon from './icons/ViteIcon.astro'
                   rel="noopener noreferrer"
                   class="bg-gradient-to-t from-golden to-red-500 bg-clip-text text-xl text-transparent"
                   >@adrianhajdin</a
-                >
+                >.
               </p>
             </div>
             <ul
               class="flex items-center justify-center gap-6 md:cursor-crosshair group flex-wrap w-full"
             >
               <li class="md:group-hover:animate-float" title="Typescript">
-                <TypeScriptIcon />
+                <TypeScriptIcon class="size-10" />
               </li>
 
               <li class="md:group-hover:animate-tada" title="Tailwindcss">
-                <TailwindIcon />
+                <TailwindIcon class="size-10" />
               </li>
               <li class="md:group-hover:animate-shake" title="React">
-                <ReactIcon />
+                <ReactIcon class="size-10" />
               </li>
               <li class="md:group-hover:animate-flip-x" title="Shadcn">
-                <ShadcnIcon />
+                <ShadcnIcon class="size-10" />
               </li>
               <li class="md:group-hover:animate-squeeze" title="TanStack Query">
-                <ReactQueryIcon />
+                <ReactQueryIcon class="size-10" />
               </li>
               <li class="md:group-hover:animate-roll-in" title="Nodejs">
-                <NodeJsIcon />
+                <NodeJsIcon class="size-10" />
               </li>
               <li class="md:group-hover:animate-skew" title="Vite">
-                <ViteIcon />
+                <ViteIcon class="size-10" />
               </li>
               <li
                 class="md:group-hover:animate-slide-out-left"
                 title="Appwrite"
               >
-                <AppwriteIcon />
+                <AppwriteIcon class="size-10" />
               </li>
             </ul>
           </div>
