@@ -1,0 +1,97 @@
+---
+import AppwriteIcon from "@components/icons/AppwriteIcon.astro";
+import FigmaIcon from "@components/icons/FigmaIcon.astro";
+import NodeJsIcon from "@components/icons/NodeJsIcon.astro";
+import ReactIcon from "@components/icons/ReactIcon.astro";
+import ReactQueryIcon from "@components/icons/ReactQueryIcon.astro";
+import ShadcnIcon from "@components/icons/ShadcnIcon.astro";
+import SnapgramLogo from "@components/icons/SnapgramLogo.astro";
+import TailwindIcon from "@components/icons/TailwindIcon.astro";
+import TypeScriptIcon from "@components/icons/TypeScriptIcon.astro";
+import ViteIcon from "@components/icons/ViteIcon.astro";
+import TiltCard from "@components/TiltCard.astro";
+---
+
+<section class="flex flex-col justify-center rounded-lg p-4">
+  <div class="inline-flex justify-between items-center">
+    <h3 class="text-2xl leading-default font-medium tracking-tighter">
+      Social Media Application
+    </h3>
+    <SnapgramLogo class="fill-dark dark:fill-light" />
+  </div>
+  <div
+    class="flex flex-col md:flex-row-reverse items-center md:items-start gap-8 mt-8 md:mt-4"
+  >
+    <a
+      href="https://github.com/Flavio-Ore/modern-snapgram"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-col group"
+    >
+      <TiltCard>
+        <img
+          src="/assets/imgs/snapgram.png"
+          width="500"
+          height="350"
+          loading="lazy"
+          alt="Snapgram"
+          class="rounded-lg transition-all opacity-90 md:hover:opacity-100 md:hover:scale-110"
+        />
+      </TiltCard>
+    </a>
+    <div
+      class="flex flex-1 basis-1/2 md:flex-col flex-col-reverse gap-8 items-center justify-center"
+    >
+      <div
+        class="flex flex-col gap-4 text-pretty text-lg text-gray-600 dark:text-gray-300"
+      >
+        <p>
+          Snapgram is a social network where you share unique moments in your
+          life with the world!
+        </p>
+        <p>
+          An improved version of the original Snapgram created by
+          <a
+            href="https://github.com/adrianhajdin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-gradient-to-t from-indigo-400 to-red-900 bg-clip-text text-xl text-transparent"
+            ><strong>@adrianhajdin</strong></a
+          >.
+        </p>
+      </div>
+      <ul
+        class="flex items-center justify-center gap-6 md:cursor-crosshair group flex-wrap w-full"
+      >
+        <li class="md:group-hover:animate-float" title="Typescript">
+          <TypeScriptIcon class="size-10" />
+        </li>
+
+        <li class="md:group-hover:animate-tada" title="Tailwindcss">
+          <TailwindIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-shake" title="React">
+          <ReactIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-flip-x" title="Shadcn">
+          <ShadcnIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-squeeze" title="TanStack Query">
+          <ReactQueryIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-roll-in" title="Nodejs">
+          <NodeJsIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-skew" title="Vite">
+          <ViteIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-zoom-in" title="Figma">
+          <FigmaIcon class="size-10" />
+        </li>
+        <li class="md:group-hover:animate-slide-out-left" title="Appwrite">
+          <AppwriteIcon class="size-10" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

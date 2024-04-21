@@ -1,113 +1,22 @@
 ---
-import Header from '@components/Header.astro'
-import EmailIcon from '@components/icons/EmailIcon.astro'
-import Projects from '@components/Projects.astro'
-import UniversityProjects from '@components/UniversityProjects.astro'
-import Layout from '@layouts/Layout.astro'
+import About from "@components/About.astro";
+import Header from "@components/Header.astro";
+import Projects from "@components/Projects.astro";
+import UniversityProjects from "@components/UniversityProjects.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Gonfolio">
+<Layout title="Gonfolio" description="Gonzalo Oré - Software Engineer">
 	<div
 		class="max-w-5xl mx-auto flex flex-col flex-1 items-center justify-center gap-10 py-5 px-5 md:px-8 lg:p-14 xl:py-10"
 	>
 		<section
 			class="flex flex-col justify-evenly gap-8 max-w-2xl mt-0 md:mt-8 py-16"
 		>
-			<!--TOP -->
 			<Header />
-			<div class="flex flex-col gap-4 mt-2 text-xl text-pretty">
-				<p
-					class="dark:[&>strong]:text-blue-200 [&>strong]:text-blue-500 [&>strong]:font-semibold"
-				>
-					I started programming when I was 14 years old in high school.
-					<strong
-						>I have been working with computers for as long as I can remember.</strong
-					>
-				</p>
-				<p
-					class="dark:[&>strong]:text-red-200 [&>strong]:text-red-500 [&>strong]:font-semibold"
-				>
-					What I remember most about my computer is that it only <strong>
-						2 GB of RAM and it lasted 13 years</strong
-					>. Thirteen years of pure windows 7.
-				</p>
-				<p
-					class="dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold"
-				>
-					Currently, I'm using a computer I never imagined owning, along with a
-					Linux laptop. <strong>I'm really enjoying it 😅.</strong>
-				</p>
-			</div>
+			<About />
 		</section>
-		<!--Skills -->
-		<!-- <section class="bg-slate-400 rounded-lg p-8">
-			<h2 class="text-h2 leading-default font-bold tracking-tighter">
-				Skills
-			</h2>
-			<p class="text-small leading-default">The technologies I'm good at</p>
-			<ul
-				class="grid grid-cols-2 text-h3 font-bold tracking-tighter leading-default"
-			>
-				<li>Web Development</li>
-				<li>Linux</li>
-				<li>REST APIs</li>
-				<li class="">Git - Workflows</li>
-			</ul>
-		</section> -->
-		<!--Projects -->
 		<Projects />
-		<!--University projects -->
 		<UniversityProjects />
-		<!--Final Section -->
-		<section
-			class="flex flex-row-reverse gap-16 my-10 text-xl leading-default tracking-tighter"
-		>
-			<div class="flex flex-col items-center justify-center">
-				<h2
-					class="text-3xl leading-default font-bold tracking-tighter text-end"
-				>
-					That's all!
-				</h2>
-				<p>
-					Thank you for reading my portfolio, I hope you liked it. If you want
-					to contact me, you can do it through my email: <a
-						class="group text-xl w-full leading-default tracking-tighter cursor-pointer"
-						href="mailto:pseudominio.go@gmail.com"
-						rel="noopener noreferrer"
-					>
-						<div class="relative inline-flex">
-							<div
-								class="relative inline-flex items-center transition translate-x-20 group-hover:translate-x-10"
-							>
-								<EmailIcon
-									class="absolute translate-y-5 opacity-0 transition group-hover:-translate-x-5 group-hover:-translate-y-0 group-hover:opacity-100 size-7 -ml-2.5"
-								/>
-								pseudominio.go@gmail.com
-							</div>
-						</div>
-					</a>
-				</p>
-			</div>
-
-			<div class="max-w-xl">
-				<img
-					src="https://lh3.googleusercontent.com/pw/AP1GczOi5fQemwlGjAFKrARPa44SC-3XpMUKaNzVsRz0sU0gp5rUzaghh4jT9oiYb_7m86Cl_iChDJu2UUfIURXm5wqNyZxBQ4YGKqnr5pYCZh05A6X8qGHpGNCHnqQGvYRpYamc8GQ-NFxnGVTa8FmdSWDcfK1DTcLw4sggLax7O5-5Kn0iG3dLL34W_slnt0qSKL1yDiN8lH6ly6u5XfABNkpONwERkmbgqBFxt3kwUgQlK7sxg6Q32XfeJCDCY8hLPkPIMVo8Hlqqrl5Lye9xyF_gsPDCuZwPq_H56-nRRzOvWpt1c4AFw-yuwkHXrp-Cov8drLaqqkV1blhhCfyzh8iiBuPPhTyVrkX08DIVLx6PqyX30v04DRzRqKkDfJRakvgyz3ImUMUJkrv2ysrrXhUP20qbCIvNCjOBhp9Avo5I_uSVNTkXHGpofcmWy4whjGIOigWDn8yVb8z26KIXbxJwpmUFupipV1ga3q33udTjaH3qM3Y0Uqsldek-evXKfGgINme8FRktbjnJbIaLHAb37vzwKs-ojlBpu4SJqADFwGlwFY2FuROni8TdVvBhmfUFjIAccUI5vAZcGAoX8iQzSU8jCD6eRb_ct9Qee2rcVqv3DKFcgMQrBqRVOLkJh8ukrrlkGRf9EgODnD4K5anb4lh6wBjnr1MUF20BkYBr5O8w0Riy2V_teOpePDBePnSJpWVR5CHBI_Uk2fTVzrV47uSZ1WA5-vPLplLh8wiQMs23_eNLIS0dOVli-Jo6NBgi3tH9avs0zzO8-_SIGBQp3RSMliLRvwKqF0gbyOZugEKniCbmZg1o6XnXwtX_7571ZX6t8yzG3v7bFXCPZftV14lUNLqqIoOtDfxsHhNrDwv0SEXbK3cyVUfm1UQAKKi0nBOwiCE7lr_tuwJDXN-pdEc_Un4rjG33tOAc3TedotxS3l99VdwSmCSJbINiTPqs2q6cFPVHsJoe7eZ0zcmvqLVpmuhidnmRl8Brjrl48NT18vKXu_hmDIHhSHOCtzbp_Jk=w1560-h879-s-no-gm?authuser=0"
-					alt="Flavio Gonzalo Oré Chávez"
-					class="rounded-lg transition hover:scale-105 aspect-video"
-				/>
-			</div>
-		</section>
-		<!--Footer -->
-		<footer class="bg-slate-500 text-white p-4 rounded-lg text-center">
-			<h3 class="text-body leading-default font-bold tracking-tighter">
-				Happy coding!
-			</h3>
-			<p>
-				<small>
-					© 2021 Flavio Gonzalo Oré Chávez. All rights reserved. Made with ❤️
-					in Peru.
-				</small>
-			</p>
-		</footer>
 	</div>
 </Layout>
