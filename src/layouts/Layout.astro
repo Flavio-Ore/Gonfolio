@@ -44,6 +44,24 @@ const { title, description } = Astro.props;
 					scroll-behavior: auto;
 				}
 			}
+			body::-webkit-scrollbar {
+				width: 6px;
+				height: 6px;
+				border-radius: 2px;
+			}
+
+			body::-webkit-scrollbar-track {
+				background: none;
+			}
+
+			body::-webkit-scrollbar-thumb {
+				background: #7373739d;
+				border-radius: 50px;
+			}
+
+			body::-webkit-scrollbar-thumb:hover {
+				background: #4f46e59d;
+			}
 		</style>
 	</body>
 </html>
