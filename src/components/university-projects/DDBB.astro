@@ -3,6 +3,7 @@ import DatabaseIcon from "@components/icons/DatabaseIcon.astro";
 import MicrosoftIcon from "@components/icons/MicrosoftIcon.astro";
 import SQLServerIcon from "@components/icons/SQLServerIcon.astro";
 import TiltCard from "@components/TiltCard.astro";
+import { Image } from "astro:assets";
 ---
 
 <section class="flex flex-col justify-center rounded-lg p-4">
@@ -26,14 +27,17 @@ import TiltCard from "@components/TiltCard.astro";
       class="flex flex-col"
     >
       <TiltCard>
-        <img
-          src="/assets/imgs/ddbb.png"
-          width="500"
-          height="350"
-          loading="lazy"
-          alt="Snapgram"
-          class="rounded-lg transition-all opacity-90 md:hover:opacity-100 md:hover:scale-110"
-        />
+        <picture>
+          <source srcset="/assets/imgs/ddbb.avif" type="image/avif" />
+          <Image
+            src="/assets/imgs/ddbb-original.webp"
+            width="500"
+            height="350"
+            loading="lazy"
+            alt="Snapgram"
+            class="rounded-lg transition-all opacity-90 md:hover:opacity-100 md:hover:scale-110"
+          />
+        </picture>
       </TiltCard>
     </a>
     <div
