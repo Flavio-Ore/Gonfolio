@@ -1,7 +1,7 @@
 ---
-import MoonIcon from "@components/icons/MoonIcon.astro";
-import SunIcon from "@components/icons/SunIcon.astro";
-import RocketIcon from "@components/icons/RocketIcon.astro";
+import MoonIcon from "components/icons/MoonIcon.astro";
+import SunIcon from "components/icons/SunIcon.astro";
+import RocketIcon from "components/icons/RocketIcon.astro";
 
 const THEMES = ["Light", "Dark", "System"];
 ---
@@ -78,7 +78,7 @@ const THEMES = ["Light", "Dark", "System"];
 
     const themePreference =
       typeof window.localStorage !== "undefined"
-        ? window.localStorage.getItem("theme") ?? "system"
+        ? (window.localStorage.getItem("theme") ?? "system")
         : matchMedia.matches
           ? "dark"
           : "light";

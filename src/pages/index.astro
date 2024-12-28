@@ -1,22 +1,12 @@
 ---
-import About from "@components/About.astro";
-import Header from "@components/Header.astro";
-import Projects from "@components/Projects.astro";
-import UniversityProjects from "@components/UniversityProjects.astro";
-import Layout from "@layouts/Layout.astro";
+import Header from "components/Header.astro";
+import Profile from "components/Profile.astro";
+import Projects from "components/Projects.astro";
+import Layout from "layouts/Layout.astro";
 ---
 
-<Layout title="Gonfolio" description="Gonzalo Oré - Software Engineer">
-	<div
-		class="max-w-5xl mx-auto flex flex-col flex-1 items-center justify-center gap-10 py-5 px-5 md:px-8 lg:p-14 xl:py-10"
-	>
-		<section
-			class="flex flex-col justify-evenly gap-8 max-w-2xl mt-0 md:mt-8 py-16"
-		>
-			<Header />
-			<About />
-		</section>
-		<Projects />
-		<UniversityProjects />
-	</div>
+<Layout>
+	<Header />
+	<Profile />
+	<Projects />
 </Layout>

@@ -1,53 +1,57 @@
 ---
-import GithubIcon from "@components/icons/GithubIcon.astro";
-import LinkedInIcon from "@components/icons/LinkedInIcon.astro";
+import myPhoto from "assets/photo.avif";
+import Picture from "astro/components/Picture.astro";
+import EmailIcon from "components/icons/EmailIcon.astro";
+import GithubIcon from "components/icons/GithubIcon.astro";
+import LinkedInIcon from "components/icons/LinkedInIcon.astro";
 ---
 
-<header class="flex flex-col md:flex-row justify-around gap-8 md:gap-2 w-full">
-  <div class="flex flex-col justify-center items-center">
-    <div
-      class="flex md:flex-row flex-row-reverse items-center justify-around gap-4"
+<header
+  class="flex items-center justify-between gap-y-2 w-full max-w-3xl mx-auto text-dark dark:text-white"
+>
+  <div class="inline-flex items-center justify-center gap-x-4">
+    <Picture
+      src={myPhoto}
+      width={48}
+      height={48}
+      formats={["avif", "webp"]}
+      alt="Photo of Flavio Gonzalo Oré Chávez"
+      class="aspect-square object-cover rounded-full"
+    />
+    <h3
+      class="text-lg font-semibold sm:text-xl dark:text-amber-200 text-amber-500"
     >
-      <a
-        class="relative md:transition-opacity md:hover:opacity-80 md:hover:animate-tada before:absolute before:rounded-full before:content-[''] before:bottom-0 before:right-0 before:size-4 before:bg-sky-500 before:animate-rubber-band before:animate-iteration-count-infinite before:animate-duration-[3000ms]"
-        href="https://github.com/Flavio-Ore"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <GithubIcon class="size-14" />
-        <span class="sr-only">Github</span>
-      </a>
-      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl text-pretty">
-        Flavio Gonzalo Oré Chávez
-      </h1>
-    </div>
-    <h2 class="text-2xl font-medium leading-default tracking-tighter mt-2">
-      <div
-        class="inline-flex gap-2 sm:gap-10 flex-wrap items-center justify-center"
-      >
-        <span>Computer Science</span>
-        <span>Systems</span>
-        <span>Software</span>
-      </div>
-    </h2>
+      Gonzalo Oré Chávez
+    </h3>
   </div>
-  <a
-    href="https://www.linkedin.com/in/flavio-gonzalo-or%C3%A9-ch%C3%A1vez-80b768270/"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-center group"
-  >
-    <picture>
-      <source type="image/avif" srcset="/assets/imgs/photo.avif" />
-      <img
-        class="aspect-square object-cover rounded-lg rotate-3 border-2 border-dark/50 dark:border-light/50"
-        width="86"
-        height="86"
-        src="/assets/imgs/photo.webp"
-        alt="Flavio Gonzalo Oré Chávez"
-      />
-    </picture>
-    <LinkedInIcon class="size-6 -mt-2 -rotate-3" />
-    <span class="sr-only">LinkedIn</span>
-  </a>
+  <div class="flex gap-x-4 items-center justify-around">
+    <a
+      href="https://www.linkedin.com/in/fla-gon-ch"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
+    >
+      <LinkedInIcon class="size-7 md:hover:animate-sway" />
+      <span class="sr-only">LinkedIn</span>
+    </a>
+    <a
+      href="mailto:gonzaloorech@gmail.com"
+      target="_self"
+      rel="noopener noreferrer"
+      class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
+    >
+      <EmailIcon class="size-7 md:hover:animate-sway" />
+      <span class="sr-only">Gmail</span>
+    </a>
+
+    <a
+      class="relative md:transition-opacity md:hover:opacity-80 md:hover:animate-tada before:absolute before:rounded-full before:content-[''] before:bottom-0 before:right-0 before:size-2 before:bg-sky-500 before:animate-rubber-band before:animate-iteration-count-infinite before:animate-duration-[3000ms]"
+      href="https://github.com/Flavio-Ore"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <GithubIcon class="size-7" />
+      <span class="sr-only">Github</span>
+    </a>
+  </div>
 </header>

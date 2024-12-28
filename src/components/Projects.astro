@@ -1,21 +1,177 @@
 ---
-import PortfolioIcon from "@components/icons/PortfolioIcon.astro";
-import Snapgram from "@components/projects/Snapgram.astro";
+import { Picture } from "astro:assets";
+import AppwriteIcon from "components/icons/AppwriteIcon.astro";
+import GithubAltIcon from "components/icons/GithubAltIcon.astro";
+import JavaIcon from "components/icons/JavaIcon.astro";
+import JavaSpringIcon from "components/icons/JavaSpringIcon.astro";
+import LinkIcon from "components/icons/LinkIcon.astro";
+import ReactIcon from "components/icons/ReactIcon.astro";
+import ShadcnIcon from "components/icons/ShadcnIcon.astro";
+import TailwindIcon from "components/icons/TailwindIcon.astro";
+import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
+import { projects } from "scripts/projects";
+import { TECHNOLOGIES } from "scripts/technologies";
 ---
 
-<section class="my-8">
-  <div class="inline-flex
-  gap-4
-  items-center
-  justify-center pl-8">
-    <PortfolioIcon class="size-10" />
-    <h2 class="text-2xl leading-default font-bold tracking-tight sm:text-4xl">
-      Projects
-    </h2>
-  </div>
-  <ul class="flex flex-col gap-2 mt-2">
-    <li class="mt-4">
-      <Snapgram />
-    </li>
+<main class="mx-auto w-full max-w-3xl">
+  <h3
+    class="text-3xl font-bold mt-7 text-center sm:text-left max-w-3xl mx-auto dark:text-amber-200 text-amber-500"
+  >
+    Projects
+  </h3>
+  <ul class="flex flex-col gap-y-8 mt-5">
+    {
+      projects.map(({ demo, desc, github, img, imgAlt, name, tech }) => (
+        <li class="group border rounded-sm transition-all p-6 border-yellow-400 hover:border-yellow-600 dark:border-yellow-950 hover:dark:border-yellow-600 shadow-md md:cursor-crosshair">
+          <section class="flex gap-x-8 w-full">
+            <div class="flex flex-col basis-1/2 gap-y-2 items-center justify-between w-full">
+              <div>
+                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 no-underline group-hover:underline">
+                  {name}
+                </h4>
+                <ul class="list-none py-2 text-pretty text-base dark:text-amber-50 text-amber-950">
+                  {desc.split(".").map((sentence, index, array) => (
+                    <span>
+                      {index !== array.length - 1 ? (
+                        <li class="py-1">{sentence}.</li>
+                      ) : (
+                        sentence
+                      )}
+                    </span>
+                  ))}
+                </ul>
+              </div>
+              <div class="flex gap-4 justify-center items-center">
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex flex-col justify-center items-center
+                  text-yellow-950 dark:text-yellow-50
+                  dark:group-hover:text-blue-200 group-hover:text-blue-500
+                  dark:hover:text-blue-200 hover:text-blue-200"
+                >
+                  <GithubAltIcon class="size-4 md:size-6 " />
+                  <span class="text-xs">Source</span>
+                </a>
+                <a
+                  href={demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex flex-col justify-center items-center 
+                  text-yellow-950 dark:text-yellow-50
+                  group-hover:text-red-500 hover:text-red-900
+                  dark:group-hover:text-red-200 dark:hover:text-red-200"
+                >
+                  <LinkIcon class="size-4 md:size-6" />
+                  <span class="text-xs">Demo</span>
+                </a>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2 flex-1 basis-1/2 w-full items-center justify-between">
+              <Picture
+                src={img}
+                format={img.format}
+                width="500"
+                height="350"
+                alt={imgAlt}
+                class="rounded-md"
+              />
+              <ul class="flex items-center justify-center gap-4 group flex-wrap md:flex-nowrap w-full text-xs dark:text-amber-50 text-amber-950">
+                {tech.map((t) => {
+                  switch (t) {
+                    case TECHNOLOGIES.Typescript:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <TypeScriptIcon class="size-8 md:group-hover:animate-squeeze md:group-hover:animate-duration-1000" />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.React:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <ReactIcon class="size-8 md:group-hover:animate-spin-clockwise md:group-hover:animate-duration-1000" />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.Appwrite:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <AppwriteIcon class="size-8 md:group-hover:animate-tada md:group-hover:animate-duration-1000" />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.TailwindCSS:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <TailwindIcon class="size-8 md:group-hover:animate-dancing md:group-hover:animate-duration-1000" />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.ShadCN:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <ShadcnIcon
+                            class={
+                              "size-8 md:group-hover:animate-pulse-fade-in md:group-hover:animate-duration-1000"
+                            }
+                          />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.Java:
+                      return (
+                        <li
+                          class="flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <JavaIcon
+                            class={
+                              "size-8 md:group-hover:animate-fade-in-down md:group-hover:animate-duration-1000"
+                            }
+                          />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    case TECHNOLOGIES.JavaSpring:
+                      return (
+                        <li
+                          class="
+                          flex flex-col items-center justify-center"
+                          title={t}
+                        >
+                          <JavaSpringIcon
+                            class={
+                              "size-8 md:group-hover:animate-swing-drop-in md:group-hover:animate-duration-1000"
+                            }
+                          />
+                          <span>{t}</span>
+                        </li>
+                      );
+                    default:
+                      return null;
+                  }
+                })}
+              </ul>
+            </div>
+          </section>
+        </li>
+      ))
+    }
   </ul>
-</section>
+</main>

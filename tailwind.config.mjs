@@ -12,7 +12,8 @@ export default {
       },
       fontFamily: {
         inter: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        inder: ['Inder', ...defaultTheme.fontFamily.sans]
+        inder: ['Inder', ...defaultTheme.fontFamily.sans],
+        HankenGrotesk: ['Hanken Grotesk Variable', ...defaultTheme.fontFamily.sans]
       },
       lineHeight: {
         default: '140%'
