@@ -19,14 +19,14 @@ import { TECHNOLOGIES } from "scripts/technologies";
   >
     Projects
   </h3>
-  <ul class="flex flex-col gap-y-8 mt-5">
+  <ul class="flex flex-col gap-y-8 mt-2">
     {
       projects.map(({ demo, desc, github, img, imgAlt, name, tech }) => (
-        <li class="group border rounded-sm transition-all p-6 border-yellow-400 hover:border-yellow-600 dark:border-yellow-950 hover:dark:border-yellow-600 shadow-md md:cursor-crosshair">
-          <section class="flex gap-x-8 w-full">
+        <li class="group border rounded-sm transition-all p-6 border-yellow-300 dark:border-yellow-900 md:hover:border-yellow-600 md:dark:border-yellow-950  md:hover:dark:border-yellow-600 shadow-md md:cursor-crosshair">
+          <section class="flex flex-col md:flex-row gap-x-8 gap-y-4 w-full">
             <div class="flex flex-col basis-1/2 gap-y-2 items-center justify-between w-full">
               <div>
-                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 no-underline group-hover:underline">
+                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 underline md:no-underline md:group-hover:underline">
                   {name}
                 </h4>
                 <ul class="list-none py-2 text-pretty text-base dark:text-amber-50 text-amber-950">
@@ -47,23 +47,25 @@ import { TECHNOLOGIES } from "scripts/technologies";
                   target="_blank"
                   rel="noopener noreferrer"
                   class="flex flex-col justify-center items-center
-                  text-yellow-950 dark:text-yellow-50
-                  dark:group-hover:text-blue-200 group-hover:text-blue-500
-                  dark:hover:text-blue-200 hover:text-blue-200"
+                  md:text-yellow-950 md:dark:text-yellow-50
+                  text-blue-500 dark:text-blue-200
+                  md:dark:group-hover:text-blue-200 md:group-hover:text-blue-500
+                  md:dark:hover:text-blue-200 md:hover:text-blue-200"
                 >
-                  <GithubAltIcon class="size-4 md:size-6 " />
+                  <GithubAltIcon class="md:size-6 " />
                   <span class="text-xs">Source</span>
                 </a>
                 <a
                   href={demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex flex-col justify-center items-center 
-                  text-yellow-950 dark:text-yellow-50
-                  group-hover:text-red-500 hover:text-red-900
-                  dark:group-hover:text-red-200 dark:hover:text-red-200"
+                  class="flex flex-col justify-center items-center
+                  md:text-yellow-950 md:dark:text-yellow-50
+                  text-red-500 dark:text-red-200
+                  md:group-hover:text-red-500 md:hover:text-red-900
+                  md:dark:group-hover:text-red-200 md:dark:hover:text-red-200"
                 >
-                  <LinkIcon class="size-4 md:size-6" />
+                  <LinkIcon class="md:size-6" />
                   <span class="text-xs">Demo</span>
                 </a>
               </div>
