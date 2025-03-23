@@ -1,9 +1,20 @@
 ---
 import MoonIcon from "components/icons/MoonIcon.astro";
 import SunIcon from "components/icons/SunIcon.astro";
-import RocketIcon from "components/icons/RocketIcon.astro";
+import { getLangFromUrl } from "i18n/utils";
+import ComputerIcon from "./icons/ComputerIcon.astro";
 
-const THEMES = ["Light", "Dark", "System"];
+const lang = getLangFromUrl(Astro.url);
+
+const language = lang == null ? "es" : lang;
+
+const THEMES = {
+  en: ["Light", "Dark", "System"],
+  es: ["Claro", "Oscuro", "Sistema"],
+};
+
+const chooseTheme = language === "es" ? "Elige un tema" : "Choose a theme";
+const themeNames = THEMES[language];
 ---
 
 <div class="fixed bottom-0 right-0 size-16 ml-1 mr-1 z-20">
@@ -11,15 +22,18 @@ const THEMES = ["Light", "Dark", "System"];
     id="theme-toggle-btn"
     class="appearance-none border-none transition flex md:hover:scale-110 z-10"
   >
-    <span class="sr-only">Choose a theme</span>
-    <SunIcon id="light" class="theme-toggle-icon size-12 transition-all" />
+    <span class="sr-only">{chooseTheme}</span>
+    <SunIcon
+      id="light"
+      class="stroke-orange-500 fill-yellow-300 theme-toggle-icon size-12 transition-all"
+    />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-12 transition-all"
+      class="stroke-blue-800 fill-yellow-600 theme-toggle-icon absolute size-12 transition-all"
     />
-    <RocketIcon
+    <ComputerIcon
       id="system"
-      class="theme-toggle-icon absolute size-12 transition-all"
+      class="fill-yellow-500 stroke-amber-800 theme-toggle-icon absolute size-12 transition-all"
     />
   </button>
   <div
@@ -28,8 +42,11 @@ const THEMES = ["Light", "Dark", "System"];
   >
     <ul>
       {
-        THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 md:hover:bg-yellow-400/40 md:dark:hover:bg-yellow-500/50 rounded-sm cursor-pointer">
+        themeNames.map((theme, i) => (
+          <li
+            id={THEMES.en[i]?.toLowerCase() ?? "system"}
+            class="themes-menu-option px-2 py-1.5 md:hover:bg-yellow-400/40 md:dark:hover:bg-yellow-500/50 rounded-sm cursor-pointer"
+          >
             {theme}
           </li>
         ))
@@ -105,7 +122,7 @@ const THEMES = ["Light", "Dark", "System"];
     element.addEventListener("click", (e) => {
       window.localStorage.setItem(
         "theme",
-        e.target.innerText.toLowerCase().trim(),
+        e.target.id === "system" ? "system" : e.target.id,
       );
       updateTheme();
     });

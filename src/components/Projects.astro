@@ -9,41 +9,56 @@ import ReactIcon from "components/icons/ReactIcon.astro";
 import ShadcnIcon from "components/icons/ShadcnIcon.astro";
 import TailwindIcon from "components/icons/TailwindIcon.astro";
 import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
-import { projects } from "scripts/projects";
-import { TECHNOLOGIES } from "scripts/technologies";
+import { useTranslations } from "i18n/utils";
+import type { Params, Projects } from "pages/[...lang].astro";
+import { TECHNOLOGIES } from "values/technologies";
+
+type Props = {
+  projects: Projects;
+};
+
+const { lang } = Astro.params as Params;
+const { projects } = Astro.props;
+if (!projects) {
+  throw new Error("No projects data");
+}
+
+const t = useTranslations(lang);
 ---
 
 <main class="mx-auto w-full max-w-3xl">
   <h3
     class="text-3xl font-bold mt-7 text-center sm:text-left max-w-3xl mx-auto dark:text-amber-200 text-amber-500"
   >
-    Projects
+    {t("projects.h3")}
   </h3>
   <ul class="flex flex-col gap-y-8 mt-2">
     {
-      projects.map(({ demo, desc, github, img, imgAlt, name, tech }) => (
+      projects.map(({ data: project }) => (
         <li class="group border rounded-sm transition-all p-6 border-yellow-300 dark:border-yellow-900 md:hover:border-yellow-600 md:dark:border-yellow-950  md:hover:dark:border-yellow-600 shadow-md md:cursor-crosshair">
           <section class="flex flex-col md:flex-row gap-x-8 gap-y-4 w-full">
             <div class="flex flex-col basis-1/2 gap-y-2 items-center justify-between w-full">
               <div>
                 <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 underline md:no-underline md:group-hover:underline">
-                  {name}
+                  {project.name}
                 </h4>
                 <ul class="list-none py-2 text-pretty text-base dark:text-amber-50 text-amber-950">
-                  {desc.split(".").map((sentence, index, array) => (
-                    <span>
-                      {index !== array.length - 1 ? (
-                        <li class="py-1">{sentence}.</li>
-                      ) : (
-                        sentence
-                      )}
-                    </span>
-                  ))}
+                  {project.description
+                    .split(".")
+                    .map((sentence, index, array) => (
+                      <span>
+                        {index !== array.length - 1 ? (
+                          <li class="py-1">✔ {sentence}.</li>
+                        ) : (
+                          sentence
+                        )}
+                      </span>
+                    ))}
                 </ul>
               </div>
               <div class="flex gap-4 justify-center items-center">
                 <a
-                  href={github}
+                  href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="flex flex-col justify-center items-center
@@ -56,7 +71,7 @@ import { TECHNOLOGIES } from "scripts/technologies";
                   <span class="text-xs">Source</span>
                 </a>
                 <a
-                  href={demo}
+                  href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="flex flex-col justify-center items-center
@@ -70,17 +85,17 @@ import { TECHNOLOGIES } from "scripts/technologies";
                 </a>
               </div>
             </div>
-            <div class="flex flex-col gap-2 flex-1 basis-1/2 w-full items-center justify-between">
+            <div class="flex flex-col gap-2 flex-1 basis-1/2 w-full items-start justify-center">
               <Picture
-                src={img}
-                format={img.format}
+                src={project.cover}
+                format={project.cover.format}
                 width="500"
                 height="350"
-                alt={imgAlt}
+                alt={project.imageAlt}
                 class="rounded-md"
               />
               <ul class="flex items-center justify-center gap-4 group flex-wrap md:flex-nowrap w-full text-xs dark:text-amber-50 text-amber-950">
-                {tech.map((t) => {
+                {project.tech.map((t) => {
                   switch (t) {
                     case TECHNOLOGIES.Typescript:
                       return (

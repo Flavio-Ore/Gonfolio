@@ -6,10 +6,13 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "components/Footer.astro";
 import ToggleDarkLight from "components/ToggleDarkLight.astro";
 import SEO from "components/_SEO.astro";
+import type { Params } from "pages/[...lang].astro";
+
+const { lang } = Astro.params as Params;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<SEO />
 		<ClientRouter />
@@ -49,12 +52,12 @@ import SEO from "components/_SEO.astro";
 			}
 
 			body::-webkit-scrollbar-thumb {
-				background: #7373739d;
+				background: #fb923c;
 				border-radius: 50px;
 			}
 
 			body::-webkit-scrollbar-thumb:hover {
-				background: #4f46e59d;
+				background: #fb923c9d;
 			}
 		</style>
 	</body>

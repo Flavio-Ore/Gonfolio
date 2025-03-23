@@ -1,0 +1,38 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Header from "components/Header.astro";
+import Profile from "components/Profile.astro";
+import Projects from "components/Projects.astro";
+import Layout from "layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [
+    {
+      params: {
+        lang: "en",
+      },
+    },
+    {
+      params: {
+        lang: "es",
+      },
+    },
+  ];
+}
+
+export type Params = {
+  lang: "en" | "es";
+};
+
+const { lang } = Astro.params as Params;
+const profile = await getEntry(`${lang}-profile`, `${lang}-profile`);
+const projects = await getCollection(`${lang}-projects`);
+export type Projects = typeof projects;
+export type Profile = typeof profile;
+---
+
+<Layout lang={lang}>
+  <Header />
+  <Profile profile={profile} />
+  <Projects projects={projects} />
+</Layout>
