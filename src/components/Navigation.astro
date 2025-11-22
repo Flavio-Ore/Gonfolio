@@ -1,0 +1,76 @@
+---
+import type { Params } from "pages/[...lang].astro";
+
+const { lang } = Astro.params as Params;
+
+const navItems = [
+  { id: "about", label: lang === "en" ? "About" : "Acerca" },
+  { id: "skills", label: lang === "en" ? "Skills" : "Habilidades" },
+  { id: "projects", label: lang === "en" ? "Projects" : "Proyectos" },
+  { id: "contact", label: lang === "en" ? "Contact" : "Contacto" },
+];
+---
+
+<nav
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-30 bg-light/80 dark:bg-dark/80 backdrop-blur-md border-b border-yellow-300/30 dark:border-yellow-900/30 transition-all duration-300 translate-y-0"
+>
+  <div class="max-w-3xl mx-auto px-5 py-4">
+    <ul class="flex justify-center items-center gap-6 md:gap-8">
+      {
+        navItems.map(({ id, label }) => (
+          <li>
+            <a
+              href={`#${id}`}
+              class="nav-link text-sm md:text-base font-medium text-amber-700 dark:text-amber-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors relative group"
+            >
+              {label}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 dark:bg-orange-400 transition-all duration-300 group-hover:w-full" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  #main-nav.hidden-nav {
+    transform: translateY(-100%);
+  }
+</style>
+
+<script>
+  let lastScroll = 0;
+  const nav = document.getElementById("main-nav");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 100) {
+      nav?.classList.remove("hidden-nav");
+    } else if (currentScroll > lastScroll) {
+      nav?.classList.add("hidden-nav");
+    } else {
+      nav?.classList.remove("hidden-nav");
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (this: HTMLAnchorElement, e) {
+      e.preventDefault();
+      const target = document.querySelector(
+        this.getAttribute("href") as string,
+      );
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+</script>

@@ -1,4 +1,5 @@
 ---
+import EmailIcon from "components/icons/EmailIcon.astro";
 import type { Profile } from "pages/[...lang].astro";
 
 type Props = {
@@ -10,22 +11,51 @@ const { profile } = Astro.props;
 if (!profile) {
   throw new Error("No profile data");
 }
+
+const { lang } = Astro.params;
 ---
 
-<section class="w-full max-w-3xl mx-auto mt-7 mb-1">
-  <h1
-    class="mx-auto mt-2 text-3xl font-bold sm:text-5xl text-pretty dark:text-amber-200 text-amber-500"
-  >
-    {profile.data.title}
-  </h1>
-  <h2
-    class="mx-auto mt-2 text-2xl font-medium dark:text-amber-400/90 text-amber-600/90"
-  >
-    {profile.data.subtitle}
-  </h2>
-  <p
-    class="text-xl mt-2 text-pretty dark:text-amber-50 text-amber-950 opacity-90 w-full max-w-3xl mx-auto"
-  >
-    {profile.data.description}
-  </p>
+<section id="about" class="w-full max-w-3xl mx-auto mt-7 mb-1 scroll-mt-20">
+  <div class="space-y-6">
+    <h1
+      class="mx-auto mt-2 text-3xl font-bold sm:text-5xl text-pretty dark:text-amber-200 text-amber-500 animate-fade-in-down"
+    >
+      {profile.data.title}
+    </h1>
+    <h2
+      class="mx-auto mt-2 text-2xl font-medium dark:text-amber-400/90 text-amber-600/90 animate-fade-in-down animate-delay-100"
+    >
+      {profile.data.subtitle}
+    </h2>
+    <p
+      class="text-xl mt-2 text-pretty dark:text-amber-50 text-amber-950 opacity-90 w-full max-w-3xl mx-auto animate-fade-in-down animate-delay-200"
+    >
+      {profile.data.description}
+    </p>
+
+    <div
+      class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start animate-fade-in-down animate-delay-300"
+    >
+      <a
+        href="#projects"
+        class="group relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-gradient-to-r from-orange-600 to-amber-700 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-700/50"
+      >
+        <span class="relative z-10">
+          {lang === "en" ? "View My Work" : "Ver Mi Trabajo"}
+        </span>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
+        </div>
+      </a>
+
+      <a
+        href="#contact"
+        class="group inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold border-2 border-orange-500 dark:border-amber-400 text-orange-600 dark:text-amber-300 rounded-lg transition-all duration-300 hover:bg-orange-500 hover:text-white dark:hover:bg-amber-500 dark:hover:text-dark hover:scale-105"
+      >
+        <EmailIcon class="size-5" />
+        <span>{lang === "en" ? "Get In Touch" : "Contáctame"}</span>
+      </a>
+    </div>
+  </div>
 </section>
