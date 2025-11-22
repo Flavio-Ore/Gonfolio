@@ -25,5 +25,9 @@ export const collections = {
   'es-profile': profile,
   'es-projects': projects,
   'en-profile': profile,
-  'en-projects': projects
+  'en-projects': projects,
+  'cs-profile': profile,
+  'cs-projects': projects,
+  'de-profile': profile,
+  'de-projects': projects
 }

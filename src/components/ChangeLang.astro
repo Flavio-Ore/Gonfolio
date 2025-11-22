@@ -2,7 +2,6 @@
 import { LANGUAGES } from "i18n/ui";
 import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
-import LangIcon from "./icons/LangIcon.astro";
 
 const { lang: currentLang } = Astro.params as Params;
 const t = useTranslations(currentLang);
@@ -24,11 +23,10 @@ const t = useTranslations(currentLang);
       ]}
       data-astro-reload
     >
-      English
+      🇺🇸
       <span class="sr-only">{t("Changelang.a")}</span>
     </a>
   </li>
-  <LangIcon class="fill-orange-600 dark:fill-orange-400 size-6" />
   <li
     class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
   >
@@ -44,7 +42,45 @@ const t = useTranslations(currentLang);
       ]}
       data-astro-reload
     >
-      Español
+      🇪🇸
+      <span class="sr-only">{t("Changelang.a")}</span>
+    </a>
+  </li>
+  <li
+    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
+  >
+    <a
+      href={`/${LANGUAGES.cs}/`}
+      target="_self"
+      class:list={[
+        "transition-colors hover:text-red-500 dark:hover:text-red-200",
+        {
+          "text-orange-600 dark:text-orange-400": LANGUAGES.cs === currentLang,
+          underline: LANGUAGES.cs === currentLang,
+        },
+      ]}
+      data-astro-reload
+    >
+      🇨🇿
+      <span class="sr-only">{t("Changelang.a")}</span>
+    </a>
+  </li>
+  <li
+    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
+  >
+    <a
+      href={`/${LANGUAGES.de}/`}
+      target="_self"
+      class:list={[
+        "transition-colors hover:text-red-500 dark:hover:text-red-200",
+        {
+          "text-orange-600 dark:text-orange-400": LANGUAGES.de === currentLang,
+          underline: LANGUAGES.de === currentLang,
+        },
+      ]}
+      data-astro-reload
+    >
+      🇩🇪
       <span class="sr-only">{t("Changelang.a")}</span>
     </a>
   </li>
