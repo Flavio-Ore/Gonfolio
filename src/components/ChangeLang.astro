@@ -7,7 +7,9 @@ const { lang: currentLang } = Astro.params as Params;
 const t = useTranslations(currentLang);
 ---
 
-<ul class="flex gap-x-2 border-yellow-400 px-2 py-1 rounded-md">
+<ul
+  class="flex justify-end gap-x-2 border-yellow-400 px-2 py-1 rounded-md basis-1/2"
+>
   <li
     class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
   >
@@ -42,7 +44,7 @@ const t = useTranslations(currentLang);
       ]}
       data-astro-reload
     >
-      🇪🇸
+      🇵🇪
       <span class="sr-only">{t("Changelang.a")}</span>
     </a>
   </li>
