@@ -2,16 +2,18 @@
 import EmailIcon from "components/icons/EmailIcon.astro";
 import GithubIcon from "components/icons/GithubIcon.astro";
 import LinkedInIcon from "components/icons/LinkedInIcon.astro";
+import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 
 const { lang } = Astro.params as Params;
+const t = useTranslations(lang);
 ---
 
 <section id="contact" class="w-full max-w-3xl mx-auto mt-16 mb-16 scroll-mt-20">
   <h3
     class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
   >
-    {lang === "en" ? "Get In Touch" : "Contáctame"}
+    {t("contact.title")}
   </h3>
 
   <div class="grid md:grid-cols-2 gap-8">
@@ -21,14 +23,10 @@ const { lang } = Astro.params as Params;
         <h4
           class="text-xl font-semibold mb-4 dark:text-amber-300 text-amber-600"
         >
-          {lang === "en" ? "Let's work together!" : "¡Trabajemos juntos!"}
+          {t("contact.subtitle")}
         </h4>
         <p class="text-base dark:text-amber-100 text-amber-900 mb-6">
-          {
-            lang === "en"
-              ? "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions."
-              : "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tus visiones."
-          }
+          {t("contact.description")}
         </p>
       </div>
 
@@ -115,7 +113,7 @@ const { lang } = Astro.params as Params;
             for="name"
             class="block text-sm font-semibold mb-2 dark:text-amber-300 text-amber-700"
           >
-            {lang === "en" ? "Name" : "Nombre"}
+            {t("contact.form.name")}
           </label>
           <input
             type="text"
@@ -123,7 +121,7 @@ const { lang } = Astro.params as Params;
             name="name"
             required
             class="w-full px-4 py-3 rounded-lg border border-yellow-300 dark:border-yellow-900 bg-white dark:bg-gray-900 text-amber-900 dark:text-amber-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
-            placeholder={lang === "en" ? "Your name" : "Tu nombre"}
+            placeholder={t("contact.form.namePlaceholder")}
           />
         </div>
 
@@ -140,9 +138,7 @@ const { lang } = Astro.params as Params;
             name="email"
             required
             class="w-full px-4 py-3 rounded-lg border border-yellow-300 dark:border-yellow-900 bg-white dark:bg-gray-900 text-amber-900 dark:text-amber-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
-            placeholder={lang === "en"
-              ? "your.email@example.com"
-              : "tu.email@ejemplo.com"}
+            placeholder={t("contact.form.emailPlaceholder")}
           />
         </div>
 
@@ -151,7 +147,7 @@ const { lang } = Astro.params as Params;
             for="message"
             class="block text-sm font-semibold mb-2 dark:text-amber-300 text-amber-700"
           >
-            {lang === "en" ? "Message" : "Mensaje"}
+            {t("contact.form.message")}
           </label>
           <textarea
             id="message"
@@ -159,15 +155,14 @@ const { lang } = Astro.params as Params;
             required
             rows="5"
             class="w-full px-4 py-3 rounded-lg border border-yellow-300 dark:border-yellow-900 bg-white dark:bg-gray-900 text-amber-900 dark:text-amber-100 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all resize-none"
-            placeholder={lang === "en" ? "Your message..." : "Tu mensaje..."}
-          ></textarea>
+            placeholder={t("contact.form.messagePlaceholder")}></textarea>
         </div>
 
         <button
           type="submit"
           class="w-full px-6 py-3 font-semibold text-white bg-gradient-to-r from-orange-600 to-amber-700 rounded-lg hover:from-orange-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-dark transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {lang === "en" ? "Send Message" : "Enviar Mensaje"}
+          {t("contact.form.submit")}
         </button>
       </form>
 

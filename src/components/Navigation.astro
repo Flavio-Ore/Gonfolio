@@ -1,13 +1,16 @@
 ---
+import ChangeLang from "components/ChangeLang.astro";
+import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 
 const { lang } = Astro.params as Params;
+const t = useTranslations(lang);
 
 const navItems = [
-  { id: "about", label: lang === "en" ? "About" : "Acerca" },
-  { id: "skills", label: lang === "en" ? "Skills" : "Habilidades" },
-  { id: "projects", label: lang === "en" ? "Projects" : "Proyectos" },
-  { id: "contact", label: lang === "en" ? "Contact" : "Contacto" },
+  { id: "about", label: t("nav.about") },
+  { id: "skills", label: t("nav.skills") },
+  { id: "projects", label: t("nav.projects") },
+  { id: "contact", label: t("nav.contact") },
 ];
 ---
 
@@ -15,8 +18,8 @@ const navItems = [
   id="main-nav"
   class="fixed top-0 left-0 right-0 z-30 bg-light/80 dark:bg-dark/80 backdrop-blur-md border-b border-yellow-300/30 dark:border-yellow-900/30 transition-all duration-300 translate-y-0"
 >
-  <div class="max-w-3xl mx-auto px-5 py-4">
-    <ul class="flex justify-center items-center gap-6 md:gap-8">
+  <div class="max-w-3xl mx-auto px-5 py-2">
+    <ul class="flex justify-between items-center gap-6 md:gap-8">
       {
         navItems.map(({ id, label }) => (
           <li>
@@ -30,6 +33,7 @@ const navItems = [
           </li>
         ))
       }
+      <ChangeLang />
     </ul>
   </div>
 </nav>

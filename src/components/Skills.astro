@@ -13,19 +13,21 @@ import ReactIcon from "components/icons/ReactIcon.astro";
 import ReactQueryIcon from "components/icons/ReactQueryIcon.astro";
 import ShadcnIcon from "components/icons/ShadcnIcon.astro";
 import SQLServerIcon from "components/icons/SQLServerIcon.astro";
-import TailwindIcon from "components/icons/TailwindIcon.astro";
 import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
 import ViteIcon from "components/icons/ViteIcon.astro";
+import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 import CSharpIcon from "./icons/CSharpIcon.astro";
 import GoogleCloudIcon from "./icons/GoogleCloudIcon.astro";
 import PythonIcon from "./icons/PythonIcon.astro";
+import TailwindIcon from "./icons/TailwindIcon.astro";
 
 const { lang } = Astro.params as Params;
+const t = useTranslations(lang);
 
 const skillCategories = [
   {
-    title: lang === "en" ? "Frontend Development" : "Desarrollo Frontend",
+    title: t("skills.frontend"),
     skills: [
       { name: "React", icon: ReactIcon },
       { name: "TypeScript", icon: TypeScriptIcon },
@@ -36,7 +38,7 @@ const skillCategories = [
     ],
   },
   {
-    title: lang === "en" ? "Backend & APIs" : "Backend y APIs",
+    title: t("skills.backend"),
     skills: [
       { name: "GraphQL", icon: GraphQLIcon },
       { name: "NestJS", icon: NestJSIcon },
@@ -47,7 +49,7 @@ const skillCategories = [
     ],
   },
   {
-    title: lang === "en" ? "Cloud & DevOps" : "Cloud y DevOps",
+    title: t("skills.cloud"),
     skills: [
       { name: "AWS", icon: AWSIcon },
       { name: "Google Cloud", icon: GoogleCloudIcon },
@@ -58,7 +60,7 @@ const skillCategories = [
     ],
   },
   {
-    title: lang === "en" ? "Other Technologies" : "Otras Tecnologías",
+    title: t("skills.other"),
     skills: [
       { name: "Java", icon: JavaIcon },
       { name: "C#/.NET", icon: CSharpIcon },
@@ -72,7 +74,7 @@ const skillCategories = [
   <h3
     class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
   >
-    {lang === "en" ? "Skills & Technologies" : "Habilidades y Tecnologías"}
+    {t("skills.title")}
   </h3>
 
   <div class="grid gap-8 md:grid-cols-1">

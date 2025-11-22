@@ -21,11 +21,21 @@ export async function getStaticPaths() {
         lang: "es",
       },
     },
+    {
+      params: {
+        lang: "cs",
+      },
+    },
+    {
+      params: {
+        lang: "de",
+      },
+    },
   ];
 }
 
 export type Params = {
-  lang: "en" | "es";
+  lang: "en" | "es" | "cs" | "de";
 };
 
 const { lang } = Astro.params as Params;
