@@ -2,9 +2,7 @@
 import AngularIcon from "components/icons/AngularIcon.astro";
 import AppwriteIcon from "components/icons/AppwriteIcon.astro";
 import AWSIcon from "components/icons/AWSIcon.astro";
-import DatabaseIcon from "components/icons/DatabaseIcon.astro";
 import DockerIcon from "components/icons/DockerIcon.astro";
-import FigmaIcon from "components/icons/FigmaIcon.astro";
 import GraphQLIcon from "components/icons/GraphQLIcon.astro";
 import JavaIcon from "components/icons/JavaIcon.astro";
 import JavaSpringIcon from "components/icons/JavaSpringIcon.astro";
@@ -20,6 +18,8 @@ import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
 import ViteIcon from "components/icons/ViteIcon.astro";
 import type { Params } from "pages/[...lang].astro";
 import CSharpIcon from "./icons/CSharpIcon.astro";
+import GoogleCloudIcon from "./icons/GoogleCloudIcon.astro";
+import PythonIcon from "./icons/PythonIcon.astro";
 
 const { lang } = Astro.params as Params;
 
@@ -27,42 +27,42 @@ const skillCategories = [
   {
     title: lang === "en" ? "Frontend Development" : "Desarrollo Frontend",
     skills: [
-      { name: "TypeScript", icon: TypeScriptIcon, level: 90 },
-      { name: "React", icon: ReactIcon, level: 90 },
-      { name: "Next.js", icon: NextJSIcon, level: 85 },
-      { name: "Angular", icon: AngularIcon, level: 85 },
-      { name: "TailwindCSS", icon: TailwindIcon, level: 90 },
-      { name: "React Query", icon: ReactQueryIcon, level: 80 },
+      { name: "React", icon: ReactIcon },
+      { name: "TypeScript", icon: TypeScriptIcon },
+      { name: "Angular", icon: AngularIcon },
+      { name: "TailwindCSS", icon: TailwindIcon },
+      { name: "ShadCN", icon: ShadcnIcon },
+      { name: "React Query", icon: ReactQueryIcon },
     ],
   },
   {
     title: lang === "en" ? "Backend & APIs" : "Backend y APIs",
     skills: [
-      { name: "NestJS", icon: NestJSIcon, level: 85 },
-      { name: "Node.js", icon: NodeJsIcon, level: 85 },
-      { name: "GraphQL", icon: GraphQLIcon, level: 80 },
-      { name: "Java Spring", icon: JavaSpringIcon, level: 80 },
-      { name: "Appwrite", icon: AppwriteIcon, level: 75 },
-      { name: "TypeScript", icon: TypeScriptIcon, level: 90 },
+      { name: "GraphQL", icon: GraphQLIcon },
+      { name: "NestJS", icon: NestJSIcon },
+      { name: "Java Spring", icon: JavaSpringIcon },
+      { name: "Next.js", icon: NextJSIcon },
+      { name: "Node.js", icon: NodeJsIcon },
+      { name: "TypeScript", icon: TypeScriptIcon },
     ],
   },
   {
     title: lang === "en" ? "Cloud & DevOps" : "Cloud y DevOps",
     skills: [
-      { name: "AWS", icon: AWSIcon, level: 75 },
-      { name: "Docker", icon: DockerIcon, level: 70 },
-      { name: "Vite", icon: ViteIcon, level: 85 },
-      { name: "ShadCN", icon: ShadcnIcon, level: 85 },
-      { name: "SQL Server", icon: SQLServerIcon, level: 80 },
-      { name: "Database", icon: DatabaseIcon, level: 85 },
+      { name: "AWS", icon: AWSIcon },
+      { name: "Google Cloud", icon: GoogleCloudIcon },
+      { name: "Docker", icon: DockerIcon },
+      { name: "Vite", icon: ViteIcon },
+      { name: "Appwrite", icon: AppwriteIcon },
+      { name: "SQL Server", icon: SQLServerIcon },
     ],
   },
   {
     title: lang === "en" ? "Other Technologies" : "Otras Tecnologías",
     skills: [
-      { name: "Java", icon: JavaIcon, level: 85 },
-      { name: "C#/.NET", icon: CSharpIcon, level: 70 },
-      { name: "Figma", icon: FigmaIcon, level: 75 },
+      { name: "Java", icon: JavaIcon },
+      { name: "C#/.NET", icon: CSharpIcon },
+      { name: "Python", icon: PythonIcon },
     ],
   },
 ];
@@ -83,8 +83,8 @@ const skillCategories = [
             {category.title}
           </h4>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-            {category.skills.map(({ name, icon: Icon, level }) => (
-              <div class="group flex flex-col items-center gap-3 p-3 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-900/20 transition-all cursor-pointer">
+            {category.skills.map(({ name, icon: Icon }) => (
+              <div class="group flex flex-col items-center gap-2 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-900/20 transition-all cursor-pointer">
                 <div class="relative">
                   <Icon class="size-12 transition-transform group-hover:scale-110 group-hover:rotate-6" />
                   <div class="absolute -inset-2 bg-gradient-to-r from-yellow-400/0 via-yellow-400/20 to-yellow-400/0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -92,12 +92,6 @@ const skillCategories = [
                 <span class="text-sm font-medium dark:text-amber-100 text-amber-900 text-center">
                   {name}
                 </span>
-                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
-                  <div
-                    class="bg-gradient-to-r from-yellow-400 to-orange-500 h-1.5 rounded-full transition-all duration-1000 group-hover:animate-pulse"
-                    style={`width: ${level}%`}
-                  />
-                </div>
               </div>
             ))}
           </div>
