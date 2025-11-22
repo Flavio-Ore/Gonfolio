@@ -1,0 +1,156 @@
+---
+import UniversityIcon from "components/icons/UniversityIcon.astro";
+import type { Params } from "pages/[...lang].astro";
+
+const { lang } = Astro.params as Params;
+
+const experiences =
+  lang === "en"
+    ? [
+        {
+          title: "Software Developer Internship",
+          organization: "Explorandes",
+          period: "May 2025 - Present",
+          description:
+            "Maintaining and enhancing a full-stack ERP system with microservices architecture, serving as technical bridge between stakeholders and development. Focused on production issue resolution and feature implementation.",
+          achievements: [
+            "Diagnosed and resolved bugs across React, Angular, and NestJS stack",
+            "Led successful Angular 14→15 migration with performance optimizations",
+            "Implemented features using React, TypeScript, Angular, and AWS services",
+            "Mentored team on React hooks optimization and TypeScript best practices",
+            "Applied Screaming Architecture principles to improve code organization",
+          ],
+        },
+        {
+          title: "Software Engineering Student",
+          organization: "Universidad Tecnológica del Perú (UTP)",
+          period: "2022 - 2026",
+          description:
+            "Final year student focused on full-stack development, cloud architecture, and scalable system design. Combining academic knowledge with practical experience in modern technologies.",
+          achievements: [
+            "Built mini-ERP inventory system (Kardex) with Spring Boot, React, and Railway/Vercel",
+            "Developed social media platform using React and Appwrite as BaaS",
+            "Created systematic literature review tool with Next.js and Gemini API",
+          ],
+        },
+      ]
+    : [
+        {
+          title: "Prácticas de Desarrollo de Software",
+          organization: "Explorandes",
+          period: "Mayo 2025 - Presente",
+          description:
+            "Manteniendo y mejorando un sistema ERP full-stack con arquitectura de microservicios, sirviendo como puente técnico entre stakeholders y desarrollo. Enfocado en resolución de problemas de producción e implementación de características.",
+          achievements: [
+            "Diagnostiqué y resolví bugs en stack de React, Angular y NestJS",
+            "Lideré migración exitosa de Angular 14→15 con optimizaciones de rendimiento",
+            "Implementé características usando React, TypeScript, Angular y servicios AWS",
+            "Mentoricé al equipo en optimización de hooks de React y buenas prácticas de TypeScript",
+            "Apliqué principios de Screaming Architecture para mejorar organización del código",
+          ],
+        },
+        {
+          title: "Estudiante de Ingeniería de Software",
+          organization: "Universidad Tecnológica del Perú (UTP)",
+          period: "2022 - 2026",
+          description:
+            "Estudiante de último año enfocado en desarrollo full-stack, arquitectura en la nube y diseño de sistemas escalables. Combinando conocimiento académico con experiencia práctica en tecnologías modernas.",
+          achievements: [
+            "Construí mini-ERP de inventario (Kardex) con Spring Boot, React y Railway/Vercel",
+            "Desarrollé plataforma de redes sociales usando React y Appwrite como BaaS",
+            "Creé herramienta de revisión sistemática de literatura con Next.js y Gemini API",
+          ],
+        },
+      ];
+---
+
+<section id="experience" class="w-full max-w-3xl mx-auto mt-16 scroll-mt-20">
+  <h3
+    class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
+  >
+    {lang === "en" ? "Education & Experience" : "Educación y Experiencia"}
+  </h3>
+
+  <div class="relative">
+    <!-- Timeline line -->
+    <div
+      class="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-amber-500 to-yellow-500"
+    >
+    </div>
+
+    <div class="space-y-8">
+      {
+        experiences.map((exp, index) => (
+          <div
+            class={`relative pl-12 md:pl-20 animate-fade-in-left animate-delay-${index * 100}`}
+          >
+            <!-- Timeline dot -->
+            <div class="absolute left-2 md:left-6 top-2 size-5 rounded-full bg-orange-500 border-4 border-light dark:border-dark shadow-lg" />
+
+            <div class="group border border-yellow-300 dark:border-yellow-900 rounded-lg p-6 bg-white/50 dark:bg-black/20 shadow-md hover:shadow-xl transition-all duration-300 hover:border-orange-500 dark:hover:border-orange-500">
+              <div class="flex items-start justify-between flex-wrap gap-2 mb-3">
+                <div>
+                  <h4 class="text-xl font-bold dark:text-amber-200 text-amber-600 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
+                    {exp.title}
+                  </h4>
+                  <div class="flex items-center gap-2 mt-1 text-amber-700 dark:text-amber-300">
+                    <UniversityIcon class="size-5" />
+                    <span class="font-medium">{exp.organization}</span>
+                  </div>
+                </div>
+                <span class="text-sm font-semibold px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                  {exp.period}
+                </span>
+              </div>
+
+              <p class="text-base dark:text-amber-100 text-amber-900 mb-4">
+                {exp.description}
+              </p>
+
+              <div class="space-y-2">
+                <p class="text-sm font-semibold dark:text-amber-300 text-amber-700">
+                  {lang === "en" ? "Key Projects:" : "Proyectos Clave:"}
+                </p>
+                <ul class="space-y-1">
+                  {exp.achievements.map((achievement) => (
+                    <li class="flex items-start gap-2 text-sm dark:text-amber-100 text-amber-900">
+                      <span class="text-orange-500 mt-1 flex-shrink-0">▸</span>
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+    {
+      [
+        { label: lang === "en" ? "Projects" : "Proyectos", value: "10+" },
+        { label: lang === "en" ? "Technologies" : "Tecnologías", value: "20+" },
+        {
+          label: lang === "en" ? "GitHub Repos" : "Repos GitHub",
+          value: "38+",
+        },
+        {
+          label: lang === "en" ? "Contributions" : "Contribuciones",
+          value: "800+",
+        },
+      ].map((stat) => (
+        <div class="text-center p-4 rounded-lg bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/20 dark:to-amber-900/20 border border-yellow-300 dark:border-yellow-900 hover:scale-105 transition-transform">
+          <div class="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">
+            {stat.value}
+          </div>
+          <div class="text-sm font-medium text-amber-700 dark:text-amber-300 mt-1">
+            {stat.label}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

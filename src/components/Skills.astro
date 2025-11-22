@@ -1,0 +1,108 @@
+---
+import AngularIcon from "components/icons/AngularIcon.astro";
+import AppwriteIcon from "components/icons/AppwriteIcon.astro";
+import AWSIcon from "components/icons/AWSIcon.astro";
+import DatabaseIcon from "components/icons/DatabaseIcon.astro";
+import DockerIcon from "components/icons/DockerIcon.astro";
+import FigmaIcon from "components/icons/FigmaIcon.astro";
+import GraphQLIcon from "components/icons/GraphQLIcon.astro";
+import JavaIcon from "components/icons/JavaIcon.astro";
+import JavaSpringIcon from "components/icons/JavaSpringIcon.astro";
+import NestJSIcon from "components/icons/NestJSIcon.astro";
+import NextJSIcon from "components/icons/NextJSIcon.astro";
+import NodeJsIcon from "components/icons/NodeJsIcon.astro";
+import ReactIcon from "components/icons/ReactIcon.astro";
+import ReactQueryIcon from "components/icons/ReactQueryIcon.astro";
+import ShadcnIcon from "components/icons/ShadcnIcon.astro";
+import SQLServerIcon from "components/icons/SQLServerIcon.astro";
+import TailwindIcon from "components/icons/TailwindIcon.astro";
+import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
+import ViteIcon from "components/icons/ViteIcon.astro";
+import type { Params } from "pages/[...lang].astro";
+import CSharpIcon from "./icons/CSharpIcon.astro";
+
+const { lang } = Astro.params as Params;
+
+const skillCategories = [
+  {
+    title: lang === "en" ? "Frontend Development" : "Desarrollo Frontend",
+    skills: [
+      { name: "TypeScript", icon: TypeScriptIcon, level: 90 },
+      { name: "React", icon: ReactIcon, level: 90 },
+      { name: "Next.js", icon: NextJSIcon, level: 85 },
+      { name: "Angular", icon: AngularIcon, level: 85 },
+      { name: "TailwindCSS", icon: TailwindIcon, level: 90 },
+      { name: "React Query", icon: ReactQueryIcon, level: 80 },
+    ],
+  },
+  {
+    title: lang === "en" ? "Backend & APIs" : "Backend y APIs",
+    skills: [
+      { name: "NestJS", icon: NestJSIcon, level: 85 },
+      { name: "Node.js", icon: NodeJsIcon, level: 85 },
+      { name: "GraphQL", icon: GraphQLIcon, level: 80 },
+      { name: "Java Spring", icon: JavaSpringIcon, level: 80 },
+      { name: "Appwrite", icon: AppwriteIcon, level: 75 },
+      { name: "TypeScript", icon: TypeScriptIcon, level: 90 },
+    ],
+  },
+  {
+    title: lang === "en" ? "Cloud & DevOps" : "Cloud y DevOps",
+    skills: [
+      { name: "AWS", icon: AWSIcon, level: 75 },
+      { name: "Docker", icon: DockerIcon, level: 70 },
+      { name: "Vite", icon: ViteIcon, level: 85 },
+      { name: "ShadCN", icon: ShadcnIcon, level: 85 },
+      { name: "SQL Server", icon: SQLServerIcon, level: 80 },
+      { name: "Database", icon: DatabaseIcon, level: 85 },
+    ],
+  },
+  {
+    title: lang === "en" ? "Other Technologies" : "Otras Tecnologías",
+    skills: [
+      { name: "Java", icon: JavaIcon, level: 85 },
+      { name: "C#/.NET", icon: CSharpIcon, level: 70 },
+      { name: "Figma", icon: FigmaIcon, level: 75 },
+    ],
+  },
+];
+---
+
+<section id="skills" class="w-full max-w-3xl mx-auto mt-16 scroll-mt-20">
+  <h3
+    class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
+  >
+    {lang === "en" ? "Skills & Technologies" : "Habilidades y Tecnologías"}
+  </h3>
+
+  <div class="grid gap-8 md:grid-cols-1">
+    {
+      skillCategories.map((category) => (
+        <div class="border border-yellow-300 dark:border-yellow-900 rounded-lg p-6 bg-white/50 dark:bg-black/20 shadow-md hover:shadow-lg transition-shadow">
+          <h4 class="text-xl font-semibold mb-6 dark:text-amber-300 text-amber-600">
+            {category.title}
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+            {category.skills.map(({ name, icon: Icon, level }) => (
+              <div class="group flex flex-col items-center gap-3 p-3 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-900/20 transition-all cursor-pointer">
+                <div class="relative">
+                  <Icon class="size-12 transition-transform group-hover:scale-110 group-hover:rotate-6" />
+                  <div class="absolute -inset-2 bg-gradient-to-r from-yellow-400/0 via-yellow-400/20 to-yellow-400/0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <span class="text-sm font-medium dark:text-amber-100 text-amber-900 text-center">
+                  {name}
+                </span>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                  <div
+                    class="bg-gradient-to-r from-yellow-400 to-orange-500 h-1.5 rounded-full transition-all duration-1000 group-hover:animate-pulse"
+                    style={`width: ${level}%`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
