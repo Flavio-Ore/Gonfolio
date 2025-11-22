@@ -40,7 +40,9 @@ export const ui = {
     'skills.cloud': 'Cloud & DevOps',
     'skills.other': 'Other Technologies',
     'footer.builtWith': 'Built with Astro, TypeScript & TailwindCSS',
-    'footer.rights': 'All rights reserved.'
+    'footer.rights': 'All rights reserved.',
+    'profile.viewWork': 'View My Work',
+    'profile.getInTouch': 'Get In Touch'
   },
   es: {
     'nav.home': 'Inicio',
@@ -73,7 +75,9 @@ export const ui = {
     'skills.cloud': 'Cloud y DevOps',
     'skills.other': 'Otras Tecnologías',
     'footer.builtWith': 'Construido con Astro, TypeScript y TailwindCSS',
-    'footer.rights': 'Todos los derechos reservados.'
+    'footer.rights': 'Todos los derechos reservados.',
+    'profile.viewWork': 'Ver Mi Trabajo',
+    'profile.getInTouch': 'Contáctame'
   },
   cs: {
     'nav.home': 'Domů',
@@ -107,7 +111,9 @@ export const ui = {
     'skills.cloud': 'Cloud a DevOps',
     'skills.other': 'Další technologie',
     'footer.builtWith': 'Vytvořeno s Astro, TypeScript a TailwindCSS',
-    'footer.rights': 'Všechna práva vyhrazena.'
+    'footer.rights': 'Všechna práva vyhrazena.',
+    'profile.viewWork': 'Zobrazit mou práci',
+    'profile.getInTouch': 'Kontaktujte mě'
   },
   de: {
     'nav.home': 'Startseite',
@@ -141,6 +147,8 @@ export const ui = {
     'skills.cloud': 'Cloud & DevOps',
     'skills.other': 'Weitere Technologien',
     'footer.builtWith': 'Erstellt mit Astro, TypeScript & TailwindCSS',
-    'footer.rights': 'Alle Rechte vorbehalten.'
+    'footer.rights': 'Alle Rechte vorbehalten.',
+    'profile.viewWork': 'Meine Arbeit ansehen',
+    'profile.getInTouch': 'Kontakt aufnehmen'
   }
 } as const
