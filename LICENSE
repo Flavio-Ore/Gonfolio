@@ -1,6 +1,6 @@
-MIT License
+MIT License (Software & Code)
 
-Copyright (c) 2024 Flavio Gonzalo Oré Chávez
+Copyright (c) 2024-2026 Flavio Oré
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+==============================================================================
+Personal Content, Branding & Media Exemption:
+==============================================================================
+
+The MIT license above applies specifically to the software codebase, component
+architectures, styles, configurations, and build scripts.
+
+All personal media, photography (including `src/assets/photo.avif`), brand assets,
+personal identity, career narratives, project case studies, and written content
+located in `src/content/`, `src/values/`, and `public/` are:
+
+Copyright (c) Flavio Oré. All Rights Reserved.
+
+You may NOT reuse, republish, or redistribute the personal branding, likeness,
+photography, or written career case studies without express prior written
+permission.

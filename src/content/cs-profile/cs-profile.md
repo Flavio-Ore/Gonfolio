@@ -1,5 +1,5 @@
 ---
-title: "Jsem Gon, vítejte! 👋"
-subtitle: "Full-Stack vývojář | Student softwarového inženýrství"
-description: "Snažím se vytvářet bezpečné, škálovatelné a efektivní systémy. V současnosti mám zkušenosti s full-stack vývojem pomocí React, Angular, NestJS, GraphQL a TypeScript, navíc se službami AWS."
+title: "Flavio Oré"
+subtitle: "Full-Stack Softwarový Inženýr | Provozní Systémy a Automatizace"
+description: "Specializuji se na vývoj podnikových provozních systémů, ERP a automatizaci firemních procesů. Mám zkušenosti s převodem komplexních obchodních požadavků do škálovatelných mikroslužeb (NestJS, React, Angular, Spring Boot, TypeScript) na AWS."
 ---

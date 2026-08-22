@@ -3,56 +3,73 @@ import { Picture } from "astro:assets";
 import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 
+export interface Props {
+  // Optional custom props
+}
+
 const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class="w-full max-w-3xl mx-auto mt-16 pt-8 border-t border-yellow-300/30 dark:border-yellow-900/30"
+  class="w-full max-w-3xl mx-auto mt-20 pt-8 pb-12 border-t border-neutral-200/60 dark:border-zinc-800/60"
 >
-  <div class="flex flex-col items-center gap-6">
+  <div class="flex flex-col items-center gap-5 text-center">
     <Picture
       src="https://media.tenor.com/drxH1lO9cfEAAAAj/dark-souls-bonfire.gif"
-      width="75"
-      height="75"
+      width={60}
+      height={60}
       alt="Bonfire"
-      class="opacity-80 hover:opacity-100 transition-opacity"
+      class="opacity-70 hover:opacity-100 transition-opacity duration-300"
     />
 
-    <div class="text-center space-y-2">
-      <p class="text-sm dark:text-amber-300 text-amber-700">
+    <div class="space-y-1">
+      <p class="text-xs font-medium text-neutral-600 dark:text-neutral-400">
         {t("footer.builtWith")}
       </p>
-      <p class="text-sm dark:text-amber-400/70 text-amber-600/70">
-        © {currentYear} Flavio Gonzalo Oré. {t("footer.rights")}
+      <p class="text-[11px] text-neutral-500 dark:text-neutral-500">
+        © {currentYear} Flavio Oré. {t("footer.rights")}
       </p>
     </div>
 
+    <!-- Minimal Back to Top Button -->
     <button
-      id="back-to-top"
-      class="mt-4 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500/70 to-amber-400/70 text-white font-medium hover:from-orange-600/70 hover:to-amber-600/70 transition-all hover:scale-105 hover:shadow-lg opacity-0 invisible"
-      aria-label="Back to top"
+      id="back-to-top-control"
+      type="button"
+      class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-neutral-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-amber-500/40 transition-all duration-200 opacity-0 invisible shadow-2xs active:scale-95 cursor-pointer"
+      aria-label="Scroll back to top"
     >
-      ↑
+      <span>↑ Back to top</span>
     </button>
   </div>
 </footer>
 
 <script>
-  const backToTopButton = document.getElementById("back-to-top");
+  /**
+   * Manages back-to-top visibility and smooth scroll action.
+   *
+   * @returns Void.
+   * @throws Does not throw.
+   */
+  function setupBackToTopButton(): void {
+    const backToTopButton = document.getElementById("back-to-top-control");
 
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 300) {
-      backToTopButton?.classList.remove("opacity-0", "invisible");
-      backToTopButton?.classList.add("opacity-100", "visible");
-    } else {
-      backToTopButton?.classList.add("opacity-0", "invisible");
-      backToTopButton?.classList.remove("opacity-100", "visible");
-    }
-  });
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 350) {
+        backToTopButton?.classList.remove("opacity-0", "invisible");
+        backToTopButton?.classList.add("opacity-100", "visible");
+      } else {
+        backToTopButton?.classList.add("opacity-0", "invisible");
+        backToTopButton?.classList.remove("opacity-100", "visible");
+      }
+    });
 
-  backToTopButton?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    backToTopButton?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", setupBackToTopButton);
+  document.addEventListener("astro:page-load", setupBackToTopButton);
 </script>

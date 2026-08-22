@@ -1,33 +1,36 @@
-import animations from '@midudev/tailwind-animations'
-import defaultTheme from 'tailwindcss/defaultTheme'
+import animations from "@midudev/tailwind-animations";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "class",
   theme: {
     extend: {
       transitionProperty: {
-        tilt: 'all 400ms cubic-bezier(0.03,0.98,0.52,0.99) 0s'
+        tilt: "all 400ms cubic-bezier(0.03,0.98,0.52,0.99) 0s",
       },
       fontFamily: {
-        inter: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        inder: ['Inder', ...defaultTheme.fontFamily.sans],
-        HankenGrotesk: ['Hanken Grotesk Variable', ...defaultTheme.fontFamily.sans]
+        inter: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        inder: ["Inder", ...defaultTheme.fontFamily.sans],
+        HankenGrotesk: [
+          "Hanken Grotesk Variable",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
       lineHeight: {
-        default: '140%'
+        default: "140%",
       },
       colors: {
-        light: '#fcfcfc',
-        dark: '#060606'
+        light: "#fafafa",
+        dark: "#09090b",
       },
       screens: {
-        xs: '360px',
-        '3xl': '1650px',
-        ...defaultTheme.screens
-      }
-    }
+        xs: "360px",
+        "3xl": "1650px",
+        ...defaultTheme.screens,
+      },
+    },
   },
-  plugins: [animations]
-}
+  plugins: [animations],
+};

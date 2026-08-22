@@ -2,31 +2,37 @@
 import AngularIcon from "components/icons/AngularIcon.astro";
 import AppwriteIcon from "components/icons/AppwriteIcon.astro";
 import AWSIcon from "components/icons/AWSIcon.astro";
+import CSharpIcon from "components/icons/CSharpIcon.astro";
 import DockerIcon from "components/icons/DockerIcon.astro";
+import FigmaIcon from "components/icons/FigmaIcon.astro";
+import GoogleCloudIcon from "components/icons/GoogleCloudIcon.astro";
 import GraphQLIcon from "components/icons/GraphQLIcon.astro";
 import JavaIcon from "components/icons/JavaIcon.astro";
 import JavaSpringIcon from "components/icons/JavaSpringIcon.astro";
 import NestJSIcon from "components/icons/NestJSIcon.astro";
 import NextJSIcon from "components/icons/NextJSIcon.astro";
 import NodeJsIcon from "components/icons/NodeJsIcon.astro";
+import PythonIcon from "components/icons/PythonIcon.astro";
 import ReactIcon from "components/icons/ReactIcon.astro";
 import ReactQueryIcon from "components/icons/ReactQueryIcon.astro";
 import ShadcnIcon from "components/icons/ShadcnIcon.astro";
 import SQLServerIcon from "components/icons/SQLServerIcon.astro";
+import TailwindIcon from "components/icons/TailwindIcon.astro";
 import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
 import ViteIcon from "components/icons/ViteIcon.astro";
 import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
-import CSharpIcon from "./icons/CSharpIcon.astro";
-import GoogleCloudIcon from "./icons/GoogleCloudIcon.astro";
-import PythonIcon from "./icons/PythonIcon.astro";
-import TailwindIcon from "./icons/TailwindIcon.astro";
+
+export interface Props {
+  // Optional custom props
+}
 
 const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
 
 const skillCategories = [
   {
+    categoryIdentifier: "frontend",
     title: t("skills.frontend"),
     skills: [
       { name: "React", icon: ReactIcon },
@@ -38,17 +44,18 @@ const skillCategories = [
     ],
   },
   {
+    categoryIdentifier: "backend",
     title: t("skills.backend"),
     skills: [
-      { name: "GraphQL", icon: GraphQLIcon },
-      { name: "NestJS", icon: NestJSIcon },
-      { name: "Java Spring", icon: JavaSpringIcon },
-      { name: "Next.js", icon: NextJSIcon },
       { name: "Node.js", icon: NodeJsIcon },
-      { name: "TypeScript", icon: TypeScriptIcon },
+      { name: "NestJS", icon: NestJSIcon },
+      { name: "Next.js", icon: NextJSIcon },
+      { name: "Java Spring", icon: JavaSpringIcon },
+      { name: "GraphQL", icon: GraphQLIcon },
     ],
   },
   {
+    categoryIdentifier: "cloud",
     title: t("skills.cloud"),
     skills: [
       { name: "AWS", icon: AWSIcon },
@@ -60,38 +67,90 @@ const skillCategories = [
     ],
   },
   {
+    categoryIdentifier: "other",
     title: t("skills.other"),
     skills: [
       { name: "Java", icon: JavaIcon },
       { name: "C#/.NET", icon: CSharpIcon },
       { name: "Python", icon: PythonIcon },
+      { name: "Figma", icon: FigmaIcon },
     ],
   },
 ];
+
+const categoryFilterTabs = [
+  { filterIdentifier: "all", label: t("skills.all") },
+  { filterIdentifier: "frontend", label: t("skills.frontend") },
+  { filterIdentifier: "backend", label: t("skills.backend") },
+  { filterIdentifier: "cloud", label: t("skills.cloud") },
+  { filterIdentifier: "other", label: t("skills.other") },
+];
 ---
 
-<section id="skills" class="w-full max-w-3xl mx-auto mt-16 scroll-mt-20">
-  <h3
-    class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
-  >
-    {t("skills.title")}
-  </h3>
+<section id="skills" class="w-full max-w-3xl mx-auto mt-16 mb-16 scroll-mt-20">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+    <div>
+      <h3
+        class="text-3xl font-bold dark:text-amber-200 text-amber-500 text-center md:text-left"
+      >
+        {t("skills.title")}
+      </h3>
+    </div>
+  </div>
 
-  <div class="grid gap-8 md:grid-cols-1">
+  <!-- Interactive Category Filter Tabs -->
+  <div
+    class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar scroll-smooth"
+    role="tablist"
+    aria-label="Skill Categories"
+  >
+    {
+      categoryFilterTabs.map(({ filterIdentifier, label }, tabIndex) => (
+        <button
+          type="button"
+          role="tab"
+          data-category-target={filterIdentifier}
+          aria-selected={tabIndex === 0 ? "true" : "false"}
+          class:list={[
+            "skill-filter-button px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500/40 cursor-pointer active:scale-95",
+            tabIndex === 0
+              ? "is-active-filter bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/50 shadow-xs"
+              : "border border-neutral-200/80 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 text-neutral-600 dark:text-neutral-400 hover:border-amber-500/40 hover:text-neutral-900 dark:hover:text-neutral-100",
+          ]}
+        >
+          {label}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Category Skill Groups Container -->
+  <div id="skills-grid-wrapper" class="space-y-6">
     {
       skillCategories.map((category) => (
-        <div class="border border-yellow-300 dark:border-yellow-900 rounded-lg p-6 bg-white/50 dark:bg-black/20 shadow-md hover:shadow-lg transition-shadow">
-          <h4 class="text-xl font-semibold mb-6 dark:text-amber-300 text-amber-600">
-            {category.title}
-          </h4>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+        <div
+          data-category-group={category.categoryIdentifier}
+          class="skill-category-group flex flex-col border border-neutral-200/80 dark:border-zinc-800/80 rounded-2xl p-5 sm:p-6 bg-white/50 dark:bg-zinc-950/40 backdrop-blur-sm shadow-xs transition-all duration-300"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-base sm:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+              {category.title}
+            </h4>
+            <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20">
+              {category.skills.length}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4">
             {category.skills.map(({ name, icon: Icon }) => (
-              <div class="group flex flex-col items-center gap-2 rounded-md hover:bg-yellow-100/50 dark:hover:bg-yellow-900/20 transition-all cursor-pointer">
-                <div class="relative">
-                  <Icon class="size-12 transition-transform group-hover:scale-110 group-hover:rotate-6" />
-                  <div class="absolute -inset-2 bg-gradient-to-r from-yellow-400/0 via-yellow-400/20 to-yellow-400/0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div
+                class="group relative flex flex-col items-center justify-center p-3 rounded-xl border border-neutral-200/60 dark:border-zinc-800/60 bg-white/60 dark:bg-zinc-900/40 hover:border-amber-500/40 dark:hover:border-amber-500/30 shadow-2xs hover:shadow-xs active:scale-95 transition-all duration-200 cursor-pointer"
+                title={name}
+              >
+                <div class="relative size-10 sm:size-11 flex items-center justify-center">
+                  <Icon class="size-7 sm:size-8 transition-transform duration-200 group-hover:scale-110" />
                 </div>
-                <span class="text-sm font-medium dark:text-amber-100 text-amber-900 text-center">
+                <span class="text-xs font-medium text-neutral-700 dark:text-neutral-300 text-center mt-2 w-full truncate group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                   {name}
                 </span>
               </div>
@@ -102,3 +161,116 @@ const skillCategories = [
     }
   </div>
 </section>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  /**
+   * Applies the selected skill category filter across all skill category groups and updates tab styles.
+   *
+   * @param targetCategoryIdentifier - The category identifier to filter by ('all', 'frontend', 'backend', 'cloud', 'other').
+   * @param filterButtons - Collection of button elements controlling the category filters.
+   * @param categoryGroups - Collection of container elements wrapping each skill category group.
+   * @returns Void.
+   * @throws Does not throw exceptions.
+   */
+  function updateSkillCategoryFilter(
+    targetCategoryIdentifier: string,
+    filterButtons: NodeListOf<HTMLButtonElement>,
+    categoryGroups: NodeListOf<HTMLElement>
+  ): void {
+    const activeClasses = [
+      "is-active-filter",
+      "bg-amber-500/20",
+      "text-amber-900",
+      "dark:text-amber-200",
+      "border-amber-500/50",
+      "shadow-xs",
+    ];
+
+    const inactiveClasses = [
+      "border-neutral-200/80",
+      "dark:border-zinc-800/80",
+      "bg-white/60",
+      "dark:bg-zinc-900/40",
+      "text-neutral-600",
+      "dark:text-neutral-400",
+    ];
+
+    filterButtons.forEach((buttonElement) => {
+      const isTargetButton =
+        buttonElement.getAttribute("data-category-target") ===
+        targetCategoryIdentifier;
+
+      buttonElement.setAttribute(
+        "aria-selected",
+        isTargetButton ? "true" : "false"
+      );
+
+      if (isTargetButton) {
+        buttonElement.classList.remove(...inactiveClasses);
+        buttonElement.classList.add(...activeClasses);
+      } else {
+        buttonElement.classList.remove(...activeClasses);
+        buttonElement.classList.add(...inactiveClasses);
+      }
+    });
+
+    categoryGroups.forEach((groupElement) => {
+      const groupCategory = groupElement.getAttribute("data-category-group");
+      const shouldShow =
+        targetCategoryIdentifier === "all" ||
+        groupCategory === targetCategoryIdentifier;
+
+      if (shouldShow) {
+        groupElement.classList.remove("hidden");
+        groupElement.classList.add("flex");
+      } else {
+        groupElement.classList.add("hidden");
+        groupElement.classList.remove("flex");
+      }
+    });
+  }
+
+  /**
+   * Initializes the skill filter event listeners upon DOM load.
+   *
+   * @returns Void.
+   * @throws Does not throw exceptions.
+   */
+  function initializeSkillFilterControls(): void {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>(
+      ".skill-filter-button"
+    );
+    const categoryGroups = document.querySelectorAll<HTMLElement>(
+      ".skill-category-group"
+    );
+
+    if (filterButtons.length === 0 || categoryGroups.length === 0) {
+      return;
+    }
+
+    filterButtons.forEach((buttonElement) => {
+      buttonElement.addEventListener("click", () => {
+        const targetCategoryIdentifier =
+          buttonElement.getAttribute("data-category-target") ?? "all";
+        updateSkillCategoryFilter(
+          targetCategoryIdentifier,
+          filterButtons,
+          categoryGroups
+        );
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeSkillFilterControls);
+  document.addEventListener("astro:page-load", initializeSkillFilterControls);
+</script>
