@@ -1,6 +1,6 @@
 ---
-name: "Modern Snapgram (Red Social)"
-description: "Aplicación de red social donde puedes crear, editar y eliminar tus usuarios y publicaciones. Puedes chatear, seguir a otros usuarios y dar me gusta o guardar sus publicaciones. El diseño fue realizado en Figma y utiliza Appwrite como backend (BaaS)."
+name: "Modern Snapgram (Plataforma de Interacción Social)"
+description: "Plataforma de interacción social desarrollada sobre una arquitectura serverless con Appwrite y React. Funcionalidades en tiempo real para mensajería directa, gestión de publicaciones y control de autenticación de usuarios. Interfaz web moderna y responsiva optimizada para una navegación fluida y compartición de contenido multimedia."
 tech:
   - "Appwrite"
   - "Typescript"

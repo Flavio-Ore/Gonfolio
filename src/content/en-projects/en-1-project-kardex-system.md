@@ -1,7 +1,6 @@
 ---
-slug: "en-1-project-kardex-system"
-name: "Inventory Kardex control system with FIFO method"
-description: "Register your purchase, sale or refund movements. Each movement generates an electronic sales slip or electronic credit note. Manage customers, suppliers, products and system users. Easily view your records."
+name: "Inventory Kardex ERP System (FIFO Method)"
+description: "Architected an ERP system for inventory tracking and valuation using the standard FIFO method. Automated workflows for generating and managing electronic sales receipts and credit notes. Centralized administration for products, suppliers, customer records, and user access control."
 tech:
   - "Java"
   - "JavaSpring"
