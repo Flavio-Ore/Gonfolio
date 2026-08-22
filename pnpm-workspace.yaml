@@ -10,4 +10,4 @@ overrides:
   h3: ^1.15.6
   defu: ^6.1.5
   nanoid: ^3.3.18
-  postcss: ^8.5.18 
+  postcss: ^8.5.18

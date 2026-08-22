@@ -1,7 +1,7 @@
 ---
 name: "Systém kontroly inventáře Kardex s metodou FIFO"
 description: "Zaregistrujte své pohyby nákupu, prodeje nebo vrácení. Každý pohyb vygeneruje elektronický prodejní doklad nebo elektronický dobropis. Spravujte zákazníky, dodavatele, produkty a uživatele systému. Snadno si prohlížejte své záznamy."
-tech: 
+tech:
   - "Java"
   - "JavaSpring"
   - "Typescript"

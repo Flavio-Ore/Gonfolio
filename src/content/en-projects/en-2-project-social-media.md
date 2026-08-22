@@ -1,7 +1,7 @@
 ---
 name: "Modern Snapgram (Social Media)"
 description: "Social media app, you can create, edit and delete your users and posts. You can chat and follow other users and like or save their posts. The design was made in Figma and use Appwrite as backend (BaaS)."
-tech: 
+tech:
   - "Appwrite"
   - "Typescript"
   - "React"
