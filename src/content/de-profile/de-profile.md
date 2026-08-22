@@ -1,5 +1,5 @@
 ---
-title: "Ich bin Gon, willkommen! 👋"
-subtitle: "Full-Stack-Entwickler | Student der Softwaretechnik"
-description: "Ich strebe danach, sichere, skalierbare und effiziente Systeme zu entwickeln. Derzeit habe ich Erfahrung in der Full-Stack-Entwicklung mit React, Angular, NestJS, GraphQL und TypeScript sowie mit AWS-Diensten."
+title: "Flavio Oré"
+subtitle: "Full-Stack-Softwareentwickler | Betriebssysteme & Geschäftsautomatisierung"
+description: "Spezialisiert auf die Entwicklung von betrieblichen ERP-Systemen, Prozessautomatisierung und die Umsetzung komplexer Geschäftsanforderungen in skalierbare Microservices (NestJS, React, Angular, Spring Boot, TypeScript) auf AWS."
 ---

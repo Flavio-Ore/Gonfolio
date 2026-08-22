@@ -6,4 +6,5 @@ export const TECHNOLOGIES = {
   TailwindCSS: "TailwindCSS",
   SQLServer: "SQL Server",
   JavaSpring: "JavaSpring",
+  Java: "Java",
 };

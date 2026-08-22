@@ -6,77 +6,67 @@ import type { Params } from "pages/[...lang].astro";
 const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
 
-const navItems = [
-  { id: "about", label: t("nav.about") },
-  { id: "skills", label: t("nav.skills") },
-  { id: "projects", label: t("nav.projects") },
-  { id: "contact", label: t("nav.contact") },
+const navigationItems = [
+  { anchorIdentifier: "about", label: t("nav.about") },
+  { anchorIdentifier: "skills", label: t("nav.skills") },
+  { anchorIdentifier: "projects", label: t("nav.projects") },
+  { anchorIdentifier: "experience", label: t("nav.experience") },
+  { anchorIdentifier: "contact", label: t("nav.contact") },
 ];
 ---
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-30 bg-light/80 dark:bg-dark/80 backdrop-blur-md border-b border-yellow-300/30 dark:border-yellow-900/30 transition-all duration-300 translate-y-0 overflow-x-auto"
+  class="fixed top-3 left-1/2 -translate-x-1/2 z-30 flex items-center justify-between gap-3 sm:gap-6 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border border-neutral-200/80 dark:border-zinc-800/80 shadow-sm rounded-full px-3.5 sm:px-5 py-1.5 transition-all duration-300 max-w-xl w-[94%] sm:w-auto"
+  aria-label="Main Navigation"
 >
-  <div
-    class="flex justify-between items-center gap-x-6 max-w-3xl mx-auto px-5 py-2"
-  >
-    <ul class="flex justify-center items-center gap-x-6 basis-1/2">
-      {
-        navItems.map(({ id, label }) => (
-          <li>
-            <a
-              href={`#${id}`}
-              class="nav-link text-sm md:text-base font-medium text-amber-700 dark:text-amber-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors relative group"
-            >
-              {label}
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 dark:bg-orange-400 transition-all duration-300 group-hover:w-full" />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <ul class="flex items-center gap-1 sm:gap-2">
+    {
+      navigationItems.map(({ anchorIdentifier, label }) => (
+        <li>
+          <a
+            href={`#${anchorIdentifier}`}
+            class="nav-anchor-link text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 px-2.5 py-1 rounded-full hover:bg-neutral-100/70 dark:hover:bg-zinc-800/60 transition-colors"
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="flex items-center">
     <ChangeLang />
   </div>
 </nav>
 
-<style>
-  #main-nav.hidden-nav {
-    transform: translateY(-100%);
-  }
-</style>
-
 <script>
-  let lastScroll = 0;
-  const nav = document.getElementById("main-nav");
+  /**
+   * Initializes smooth scrolling behavior for internal navigation anchor links.
+   *
+   * @returns Void.
+   * @throws Does not throw exceptions.
+   */
+  function setupSmoothAnchorScrolling(): void {
+    const navigationLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-anchor-link");
 
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll <= 100) {
-      nav?.classList.remove("hidden-nav");
-    } else if (currentScroll > lastScroll) {
-      nav?.classList.add("hidden-nav");
-    } else {
-      nav?.classList.remove("hidden-nav");
-    }
-
-    lastScroll = currentScroll;
-  });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (this: HTMLAnchorElement, e) {
-      e.preventDefault();
-      const target = document.querySelector(
-        this.getAttribute("href") as string,
-      );
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+    navigationLinks.forEach((linkElement) => {
+      linkElement.addEventListener("click", (clickEvent) => {
+        const targetAnchorHref = linkElement.getAttribute("href");
+        if (targetAnchorHref && targetAnchorHref.startsWith("#")) {
+          const targetSection = document.querySelector(targetAnchorHref);
+          if (targetSection) {
+            clickEvent.preventDefault();
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }
+      });
     });
-  });
+  }
+
+  document.addEventListener("DOMContentLoaded", setupSmoothAnchorScrolling);
+  document.addEventListener("astro:page-load", setupSmoothAnchorScrolling);
 </script>

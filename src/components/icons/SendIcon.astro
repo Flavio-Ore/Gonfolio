@@ -1,0 +1,30 @@
+---
+export interface Props {
+  class?: string;
+  [key: string]: any;
+}
+
+const { class: className = "size-4", ...props } = Astro.props as Props;
+---
+
+<!--
+  Description: Renders an SVG icon representing sending an inquiry, message transmission, or email dispatch.
+  Parameters:
+    - class: Optional CSS classes to style width, height, and color.
+  Return Value: Astro component rendering an SVG element.
+  Exceptions & Errors: None.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  {...props}
+>
+  <path d="m22 2-7 20-4-9-9-4Z"></path>
+  <path d="M22 2 11 13"></path>
+</svg>

@@ -1,4 +1,7 @@
 ---
+import AutomationIcon from "components/icons/AutomationIcon.astro";
+import CloudIcon from "components/icons/CloudIcon.astro";
+import ERPIcon from "components/icons/ERPIcon.astro";
 import GmailIcon from "components/icons/GmailIcon.astro";
 import PortfolioIcon from "components/icons/PortfolioIcon.astro";
 import { useTranslations } from "i18n/utils";
@@ -16,10 +19,60 @@ if (!profile) {
 
 const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
+
+const engineeringSpecialties = [
+  {
+    iconComponent: ERPIcon,
+    title: t("pillars.erp.title"),
+    description: t("pillars.erp.desc"),
+    tags: [
+      "Kardex ERP",
+      "Microservices",
+      "NestJS",
+      "Spring Boot",
+      "SQL Server",
+    ],
+  },
+  {
+    iconComponent: AutomationIcon,
+    title: t("pillars.automation.title"),
+    description: t("pillars.automation.desc"),
+    tags: [
+      "Business Workflows",
+      "Domain Architecture",
+      "TypeScript",
+      "REST & GraphQL",
+      "Integrations",
+    ],
+  },
+  {
+    iconComponent: CloudIcon,
+    title: t("pillars.cloud.title"),
+    description: t("pillars.cloud.desc"),
+    tags: ["AWS Cloud", "Docker", "React", "Angular", "CI/CD"],
+  },
+];
 ---
 
-<section id="about" class="w-full max-w-3xl mx-auto mt-8 mb-4 scroll-mt-20">
-  <div class="relative border-l-2 border-amber-500/40 dark:border-amber-500/30 pl-6 sm:pl-8 space-y-6">
+<section id="about" class="w-full max-w-3xl mx-auto mt-6 mb-16 scroll-mt-20">
+  <!-- Live Availability Status Pill -->
+  <div
+    class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-neutral-200/80 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm text-neutral-700 dark:text-neutral-300 text-xs font-medium mb-6 shadow-2xs"
+  >
+    <span class="relative flex size-2 shrink-0">
+      <span
+        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+      ></span>
+      <span class="relative inline-flex rounded-full size-2 bg-emerald-500"
+      ></span>
+    </span>
+    <span class="leading-none">{t("profile.status")}</span>
+  </div>
+
+  <!-- Hero Content -->
+  <div
+    class="relative border-l-2 border-amber-500/40 dark:border-amber-500/30 pl-6 sm:pl-8 space-y-6"
+  >
     <div class="space-y-2">
       <h1
         class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 text-pretty"
@@ -39,12 +92,15 @@ const t = useTranslations(lang);
       {profile.data.description}
     </p>
 
+    <!-- Action Buttons -->
     <div class="flex flex-wrap items-center gap-3 pt-2">
       <a
         href="#projects"
         class="group inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-amber-500/40 dark:border-amber-500/30 bg-amber-500/10 dark:bg-amber-400/10 text-amber-900 dark:text-amber-200 hover:bg-amber-500/20 dark:hover:bg-amber-400/20 hover:border-amber-500/60 dark:hover:border-amber-400/50 transition-all duration-200 shadow-xs active:scale-[0.98]"
       >
-        <PortfolioIcon class="size-4 text-amber-700 dark:text-amber-300 transition-transform duration-200 group-hover:scale-110" />
+        <PortfolioIcon
+          class="size-4 text-amber-700 dark:text-amber-300 transition-transform duration-200 group-hover:scale-110"
+        />
         <span>{t("profile.viewWork")}</span>
       </a>
 
@@ -52,9 +108,53 @@ const t = useTranslations(lang);
         href="#contact"
         class="group inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-yellow-300/40 dark:border-yellow-900/40 bg-white/40 dark:bg-zinc-900/40 text-neutral-800 dark:text-neutral-300 hover:bg-yellow-100/30 dark:hover:bg-zinc-800/50 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-amber-500/40 dark:hover:border-amber-500/40 transition-all duration-200 shadow-xs active:scale-[0.98]"
       >
-        <GmailIcon class="size-4 transition-transform duration-200 group-hover:scale-110" />
+        <GmailIcon
+          class="size-4 transition-transform duration-200 group-hover:scale-110"
+        />
         <span>{t("profile.getInTouch")}</span>
       </a>
+    </div>
+  </div>
+
+  <!-- Core Engineering Focus -->
+  <div class="mt-14 space-y-4">
+    <h3
+      class="text-xs font-semibold tracking-wider text-amber-700 dark:text-amber-400 uppercase"
+    >
+      {t("pillars.title")}
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {
+        engineeringSpecialties.map((specialty) => {
+          const IconComponent = specialty.iconComponent;
+          return (
+            <div class="group p-5 sm:p-6 rounded-2xl border border-neutral-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/40 backdrop-blur-sm flex flex-col justify-between hover:border-amber-500/40 dark:hover:border-amber-500/30 transition-all duration-300 shadow-xs">
+              <div>
+                <!-- Icon Badge Container -->
+                <div class="p-2.5 w-fit rounded-xl bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 mb-4 group-hover:scale-105 transition-transform duration-200">
+                  <IconComponent class="size-5" />
+                </div>
+
+                <h4 class="text-base font-bold text-neutral-900 dark:text-neutral-100 mb-2 leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                  {specialty.title}
+                </h4>
+                <p class="text-xs sm:text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 mb-5">
+                  {specialty.description}
+                </p>
+              </div>
+
+              <!-- Tech Chips -->
+              <div class="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-100 dark:border-zinc-800/60">
+                {specialty.tags.map((tag) => (
+                  <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-neutral-100/80 dark:bg-zinc-900/80 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-zinc-800/60">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </div>
 </section>

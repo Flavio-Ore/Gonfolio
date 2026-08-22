@@ -1,0 +1,30 @@
+---
+export interface Props {
+  class?: string;
+  [key: string]: any;
+}
+
+const { class: className = "size-4", ...props } = Astro.props as Props;
+---
+
+<!--
+  Description: Renders an SVG icon representing a verified shield guarantee and trust assurance.
+  Parameters:
+    - class: Optional CSS classes to style width, height, and color.
+  Return Value: Astro component rendering an SVG element.
+  Exceptions & Errors: None.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  {...props}
+>
+  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+  <path d="m9 12 2 2 4-4"></path>
+</svg>
