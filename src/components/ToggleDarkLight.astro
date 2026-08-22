@@ -4,8 +4,8 @@ import MoonIcon from "components/icons/MoonIcon.astro";
 import SunIcon from "components/icons/SunIcon.astro";
 import { getLangFromUrl } from "i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
-const language = lang == null ? "es" : lang;
+const detectedLanguage = getLangFromUrl(Astro.url);
+const activeLanguage = detectedLanguage == null ? "es" : detectedLanguage;
 
 interface ThemeLabelDictionary {
   readonly light: string;
@@ -13,19 +13,26 @@ interface ThemeLabelDictionary {
   readonly system: string;
 }
 
+const DEFAULT_THEME_LABELS: ThemeLabelDictionary = {
+  light: "Claro",
+  dark: "Oscuro",
+  system: "Sistema",
+};
+
 const THEME_LABELS: Record<string, ThemeLabelDictionary> = {
   en: { light: "Light", dark: "Dark", system: "System" },
-  es: { light: "Claro", dark: "Oscuro", system: "Sistema" },
+  es: DEFAULT_THEME_LABELS,
   cs: { light: "Světlý", dark: "Tmavý", system: "Systém" },
   de: { light: "Hell", dark: "Dunkel", system: "System" },
 };
 
-const labels = THEME_LABELS[language] ?? THEME_LABELS.es;
+const themeLabels: ThemeLabelDictionary =
+  THEME_LABELS[activeLanguage] ?? DEFAULT_THEME_LABELS;
 
 const themeOptions = [
-  { id: "light", label: labels.light, icon: SunIcon },
-  { id: "dark", label: labels.dark, icon: MoonIcon },
-  { id: "system", label: labels.system, icon: ComputerIcon },
+  { id: "light", label: themeLabels.light, icon: SunIcon },
+  { id: "dark", label: themeLabels.dark, icon: MoonIcon },
+  { id: "system", label: themeLabels.system, icon: ComputerIcon },
 ];
 ---
 
