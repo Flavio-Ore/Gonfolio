@@ -13,7 +13,7 @@ Welcome to the **Gonfolio** codebase documentation. This documentation suite is 
 | [Internationalization & Routing](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/I18N_AND_ROUTING.md)    | Multilingual routing (`[...lang].astro`), dictionary translations (`ui.ts`), and locale management. |
 | [Content Collections & Data](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/CONTENT_COLLECTIONS.md)     | Astro Content Layer API, Zod schemas, Markdown content, and static value datasets.                  |
 | [Components & Design System](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/COMPONENTS_AND_UI.md)       | Component catalog, theming (Dark/Light/System), Tailwind styling, and SVG icon library.             |
-| [Skills UX/UI Analysis](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/SKILLS_UX_UI_ANALYSIS.md)         | Comprehensive mobile UX/UI audit and modernization strategy for the Skills section.                 |
+| [Skills UX/UI Analysis](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/SKILLS_UX_UI_ANALYSIS.md)        | Comprehensive mobile UX/UI audit and modernization strategy for the Skills section.                 |
 | [Development & AI Guidelines](file:///c:/gon-sudo/DEVEL/Gonfolio/docs/DEVELOPMENT_GUIDELINES.md) | Package scripts, TypeScript strict rules, JSDoc comment requirements, and AI agent instructions.    |
 
 ---

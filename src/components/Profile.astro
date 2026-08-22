@@ -1,11 +1,12 @@
 ---
 import GmailIcon from "components/icons/GmailIcon.astro";
+import PortfolioIcon from "components/icons/PortfolioIcon.astro";
 import { useTranslations } from "i18n/utils";
 import type { Params, Profile } from "pages/[...lang].astro";
 
-type Props = {
+export interface Props {
   profile: Profile;
-};
+}
 
 const { profile } = Astro.props;
 
@@ -17,45 +18,41 @@ const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
 ---
 
-<section id="about" class="w-full max-w-3xl mx-auto mt-7 mb-1 scroll-mt-20">
-  <div class="space-y-6">
-    <h1
-      class="mx-auto mt-2 text-3xl font-bold sm:text-5xl text-pretty dark:text-amber-200 text-amber-500 animate-fade-in-down"
-    >
-      {profile.data.title}
-    </h1>
-    <h2
-      class="mx-auto mt-2 text-2xl font-medium dark:text-amber-400/90 text-amber-600/90 animate-fade-in-down animate-delay-100"
-    >
-      {profile.data.subtitle}
-    </h2>
+<section id="about" class="w-full max-w-3xl mx-auto mt-8 mb-4 scroll-mt-20">
+  <div class="relative border-l-2 border-amber-500/40 dark:border-amber-500/30 pl-6 sm:pl-8 space-y-6">
+    <div class="space-y-2">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 text-pretty"
+      >
+        {profile.data.title}
+      </h1>
+      <h2
+        class="text-lg sm:text-xl font-medium text-amber-700 dark:text-amber-300/90 tracking-normal"
+      >
+        {profile.data.subtitle}
+      </h2>
+    </div>
+
     <p
-      class="text-xl mt-2 text-pretty dark:text-amber-50 text-amber-950 opacity-90 w-full max-w-3xl mx-auto animate-fade-in-down animate-delay-200"
+      class="text-base sm:text-lg leading-relaxed text-neutral-700 dark:text-neutral-300 font-normal text-pretty max-w-2xl"
     >
       {profile.data.description}
     </p>
 
-    <div
-      class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start animate-fade-in-down animate-delay-300"
-    >
+    <div class="flex flex-wrap items-center gap-3 pt-2">
       <a
         href="#projects"
-        class="group relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-gradient-to-r from-orange-600 to-amber-700 rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-700/50"
+        class="group inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-amber-500/40 dark:border-amber-500/30 bg-amber-500/10 dark:bg-amber-400/10 text-amber-900 dark:text-amber-200 hover:bg-amber-500/20 dark:hover:bg-amber-400/20 hover:border-amber-500/60 dark:hover:border-amber-400/50 transition-all duration-200 shadow-xs active:scale-[0.98]"
       >
-        <span class="relative z-10">
-          {t("profile.viewWork")}
-        </span>
-        <div
-          class="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        >
-        </div>
+        <PortfolioIcon class="size-4 text-amber-700 dark:text-amber-300 transition-transform duration-200 group-hover:scale-110" />
+        <span>{t("profile.viewWork")}</span>
       </a>
 
       <a
         href="#contact"
-        class="group inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold border-2 border-orange-500 dark:border-amber-400 text-orange-600 dark:text-amber-300 rounded-lg transition-all duration-300 hover:bg-orange-500 hover:text-white dark:hover:bg-amber-500 dark:hover:text-dark hover:scale-105"
+        class="group inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-yellow-300/40 dark:border-yellow-900/40 bg-white/40 dark:bg-zinc-900/40 text-neutral-800 dark:text-neutral-300 hover:bg-yellow-100/30 dark:hover:bg-zinc-800/50 hover:text-neutral-900 dark:hover:text-neutral-100 hover:border-amber-500/40 dark:hover:border-amber-500/40 transition-all duration-200 shadow-xs active:scale-[0.98]"
       >
-        <GmailIcon class="size-5" />
+        <GmailIcon class="size-4 transition-transform duration-200 group-hover:scale-110" />
         <span>{t("profile.getInTouch")}</span>
       </a>
     </div>
