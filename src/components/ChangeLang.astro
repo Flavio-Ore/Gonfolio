@@ -1,10 +1,8 @@
 ---
 import { LANGUAGES } from "i18n/ui";
-import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 
 const { lang: currentLang } = Astro.params as Params;
-const t = useTranslations(currentLang);
 
 const languageFlags = [
   { code: LANGUAGES.en, flag: "🇺🇸", label: "English" },
@@ -14,7 +12,9 @@ const languageFlags = [
 ];
 ---
 
-<ul class="flex items-center gap-1 bg-neutral-100/80 dark:bg-zinc-900/80 px-1.5 py-0.5 rounded-full border border-neutral-200/50 dark:border-zinc-800/50">
+<ul
+  class="flex items-center gap-1 bg-neutral-100/80 dark:bg-zinc-900/80 px-1.5 py-0.5 rounded-full border border-neutral-200/50 dark:border-zinc-800/50"
+>
   {
     languageFlags.map(({ code, flag, label }) => {
       const isActive = code === currentLang;
