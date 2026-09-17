@@ -5,6 +5,5 @@ export const TECHNOLOGIES = {
   Appwrite: 'Appwrite',
   TailwindCSS: 'TailwindCSS',
   SQLServer: 'SQL Server',
-  Java: 'Java',
-  JavaSpring: 'Spring'
+  JavaSpring: 'JavaSpring'
 }
