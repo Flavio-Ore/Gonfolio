@@ -26,20 +26,22 @@ if (!projects) {
 const t = useTranslations(lang);
 ---
 
-<main class="mx-auto w-full max-w-3xl">
+<main id="projects" class="mx-auto w-full max-w-3xl scroll-mt-20">
   <h3
-    class="text-3xl font-bold mt-7 max-w-3xl mx-auto dark:text-amber-200 text-amber-500"
+    class="text-3xl font-bold mt-16 mb-8 max-w-3xl mx-auto dark:text-amber-200 text-amber-500 text-center md:text-left"
   >
     {t("projects.h3")}
   </h3>
   <ul class="flex flex-col gap-y-8 mt-2">
     {
-      projects.map(({ data: project }) => (
-        <li class="group border rounded-sm transition-all p-6 border-yellow-300 dark:border-yellow-900 md:hover:border-yellow-600 md:dark:border-yellow-950  md:hover:dark:border-yellow-600 shadow-md md:cursor-crosshair">
+      projects.map(({ data: project }, index) => (
+        <li
+          class={`group border rounded-lg transition-all p-6 border-yellow-300 dark:border-yellow-900 md:hover:border-orange-500 md:dark:hover:border-orange-500 shadow-md md:hover:shadow-2xl md:hover:shadow-orange-500/20 md:cursor-pointer md:hover:scale-[1.02] animate-fade-in-up animate-delay-${index * 100}`}
+        >
           <section class="flex flex-col md:flex-row gap-x-8 gap-y-4 w-full">
             <div class="flex flex-col basis-1/2 gap-y-2 items-center justify-between w-full">
               <div>
-                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 underline md:no-underline md:group-hover:underline">
+                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
                   {project.name}
                 </h4>
                 <ul class="list-none py-2 text-pretty text-base dark:text-amber-50 text-amber-950">
@@ -61,40 +63,45 @@ const t = useTranslations(lang);
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex flex-col justify-center items-center
-                  md:text-yellow-950 md:dark:text-yellow-50
-                  text-blue-500 dark:text-blue-200
-                  md:dark:group-hover:text-blue-200 md:group-hover:text-blue-500
-                  md:dark:hover:text-blue-200 md:hover:text-blue-200"
+                  class="flex flex-col justify-center items-center gap-1 px-4 py-2 rounded-lg
+                  bg-gray-100 dark:bg-gray-800
+                  text-gray-700 dark:text-gray-300
+                  hover:bg-blue-500 hover:text-white
+                  dark:hover:bg-blue-500 dark:hover:text-white
+                  transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 >
-                  <GithubAltIcon class="md:size-6 " />
-                  <span class="text-xs">Source</span>
+                  <GithubAltIcon class="size-6" />
+                  <span class="text-xs font-medium">Source</span>
                 </a>
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex flex-col justify-center items-center
-                  md:text-yellow-950 md:dark:text-yellow-50
-                  text-red-500 dark:text-red-200
-                  md:group-hover:text-red-500 md:hover:text-red-900
-                  md:dark:group-hover:text-red-200 md:dark:hover:text-red-200"
+                  class="flex flex-col justify-center items-center gap-1 px-4 py-2 rounded-lg
+                  bg-gray-100 dark:bg-gray-800
+                  text-gray-700 dark:text-gray-300
+                  hover:bg-red-500 hover:text-white
+                  dark:hover:bg-red-500 dark:hover:text-white
+                  transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 >
-                  <LinkIcon class="md:size-6" />
-                  <span class="text-xs">Demo</span>
+                  <LinkIcon class="size-6" />
+                  <span class="text-xs font-medium">Demo</span>
                 </a>
               </div>
             </div>
             <div class="flex flex-col gap-2 flex-1 basis-1/2 w-full items-start justify-center">
-              <Picture
-                src={project.cover}
-                format={project.cover.format}
-                width="500"
-                height="350"
-                alt={project.imageAlt}
-                class="rounded-md"
-              />
-              <ul class="flex items-center justify-center gap-4 group flex-wrap md:flex-nowrap w-full text-xs dark:text-amber-50 text-amber-950">
+              <div class="relative group/image overflow-hidden rounded-lg">
+                <Picture
+                  src={project.cover}
+                  format={project.cover.format}
+                  width="500"
+                  height="350"
+                  alt={project.imageAlt}
+                  class="rounded-md transition-transform duration-500 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <ul class="flex items-center justify-center gap-3 group flex-wrap md:flex-nowrap w-full text-xs dark:text-amber-50 text-amber-950">
                 {project.tech.map((t) => {
                   switch (t) {
                     case TECHNOLOGIES.Typescript:

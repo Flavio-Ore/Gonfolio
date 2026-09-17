@@ -1,5 +1,5 @@
 ---
 title: " I am Gon, welcome! 👋"
-subtitle: "Future Software Engineer"
-description: "Software Engineering student at the UTP with a strong passion for web development and software development. I have experience using Java, C#, Javascript, Typescript, React, Tailwind and ShadCN. I love learning and sharing knowledge. 🦾"
+subtitle: "Full-Stack Developer | Software Engineering Student"
+description: "Passionate about software engineering and the design of scalable, architecturally solid digital solutions. As a final year Software Engineering student at UTP, I combine full-stack expertise in React, Next.js, Angular, NestJS, GraphQL, and TypeScript with AWS cloud services to transform innovative ideas into robust, efficient applications. Currently developing and optimizing ERP systems with microservices architecture at Explorandes."
 ---
