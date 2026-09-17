@@ -14,9 +14,9 @@ const DOMAIN = "https://gonfolio.pages.dev/";
 const DEFAULT_OG_IMAGE =
   "https://github.com/user-attachments/assets/2ff98bd5-8556-453b-b348-e05c92185adb";
 const {
-  title = "Gonfolio | My personal portfolio website built with Astro",
-  description = "Full-Stack Developer | Software Engineering Student | React, Next.js, AWS Microservices & ERP | Front-End, JavaScript, TypeScript, Cloud, GraphQL, React, NestJS, Angular",
-  siteName = "Gonfolio",
+  title = "Flavio Oré | Full-Stack Software Engineer • Operational Systems & Automation",
+  description = "Full-Stack Software Engineer specialized in developing operational business systems, ERPs, and workflow automations with React, NestJS, Spring Boot, TypeScript, and AWS.",
+  siteName = "Flavio Oré • Full-Stack Software Engineer",
   canonical = DOMAIN,
   ogImage,
   ogType = "website",
@@ -33,10 +33,10 @@ const {
 />
 
 <meta name="image" content="/Stock_Image_of_Doug_Dimmadome_logo.png" />
-<meta name="author" content="Gonzalo Oré Chávez" />
+<meta name="author" content="Flavio Oré" />
 <meta
   name="keywords"
-  content="Gonzalo Oré Chávez, Software Engineer, Frontend, Web Development"
+  content="Flavio Oré, Full-Stack Software Engineer, Operational Systems, ERP, Business Automation, NestJS, React, TypeScript, Spring Boot, AWS, Microservices"
 />
 <meta name="description" content={description} />
 <meta name="generator" content={Astro.generator} />
@@ -46,7 +46,7 @@ const {
 
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content={ogImage ?? DEFAULT_OG_IMAGE} />
 <meta property="og:type" content={ogType} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
@@ -63,11 +63,15 @@ const {
 <meta
   property="twitter:image:alt"
   content={slug !== undefined
-    ? title + "Social Image"
-    : "Aleksa Codes Social Image"}
+    ? title + " Social Image"
+    : "Flavio Oré Full-Stack Software Engineer Portfolio"}
 />
 
 <link rel="canonical" href={canonical} />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.icon" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <title>{title}</title>

@@ -1,132 +1,264 @@
 ---
+import ComputerIcon from "components/icons/ComputerIcon.astro";
 import MoonIcon from "components/icons/MoonIcon.astro";
 import SunIcon from "components/icons/SunIcon.astro";
 import { getLangFromUrl } from "i18n/utils";
-import ComputerIcon from "components/icons/ComputerIcon.astro";
 
-const lang = getLangFromUrl(Astro.url);
+const detectedLanguage = getLangFromUrl(Astro.url);
+const activeLanguage = detectedLanguage == null ? "es" : detectedLanguage;
 
-const language = lang == null ? "es" : lang;
+interface ThemeLabelDictionary {
+  readonly light: string;
+  readonly dark: string;
+  readonly system: string;
+}
 
-const THEMES = {
-  en: ["Light", "Dark", "System"],
-  es: ["Claro", "Oscuro", "Sistema"],
-  cs: ["Světlo", "Tma", "Systém"],
-  de: ["Hell", "Dunkel", "System"],
+const DEFAULT_THEME_LABELS: ThemeLabelDictionary = {
+  light: "Claro",
+  dark: "Oscuro",
+  system: "Sistema",
 };
 
-const chooseTheme = language === "es" ? "Elige un tema" : "Choose a theme";
-const themeNames = THEMES[language];
+const THEME_LABELS: Record<string, ThemeLabelDictionary> = {
+  en: { light: "Light", dark: "Dark", system: "System" },
+  es: DEFAULT_THEME_LABELS,
+  cs: { light: "Světlý", dark: "Tmavý", system: "Systém" },
+  de: { light: "Hell", dark: "Dunkel", system: "System" },
+};
+
+const themeLabels: ThemeLabelDictionary =
+  THEME_LABELS[activeLanguage] ?? DEFAULT_THEME_LABELS;
+
+const themeOptions = [
+  { id: "light", label: themeLabels.light, icon: SunIcon },
+  { id: "dark", label: themeLabels.dark, icon: MoonIcon },
+  { id: "system", label: themeLabels.system, icon: ComputerIcon },
+];
 ---
 
-<div class="fixed bottom-0 right-0 size-16 ml-1 mr-1 z-20">
-  <button
-    id="theme-toggle-btn"
-    class="appearance-none border-none transition flex md:hover:scale-110 z-10"
-  >
-    <span class="sr-only">{chooseTheme}</span>
-    <SunIcon
-      id="light"
-      class="stroke-orange-500 fill-yellow-300 theme-toggle-icon size-12 transition-all"
-    />
-    <MoonIcon
-      id="dark"
-      class="stroke-blue-800 fill-yellow-600 theme-toggle-icon absolute size-12 transition-all"
-    />
-    <ComputerIcon
-      id="system"
-      class="fill-yellow-500 stroke-amber-800 theme-toggle-icon absolute size-12 transition-all"
-    />
-  </button>
+<div class="fixed bottom-5 right-5 z-40" id="theme-switcher-root">
+  <!-- Flyout Menu Popup -->
   <div
-    id="themes-menu"
-    class="absolute hidden scale-80 -top-28 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-yellow-500/80 bg-white/90 dark:bg-gray-900/90 dark:border-yellow-500/80 shadow-xl backdrop-blur-md"
+    id="themes-popover-menu"
+    class="absolute bottom-full mb-2.5 right-0 hidden min-w-[135px] rounded-2xl border border-neutral-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md p-1.5 shadow-xl transition-all duration-200 z-50"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="theme-toggle-btn"
   >
-    <ul>
+    <ul class="space-y-0.5">
       {
-        themeNames.map((theme, i) => (
-          <li
-            id={THEMES.en[i]?.toLowerCase() ?? "system"}
-            class="themes-menu-option px-2 py-1.5 md:hover:bg-yellow-400/40 md:dark:hover:bg-yellow-500/50 rounded-sm cursor-pointer"
-          >
-            {theme}
+        themeOptions.map(({ id, label, icon: IconComponent }) => (
+          <li>
+            <button
+              type="button"
+              data-theme-value={id}
+              class="theme-menu-choice w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-zinc-900 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all duration-150 cursor-pointer active:scale-[0.98]"
+              role="menuitem"
+            >
+              <IconComponent class="size-4 shrink-0 pointer-events-none text-neutral-500 dark:text-neutral-400" />
+              <span class="pointer-events-none">{label}</span>
+            </button>
           </li>
         ))
       }
     </ul>
   </div>
+
+  <!-- Main Floating Toggle Trigger -->
+  <button
+    id="theme-toggle-btn"
+    type="button"
+    class="size-10 sm:size-11 rounded-full border border-neutral-200/90 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-md flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:text-amber-600 dark:hover:text-amber-400 hover:border-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+    aria-haspopup="true"
+    aria-expanded="false"
+    title="Toggle color theme"
+    aria-label="Toggle color theme"
+  >
+    <SunIcon
+      id="theme-icon-light"
+      class="theme-main-icon size-4.5 sm:size-5 pointer-events-none transition-transform duration-200 hidden"
+    />
+    <MoonIcon
+      id="theme-icon-dark"
+      class="theme-main-icon size-4.5 sm:size-5 pointer-events-none transition-transform duration-200 hidden"
+    />
+    <ComputerIcon
+      id="theme-icon-system"
+      class="theme-main-icon size-4.5 sm:size-5 pointer-events-none transition-transform duration-200 hidden"
+    />
+  </button>
 </div>
 
-<style>
-  #themes-menu.open {
-    display: inline;
-    animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  }
+<script>
+  /**
+   * Applies active styling to the currently selected theme menu item.
+   *
+   * @param activeTheme - Current theme string ('light', 'dark', 'system').
+   * @returns Void.
+   * @throws Does not throw.
+   */
+  function syncThemeMenuHighlights(activeTheme: string): void {
+    const choiceButtons =
+      document.querySelectorAll<HTMLButtonElement>(".theme-menu-choice");
 
-  @keyframes scale-up-center {
-    from {
-      transform: scale(0.5);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-</style>
+    choiceButtons.forEach((button) => {
+      const themeValue = button.getAttribute("data-theme-value");
+      const isSelected = themeValue === activeTheme;
 
-<script is:inline>
-  let remove = null;
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-  const themesMenu = document.getElementById("themes-menu");
-
-  const updateIcon = ({ themePreference }) => {
-    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-      element.style.scale = element.id === themePreference ? "1" : "0";
+      if (isSelected) {
+        button.classList.add(
+          "bg-amber-500/10",
+          "text-amber-900",
+          "dark:text-amber-300",
+          "font-semibold",
+          "border",
+          "border-amber-500/20",
+        );
+        button.classList.remove("text-neutral-700", "dark:text-neutral-300");
+      } else {
+        button.classList.remove(
+          "bg-amber-500/10",
+          "text-amber-900",
+          "dark:text-amber-300",
+          "font-semibold",
+          "border",
+          "border-amber-500/20",
+        );
+        button.classList.add("text-neutral-700", "dark:text-neutral-300");
+      }
     });
-  };
+  }
 
-  const updateTheme = () => {
-    if (remove != null) remove();
+  /**
+   * Displays the appropriate theme icon in the floating dock button.
+   *
+   * @param currentTheme - The active theme ('light', 'dark', 'system').
+   * @returns Void.
+   * @throws Does not throw.
+   */
+  function syncMainToggleIcon(currentTheme: string): void {
+    const lightIcon = document.getElementById("theme-icon-light");
+    const darkIcon = document.getElementById("theme-icon-dark");
+    const systemIcon = document.getElementById("theme-icon-system");
 
-    matchMedia.addEventListener("change", updateTheme);
+    lightIcon?.classList.add("hidden");
+    darkIcon?.classList.add("hidden");
+    systemIcon?.classList.add("hidden");
 
-    remove = () => {
-      matchMedia.removeEventListener("change", updateTheme);
-    };
+    if (currentTheme === "light") {
+      lightIcon?.classList.remove("hidden");
+    } else if (currentTheme === "dark") {
+      darkIcon?.classList.remove("hidden");
+    } else {
+      systemIcon?.classList.remove("hidden");
+    }
+  }
 
-    const themePreference =
-      typeof window.localStorage !== "undefined"
-        ? (window.localStorage.getItem("theme") ?? "system")
-        : matchMedia.matches
-          ? "dark"
-          : "light";
-
+  /**
+   * Applies the theme preference to the document root and localStorage.
+   *
+   * @param themePreference - The selected theme ('light', 'dark', 'system').
+   * @returns Void.
+   * @throws Does not throw.
+   */
+  function applyThemePreference(themePreference: string): void {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const isDark =
       themePreference === "dark" ||
-      (themePreference === "system" && matchMedia.matches);
+      (themePreference === "system" && mediaQuery.matches);
 
-    updateIcon({ themePreference });
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
-  };
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
-  updateTheme();
+    syncMainToggleIcon(themePreference);
+    syncThemeMenuHighlights(themePreference);
+  }
 
-  document.addEventListener("click", () => themesMenu.classList.remove("open"));
+  /**
+   * Initializes theme switcher event handlers and reads initial stored preferences.
+   *
+   * @returns Void.
+   * @throws Does not throw.
+   */
+  function initializeThemeSwitcher(): void {
+    const toggleButton = document.getElementById("theme-toggle-btn");
+    const popoverMenu = document.getElementById("themes-popover-menu");
+    const choiceButtons =
+      document.querySelectorAll<HTMLButtonElement>(".theme-menu-choice");
 
-  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isClosed = !themesMenu.classList.contains("open");
-    themesMenu.classList[isClosed ? "add" : "remove"]("open");
-  });
+    if (!toggleButton || !popoverMenu) {
+      return;
+    }
 
-  document.querySelectorAll(".themes-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      window.localStorage.setItem(
-        "theme",
-        e.target.id === "system" ? "system" : e.target.id,
-      );
-      updateTheme();
+    const savedPreference = localStorage.getItem("theme") ?? "system";
+    applyThemePreference(savedPreference);
+
+    // Toggle menu on button click
+    toggleButton.onclick = (clickEvent) => {
+      clickEvent.stopPropagation();
+      const isHidden = popoverMenu.classList.contains("hidden");
+
+      if (isHidden) {
+        popoverMenu.classList.remove("hidden");
+        toggleButton.setAttribute("aria-expanded", "true");
+      } else {
+        popoverMenu.classList.add("hidden");
+        toggleButton.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    // Choice option clicks
+    choiceButtons.forEach((choiceButton) => {
+      choiceButton.onclick = (clickEvent) => {
+        clickEvent.stopPropagation();
+        const chosenTheme =
+          choiceButton.getAttribute("data-theme-value") ?? "system";
+        localStorage.setItem("theme", chosenTheme);
+        applyThemePreference(chosenTheme);
+        popoverMenu.classList.add("hidden");
+        toggleButton.setAttribute("aria-expanded", "false");
+      };
     });
-  });
+
+    // Dismiss when clicking outside
+    document.addEventListener("click", (outsideEvent) => {
+      const targetNode = outsideEvent.target as Node;
+      if (
+        !popoverMenu.contains(targetNode) &&
+        !toggleButton.contains(targetNode)
+      ) {
+        popoverMenu.classList.add("hidden");
+        toggleButton.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Dismiss on Escape key
+    document.addEventListener("keydown", (keyboardEvent) => {
+      if (keyboardEvent.key === "Escape") {
+        popoverMenu.classList.add("hidden");
+        toggleButton.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // System theme change listener
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        const currentSetting = localStorage.getItem("theme") ?? "system";
+        if (currentSetting === "system") {
+          applyThemePreference("system");
+        }
+      });
+  }
+
+  // Ensure initialization runs reliably across initial load and client transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeThemeSwitcher);
+  } else {
+    initializeThemeSwitcher();
+  }
+  document.addEventListener("astro:page-load", initializeThemeSwitcher);
 </script>

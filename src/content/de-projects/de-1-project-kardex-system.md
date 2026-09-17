@@ -1,7 +1,7 @@
 ---
 name: "Kardex-Inventarkontrollsystem mit FIFO-Methode"
 description: "Erfassen Sie Ihre Kauf-, Verkaufs- oder Rückgabebewegungen. Jede Bewegung erzeugt einen elektronischen Verkaufsbeleg oder eine elektronische Gutschrift. Verwalten Sie Kunden, Lieferanten, Produkte und Systembenutzer. Zeigen Sie Ihre Aufzeichnungen einfach an."
-tech: 
+tech:
   - "Java"
   - "JavaSpring"
   - "Typescript"

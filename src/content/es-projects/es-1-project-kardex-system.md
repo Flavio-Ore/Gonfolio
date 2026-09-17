@@ -1,7 +1,7 @@
 ---
 name: "Sistema de control de inventario Kardex con método PEPS"
 description: "Regitra tus movimientos de compra, venta o devolución. Cada movimiento genera una boleta de venta electrónica o nota de crédito electrónica. Administra clientes, proveedores, productos y usuarios del sistema. Visualiza fácilmente tus registros."
-tech: 
+tech:
   - "Java"
   - "JavaSpring"
   - "Typescript"

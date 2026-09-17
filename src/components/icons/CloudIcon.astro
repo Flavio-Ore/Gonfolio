@@ -1,0 +1,29 @@
+---
+export interface Props {
+  class?: string;
+  [key: string]: any;
+}
+
+const { class: className = "size-5", ...props } = Astro.props as Props;
+---
+
+<!--
+  Description: Renders an SVG icon representing cloud infrastructure, microservices, and network deployments.
+  Parameters:
+    - class: Optional CSS classes to style width, height, and color.
+  Return Value: Astro component rendering an SVG element.
+  Exceptions & Errors: None.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  {...props}
+>
+  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+</svg>
