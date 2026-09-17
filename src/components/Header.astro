@@ -37,13 +37,16 @@ import LinkedInIcon from "@components/icons/LinkedInIcon.astro";
     rel="noopener noreferrer"
     class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-center group"
   >
-    <img
-      class="aspect-square object-cover rounded-lg rotate-3"
-      width={86}
-      height={86}
-      src="/assets/imgs/photo.jpg"
-      alt="Flavio Gonzalo Oré Chávez"
-    />
+    <picture>
+      <source type="image/avif" srcset="/assets/imgs/photo.avif" />
+      <img
+        class="aspect-square object-cover rounded-lg rotate-3 border-2 border-dark/50 dark:border-light/50"
+        width="86"
+        height="86"
+        src="/assets/imgs/photo.webp"
+        alt="Flavio Gonzalo Oré Chávez"
+      />
+    </picture>
     <LinkedInIcon class="size-6 -mt-2 -rotate-3" />
     <span class="sr-only">LinkedIn</span>
   </a>

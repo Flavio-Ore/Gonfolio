@@ -10,6 +10,7 @@ import TailwindIcon from "@components/icons/TailwindIcon.astro";
 import TypeScriptIcon from "@components/icons/TypeScriptIcon.astro";
 import ViteIcon from "@components/icons/ViteIcon.astro";
 import TiltCard from "@components/TiltCard.astro";
+import { Image } from "astro:assets";
 ---
 
 <section class="flex flex-col justify-center rounded-lg p-4">
@@ -29,14 +30,16 @@ import TiltCard from "@components/TiltCard.astro";
       class="flex flex-col group"
     >
       <TiltCard>
-        <img
-          src="/assets/imgs/snapgram.png"
-          width="500"
-          height="350"
-          loading="lazy"
-          alt="Snapgram"
-          class="rounded-lg transition-all opacity-90 md:hover:opacity-100 md:hover:scale-110"
-        />
+        <picture>
+          <source srcset="/assets/imgs/snapgram.avif" type="image/avif" />
+          <Image
+            src="/assets/imgs/snapgram.webp"
+            width="500"
+            height="350"
+            alt="Snapgram"
+            class="rounded-lg transition-all opacity-90 md:hover:opacity-100 md:hover:scale-110"
+          />
+        </picture>
       </TiltCard>
     </a>
     <div
