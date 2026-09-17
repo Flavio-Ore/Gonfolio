@@ -1,5 +1,5 @@
 ---
-title: "Soy Gon, bienvenido! 👋"
-subtitle: "Futuro Ingeniero de Software"
-description: "Estudiante de Ing. de Software en la UTP con fuerte pasón por el desarrollo web y desarrollo de software. Tengo experiencia usando Java, C#, Javascript, Typescript, React, Tailwind y ShadCN. Me encanta aprender y compartir conocimientos. 🦾" 
+title: "¡Soy Gon, bienvenido! 👋"
+subtitle: "Desarrollador Full-Stack | Estudiante de Ingeniería de Software"
+description: "Apasionado por la ingeniería de software y el diseño de soluciones digitales escalables y arquitectónicamente sólidas. Como estudiante de último año de Ingeniería de Software en la UTP, combino experiencia full-stack en React, Next.js, Angular, NestJS, GraphQL y TypeScript con servicios AWS en la nube para transformar ideas innovadoras en aplicaciones robustas y eficientes. Actualmente desarrollando y optimizando sistemas ERP con arquitectura de microservicios en Explorandes."
 ---

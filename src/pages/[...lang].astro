@@ -1,8 +1,12 @@
 ---
 import { getCollection, getEntry } from "astro:content";
+import Contact from "components/Contact.astro";
+import Experience from "components/Experience.astro";
 import Header from "components/Header.astro";
+import Navigation from "components/Navigation.astro";
 import Profile from "components/Profile.astro";
 import Projects from "components/Projects.astro";
+import Skills from "components/Skills.astro";
 import Layout from "layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -32,7 +36,11 @@ export type Profile = typeof profile;
 ---
 
 <Layout lang={lang}>
+  <Navigation />
   <Header />
   <Profile profile={profile} />
+  <Experience />
+  <Skills />
   <Projects projects={projects} />
+  <Contact />
 </Layout>
