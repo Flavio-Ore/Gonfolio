@@ -1,19 +1,31 @@
+---
+import type { Profile } from "pages/[...lang].astro";
+
+type Props = {
+  profile: Profile;
+};
+
+const { profile } = Astro.props;
+
+if (!profile) {
+  throw new Error("No profile data");
+}
+---
+
 <section class="w-full max-w-3xl mx-auto mt-7 mb-1">
   <h1
     class="mx-auto mt-2 text-3xl font-bold sm:text-5xl text-pretty dark:text-amber-200 text-amber-500"
   >
-    I'm Gon, welcome! 👋
+    {profile.data.title}
   </h1>
   <h2
-    class="mx-auto mt-2 text-2xl font-medium dark:text-amber-100/70 text-amber-500/70"
+    class="mx-auto mt-2 text-2xl font-medium dark:text-amber-400/90 text-amber-600/90"
   >
-    Future Software Engineer
+    {profile.data.subtitle}
   </h2>
   <p
     class="text-xl mt-2 text-pretty dark:text-amber-50 text-amber-950 opacity-90 w-full max-w-3xl mx-auto"
   >
-    Software Engineer student at Universidad Tecnológica del Perú with a strong
-    passion for web and software development. I have experience using
-    Javascript, Typescript, React, Tailwind and Java.
+    {profile.data.description}
   </p>
 </section>

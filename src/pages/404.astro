@@ -1,0 +1,38 @@
+---
+import { LANGUAGES } from "i18n/ui";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Gonfolio | 404</title>
+  </head>
+  <body
+    class="relative text-dark dark:text-light bg-light dark:bg-dark min-h-screen w-full px-5 py-8 flex flex-col justify-center"
+  >
+    <div
+      class="absolute top-0 left-0 z-[-2] h-full w-full bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,182,32,0.13),rgba(0,163,255,.0)_75%,rgba(25,24,200,.5)_100%)]"
+    >
+    </div>
+    <main class="w-full h-full m-auto max-w-lg">
+      <h1 class="text-5xl text-amber-900 font-bold text-center">Oops!</h1>
+      <p class="text-2xl text-red-500 text-center mt-3">
+        The page you are looking for does not exist.
+      </p>
+      <button class="block mx-auto mt-6 text-lg">
+        <a href={`/${LANGUAGES.es}`} class="underline hover:text-amber-900"
+          >{"👈"} Go back to the home page
+        </a>
+      </button>
+    </main>
+  </body>
+</html>

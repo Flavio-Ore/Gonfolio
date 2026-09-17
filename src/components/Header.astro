@@ -1,9 +1,15 @@
 ---
 import myPhoto from "assets/photo.avif";
-import Picture from "astro/components/Picture.astro";
+import { Picture } from "astro:assets";
+import ChangeLang from "components/ChangeLang.astro";
 import EmailIcon from "components/icons/EmailIcon.astro";
 import GithubIcon from "components/icons/GithubIcon.astro";
 import LinkedInIcon from "components/icons/LinkedInIcon.astro";
+import { useTranslations } from "i18n/utils";
+import type { Params } from "pages/[...lang].astro";
+
+const { lang } = Astro.params as Params;
+const t = useTranslations(lang);
 ---
 
 <header
@@ -21,9 +27,10 @@ import LinkedInIcon from "components/icons/LinkedInIcon.astro";
     <h3
       class="text-lg font-semibold sm:text-xl dark:text-amber-200 text-amber-500"
     >
-      Gonzalo Oré Chávez
+      Flavio Gon. Oré
     </h3>
   </div>
+  <ChangeLang />
   <div class="flex gap-x-4 items-center justify-around">
     <a
       href="https://www.linkedin.com/in/fla-gon-ch"
@@ -41,7 +48,7 @@ import LinkedInIcon from "components/icons/LinkedInIcon.astro";
       class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
     >
       <EmailIcon class="size-5 md:size-7 md:hover:animate-sway" />
-      <span class="sr-only">Gmail</span>
+      <span class="sr-only">{t("header.Email")}</span>
     </a>
 
     <a
