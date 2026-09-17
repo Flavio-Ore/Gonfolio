@@ -61,8 +61,9 @@ The root HTML shell. Responsible for:
 
 ### Profile / Hero (`src/components/Profile.astro`)
 
-- Displays `profile.data.title`, `profile.data.subtitle`, and `profile.data.description`.
-- Call-to-action buttons: "View My Work" (`#projects`) and "Get In Touch" (`#contact`).
+- Editorial book-style presentation with a refined amber accent rule (`border-l-2`) and balanced typographic hierarchy.
+- Displays `profile.data.title`, `profile.data.subtitle`, and `profile.data.description` with relaxed reading leading (`leading-relaxed`).
+- Action triggers: Refined warm amber glass button ("View My Work" / `#projects`) with `PortfolioIcon` and understated dark/light glass button ("Get In Touch" / `#contact`) with `GmailIcon` and tactile response (`active:scale-[0.98]`).
 
 ### Experience Timeline (`src/components/Experience.astro`)
 
