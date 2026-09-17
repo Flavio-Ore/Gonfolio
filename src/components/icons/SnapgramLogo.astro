@@ -1,14 +1,14 @@
 ---
-const idA = Math.random().toString(36)
+const idA = crypto.randomUUID()
 ---
 
 <svg
+  {...Astro.props}
   width="171"
   height="36"
   viewBox="0 0 171 36"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  class="fill-obscure dark:fill-light"
   ><path
     fill-rule="evenodd"
     clip-rule="evenodd"

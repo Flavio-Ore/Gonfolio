@@ -1,0 +1,87 @@
+---
+import DatabaseIcon from '@components/icons/DatabaseIcon.astro'
+import MicrosoftIcon from '@components/icons/MicrosoftIcon.astro'
+import SQLServerIcon from '@components/icons/SQLServerIcon.astro'
+import UniversityIcon from '@components/icons/UniversityIcon.astro'
+---
+
+<section class="my-8">
+  <div class="inline-flex
+  gap-4
+  items-center
+  justify-center pl-8">
+    <UniversityIcon class="size-10" />
+    <h2 class="text-2xl leading-default font-bold tracking-tight sm:text-4xl">
+      University Projects
+    </h2>
+  </div>
+  <ul class="flex flex-col gap-2 mt-2">
+    <li class="mt-4">
+      <section class="flex flex-col justify-center rounded-lg p-4">
+        <div class="inline-flex justify-between items-center">
+          <h3 class="text-2xl leading-default font-medium tracking-tighter">
+            Database Design
+          </h3>
+          <span
+            class="inline-flex items-center justify-center gap-2 text-lg font-bold"
+          >
+            <DatabaseIcon class="size-10" />National Library of Peru
+          </span>
+        </div>
+        <div
+          class="flex flex-col md:flex-row-reverse items-center md:items-start gap-8 mt-8 md:mt-4"
+        >
+          <a
+            href=""
+            class="flex flex-col transition md:hover:scale-110 md:hover:rotate-3"
+          >
+            <img
+              src="https://via.placeholder.com/500x350"
+              width="500"
+              height="350"
+              loading="lazy"
+              alt="Snapgram"
+              class="rounded-lg"
+            />
+          </a>
+          <div
+            class="flex flex-1 basis-1/2 md:flex-col flex-col-reverse gap-8 items-center justify-center"
+          >
+            <div
+              class="flex flex-col gap-4 text-pretty text-lg text-gray-600 dark:text-gray-300"
+            >
+              <p>
+                University work whose proposal was not implemented because it
+                was carried out for practical purposes but was not implemented.
+              </p>
+              <p
+                class="[&>strong]:font-semibold
+                [&>strong]:bg-gradient-to-t [&>strong]:from-golden [&>strong]:to-cyan-500 [&>strong]:bg-clip-text text-xl [&>strong]:text-transparent"
+              >
+                In collaboration with <strong
+                  >Esteban Eduardo Ruiz Quispe</strong
+                > and <strong>Juan Domingo Villanque Echegaray</strong>
+              </p>
+            </div>
+            <ul
+              class="flex items-center justify-center gap-6 md:cursor-crosshair group flex-wrap w-full"
+            >
+              <li
+                class="md:group-hover:animate-slide-out-right"
+                title="SQL Server"
+              >
+                <SQLServerIcon class="size-10" />
+              </li>
+              <li
+                class="md:group-hover:animate-slide-out-left"
+                title="Microsoft"
+              >
+                <MicrosoftIcon class="size-10" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </li>
+  </ul>
+</section>
