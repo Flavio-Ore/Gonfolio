@@ -10,14 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/inter": "^5.0.18",
-    "@fontsource/inder": "^5.0.13",
-    "@midudev/tailwind-animations": "^0.0.7",
-    "astro": "^4.6.3",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.3",
+    "@fontsource-variable/hanken-grotesk": "^5.1.0",
+    "@fontsource-variable/inter": "^5.1.0",
+    "@fontsource/inder": "^5.1.0",
+    "@midudev/tailwind-animations": "^0.1.0",
+    "astro": "^5.0.8",
     "astro-robots-txt": "^1.0.0",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2"
   }
 }

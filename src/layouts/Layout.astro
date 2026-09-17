@@ -1,46 +1,40 @@
 ---
-import Footer from "@components/Footer.astro";
-import ToggleDarkLight from "@components/ToggleDarkLight.astro";
+import "@fontsource-variable/hanken-grotesk";
 import "@fontsource-variable/inter";
 import "@fontsource/inder";
-import { ViewTransitions } from "astro:transitions";
-
-interface Props {
-	title: string;
-	description: string;
-}
-
-const { title, description } = Astro.props;
+import { ClientRouter } from "astro:transitions";
+import Footer from "components/Footer.astro";
+import ToggleDarkLight from "components/ToggleDarkLight.astro";
+import SEO from "components/_SEO.astro";
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<ViewTransitions />
+		<SEO />
+		<ClientRouter />
 	</head>
-	<body class="relative text-dark dark:text-light bg-light dark:bg-dark">
+	<body
+		class="relative text-dark dark:text-light bg-light dark:bg-dark min-h-screen w-full flow-root px-5 py-8"
+	>
 		<div
-			class="absolute top-0 z-[-2] h-full w-full bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,182,32,0.13),rgba(0,163,255,.0)_75%,rgba(0,163,25,.5)_100%)]"
+			class="absolute top-0 left-0 z-[-2] h-full w-full bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,182,32,0.13),rgba(0,163,255,.0)_75%,rgba(25,24,200,.5)_100%)]"
 		>
 		</div>
 		<ToggleDarkLight />
 		<slot />
 		<Footer />
 		<style is:global>
-			html {
-				font-family: "inder", "Inter variant", sans-serif;
-			}
 			body {
+				font-family: "Hanken Grotesk Variable", "Inter variant", sans-serif;
+				transition:
+					color 0.2s,
+					background-color 0.2s;
 				scroll-behavior: smooth;
 			}
 			@media (prefers-reduced-motion: reduce) {
 				html {
+					font-family: "Hanken Grotesk Variable", "Inter variant", sans-serif;
 					scroll-behavior: auto;
 				}
 			}
