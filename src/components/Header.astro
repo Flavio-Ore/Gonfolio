@@ -1,16 +1,27 @@
 ---
-import UserIcon from '@components/icons/UserIcon.astro'
+import GithubIcon from "@components/icons/GithubIcon.astro";
+import LinkedInIcon from "@components/icons/LinkedInIcon.astro";
 ---
 
-<header class="flex flex-col md:flex-row justify-between gap-4 w-full">
+<header class="flex flex-col md:flex-row justify-around gap-8 md:gap-2 w-full">
   <div class="flex flex-col justify-center items-center">
-    <div class="flex items-center justify-evenly gap-4">
-      <UserIcon class="size-12" />
+    <div
+      class="flex md:flex-row flex-row-reverse items-center justify-around gap-4"
+    >
+      <a
+        class="relative md:transition-opacity md:hover:opacity-80 md:hover:animate-tada before:absolute before:rounded-full before:content-[''] before:bottom-0 before:right-0 before:size-4 before:bg-sky-500 before:animate-rubber-band before:animate-iteration-count-infinite before:animate-duration-[3000ms]"
+        href="https://github.com/Flavio-Ore"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GithubIcon class="size-14" />
+        <span class="sr-only">Github</span>
+      </a>
       <h1 class="text-3xl font-bold tracking-tight sm:text-4xl text-pretty">
         Flavio Gonzalo Oré Chávez
       </h1>
     </div>
-    <h2 class="text-h3 font-medium leading-default tracking-tighter mt-2">
+    <h2 class="text-2xl font-medium leading-default tracking-tighter mt-2">
       <div
         class="inline-flex gap-2 sm:gap-10 flex-wrap items-center justify-center"
       >
@@ -20,37 +31,20 @@ import UserIcon from '@components/icons/UserIcon.astro'
       </div>
     </h2>
   </div>
-  <div class="flex flex-col justify-center items-center">
-    <div class="flex flex-1 flex-col gap-8 p-2 justify-center items-center">
-      <img
-        class="aspect-square object-cover rounded-lg shadow-lg"
-        width={64}
-        height={64}
-        src="/assets/imgs/photo.jpg"
-        alt="Flavio Gonzalo Oré Chávez"
-      />
-    </div>
-    <a
-      href="https://www.linkedin.com/in/flavio-gonzalo-or%C3%A9-ch%C3%A1vez-80b768270/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex items-center transition md:justify-center md:hover:scale-105 group"
-    >
-      <div class="flex items-center">
-        <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
-          <span
-            class="absolute inset-[-1000%] animate-spin-clockwise animate-duration-1000 animate-iteration-count-infinite bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#ffb620_50%,#34d399_100%)]"
-          ></span>
-          <div
-            class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-emerald-800 bg-emerald-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
-          >
-            <span
-              class="inline-flex group-hover:animate-background-shine dark:group-hover:bg-[linear-gradient(110deg,#f2f2f2,20%,#ffb620,50%,#f2f2f2)] group-hover:bg-[linear-gradient(110deg,#020202,20%,#ffb620,50%,#020202)] group-hover:bg-[length:250%_100%] group-hover:bg-clip-text group-hover:text-transparent"
-              >Open to work</span
-            >
-          </div>
-        </span>
-      </div>
-    </a>
-  </div>
+  <a
+    href="https://www.linkedin.com/in/flavio-gonzalo-or%C3%A9-ch%C3%A1vez-80b768270/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-center group"
+  >
+    <img
+      class="aspect-square object-cover rounded-lg rotate-3"
+      width={86}
+      height={86}
+      src="/assets/imgs/photo.jpg"
+      alt="Flavio Gonzalo Oré Chávez"
+    />
+    <LinkedInIcon class="size-6 -mt-2 -rotate-3" />
+    <span class="sr-only">LinkedIn</span>
+  </a>
 </header>

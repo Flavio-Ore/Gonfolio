@@ -12,10 +12,10 @@
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/inter": "^5.0.17",
-    "@fontsource/inder": "^5.0.12",
+    "@fontsource-variable/inter": "^5.0.18",
+    "@fontsource/inder": "^5.0.13",
     "@midudev/tailwind-animations": "^0.0.7",
-    "astro": "^4.6.2",
+    "astro": "^4.6.3",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   }
