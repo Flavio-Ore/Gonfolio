@@ -1,6 +1,6 @@
 ---
-name: "Modern Snapgram (Sociální síť)"
-description: "Aplikace sociální sítě, kde můžete vytvářet, upravovat a mazat své uživatele a příspěvky. Můžete chatovat a sledovat další uživatele a lajkovat nebo ukládat jejich příspěvky. Design byl vytvořen ve Figmě a využívá Appwrite jako backend (BaaS)."
+name: "Modern Snapgram (Platforma pro sociální interakci)"
+description: "Platforma pro sociální interakci postavená na serverless architektuře s využitím Appwrite a Reactu. Funkce v reálném čase pro přímé zprávy, správu příspěvků a bezpečné ověřování uživatelů. Moderní, responzivní rozhraní navržené pro plynulé sdílení médií a intuitivní navigaci."
 tech:
   - "Appwrite"
   - "Typescript"

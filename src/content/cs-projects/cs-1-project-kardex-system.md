@@ -1,6 +1,6 @@
 ---
-name: "Systém kontroly inventáře Kardex s metodou FIFO"
-description: "Zaregistrujte své pohyby nákupu, prodeje nebo vrácení. Každý pohyb vygeneruje elektronický prodejní doklad nebo elektronický dobropis. Spravujte zákazníky, dodavatele, produkty a uživatele systému. Snadno si prohlížejte své záznamy."
+name: "ERP systém řízení zásob Kardex (metoda FIFO)"
+description: "Návrh a implementace ERP systému pro správu a oceňování skladových zásob pomocí standardní metody FIFO. Automatizované procesy pro vystavování a správu elektronických prodejních dokladů a dobropisů. Centralizovaná správa produktů, dodavatelů, zákazníků a uživatelských přístupových práv."
 tech:
   - "Java"
   - "JavaSpring"
