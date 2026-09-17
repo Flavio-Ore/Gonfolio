@@ -22,8 +22,8 @@ export default {
         default: "140%",
       },
       colors: {
-        light: "#fcfcfc",
-        dark: "#060606",
+        light: "#fafafa",
+        dark: "#09090b",
       },
       screens: {
         xs: "360px",

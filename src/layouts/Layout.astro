@@ -8,95 +8,123 @@ import ToggleDarkLight from "components/ToggleDarkLight.astro";
 import SEO from "components/_SEO.astro";
 import type { Params } from "pages/[...lang].astro";
 
-const { lang } = Astro.params as Params;
+export interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.params as Params;
 ---
 
 <!doctype html>
-<html lang={lang}>
-	<head>
-		<SEO />
-		<ClientRouter />
-	</head>
-	<body
-		class="relative text-dark dark:text-light bg-light dark:bg-dark min-h-screen w-full flow-root px-5 py-8 pt-20"
-	>
-		<div
-			class="absolute top-0 left-0 z-[-2] h-full w-full bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,182,32,0.13),rgba(0,163,255,.0)_75%,rgba(25,24,200,.5)_100%)]"
-		>
-		</div>
-		<ToggleDarkLight />
-		<slot />
-		<Footer />
-		<style is:global>
-			body {
-				font-family: "Hanken Grotesk Variable", "Inter variant", sans-serif;
-				transition:
-					color 0.2s,
-					background-color 0.2s;
-				scroll-behavior: smooth;
-			}
-			@media (prefers-reduced-motion: reduce) {
-				html {
-					font-family: "Hanken Grotesk Variable", "Inter variant", sans-serif;
-					scroll-behavior: auto;
-				}
-			}
-			body::-webkit-scrollbar {
-				width: 6px;
-				height: 6px;
-				border-radius: 2px;
-			}
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <SEO />
+    <ClientRouter />
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme") ?? "system";
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (savedTheme === "system" && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body
+    class="relative text-neutral-900 dark:text-neutral-100 bg-[#fafafa] dark:bg-[#09090b] min-h-screen w-full flow-root px-4 sm:px-6 py-8 pt-20 transition-colors duration-300 antialiased selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-200"
+  >
+    <!-- Ambient Glow Background -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-radial from-amber-500/10 via-amber-500/5 to-transparent blur-3xl dark:from-amber-500/[0.08] dark:via-emerald-500/[0.03] dark:to-transparent"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 right-0 w-[500px] h-[400px] bg-radial from-orange-500/5 to-transparent blur-3xl dark:from-emerald-500/[0.04] dark:to-transparent"
+      >
+      </div>
+    </div>
 
-			body::-webkit-scrollbar-track {
-				background: none;
-			}
+    <ToggleDarkLight />
+    <slot />
+    <Footer />
 
-			body::-webkit-scrollbar-thumb {
-				background: #fb923c;
-				border-radius: 50px;
-			}
+    <style is:global>
+      body {
+        font-family: "Hanken Grotesk Variable", "Inter Variable", sans-serif;
+      }
 
-			body::-webkit-scrollbar-thumb:hover {
-				background: #fb923c9d;
-			}
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
 
-			/* Scroll reveal animations */
-			.reveal {
-				opacity: 0;
-				transform: translateY(30px);
-				transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-			}
+      body::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
 
-			.reveal.active {
-				opacity: 1;
-				transform: translateY(0);
-			}
+      body::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-			/* Selection styling */
-			::selection {
-				background-color: rgba(251, 146, 60, 0.3);
-				color: inherit;
-			}
-		</style>
-		<script>
-			// Scroll reveal observer
-			const observerOptions = {
-				threshold: 0.1,
-				rootMargin: "0px 0px -100px 0px",
-			};
+      body::-webkit-scrollbar-thumb {
+        background: rgba(245, 158, 11, 0.4);
+        border-radius: 9999px;
+      }
 
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("active");
-					}
-				});
-			}, observerOptions);
+      body::-webkit-scrollbar-thumb:hover {
+        background: rgba(245, 158, 11, 0.7);
+      }
 
-			document.addEventListener("DOMContentLoaded", () => {
-				const revealElements = document.querySelectorAll(".reveal");
-				revealElements.forEach((el) => observer.observe(el));
-			});
-		</script>
-	</body>
+      /* Refined Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+
+    <script>
+      /**
+       * Initializes intersection observer for scroll-reveal elements on the page.
+       *
+       * @returns Void.
+       * @throws Does not throw.
+       */
+      function setupScrollReveal(): void {
+        const observerOptions = {
+          threshold: 0.08,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach((element) => observer.observe(element));
+      }
+
+      document.addEventListener("DOMContentLoaded", setupScrollReveal);
+      document.addEventListener("astro:page-load", setupScrollReveal);
+    </script>
+  </body>
 </html>

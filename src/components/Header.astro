@@ -12,51 +12,64 @@ const t = useTranslations(lang);
 ---
 
 <header
-  class="flex items-center justify-center gap-y-2 w-full max-w-3xl mx-auto text-dark dark:text-white mb-8"
+  class="flex items-center justify-between w-full max-w-3xl mx-auto mb-8 pt-4 pb-2 border-b border-neutral-200/60 dark:border-zinc-800/60"
 >
-  <div class="w-full flex sm:flex-row items-center gap-4">
-    <Picture
-      src={myPhoto}
-      width={48}
-      height={48}
-      formats={["avif", "webp"]}
-      alt="Photo of Flavio Oré"
-      class="aspect-square object-cover rounded-full"
-    />
-    <h3
-      class="text-md font-normal md:font-semibold sm:text-xl dark:text-amber-200 text-amber-500"
-    >
-      Flavio Oré
-    </h3>
+  <div class="flex items-center gap-3.5">
+    <div class="relative">
+      <Picture
+        src={myPhoto}
+        width={44}
+        height={44}
+        formats={["avif", "webp"]}
+        alt="Photo of Flavio Oré"
+        class="size-11 object-cover rounded-full ring-2 ring-amber-500/30 dark:ring-amber-400/20 shadow-xs"
+      />
+      <span
+        class="absolute bottom-0 right-0 size-3 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#09090b]"
+        title="Available for projects"
+        aria-label="Available for projects"></span>
+    </div>
+    <div>
+      <h2
+        class="text-base font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight"
+      >
+        Flavio Oré
+      </h2>
+      <p class="text-xs text-amber-700 dark:text-amber-400/90 font-medium">
+        Full-Stack Software Engineer • Operational Systems
+      </p>
+    </div>
   </div>
-  <nav class="flex w-full items-center justify-end gap-x-8">
+
+  <nav class="flex items-center gap-2" aria-label="Direct Social Channels">
+    <a
+      href="https://github.com/Flavio-Ore"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-zinc-800/60 border border-transparent hover:border-neutral-200 dark:hover:border-zinc-700/60 transition-all duration-200 active:scale-95"
+      title="GitHub"
+      aria-label="GitHub Profile"
+    >
+      <GithubIcon class="size-5" />
+    </a>
     <a
       href="https://www.linkedin.com/in/flavio-ore"
       target="_blank"
       rel="noopener noreferrer"
-      class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
+      class="p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-neutral-100 dark:hover:bg-zinc-800/60 border border-transparent hover:border-neutral-200 dark:hover:border-zinc-700/60 transition-all duration-200 active:scale-95"
+      title="LinkedIn"
+      aria-label="LinkedIn Profile"
     >
-      <LinkedInIcon class="size-7 md:size-8 md:hover:animate-sway" />
-      <span class="sr-only">LinkedIn</span>
+      <LinkedInIcon class="size-5" />
     </a>
     <a
       href="mailto:gonzaloorech@gmail.com"
       target="_self"
-      rel="noopener noreferrer"
-      class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
+      class="p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-neutral-100 dark:hover:bg-zinc-800/60 border border-transparent hover:border-neutral-200 dark:hover:border-zinc-700/60 transition-all duration-200 active:scale-95"
+      title={t("header.Email")}
+      aria-label="Send Email"
     >
-      <GmailIcon class="size-7 md:size-8 md:hover:animate-sway" />
-      <span class="sr-only">{t("header.Email")}</span>
-    </a>
-
-    <a
-      class="relative md:transition-opacity md:hover:opacity-80 md:hover:animate-tada before:absolute before:rounded-full before:content-[''] before:bottom-0 before:right-0 before:size-2 before:bg-sky-500 before:animate-rubber-band before:animate-iteration-count-infinite before:animate-duration-[3000ms]"
-      href="https://github.com/Flavio-Ore"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <GithubIcon class="size-7 md:size-8" />
-      <span class="sr-only">Github</span>
+      <GmailIcon class="size-5" />
     </a>
   </nav>
 </header>

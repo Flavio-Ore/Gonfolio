@@ -11,174 +11,121 @@ import TypeScriptIcon from "components/icons/TypeScriptIcon.astro";
 import { useTranslations } from "i18n/utils";
 import type { Params, Projects } from "pages/[...lang].astro";
 import { TECHNOLOGIES } from "values/technologies";
+import JavaIcon from "./icons/JavaIcon.astro";
 
-type Props = {
+export interface Props {
   projects: Projects;
-};
+}
 
 const { lang } = Astro.params as Params;
 const { projects } = Astro.props;
+
 if (!projects) {
-  throw new Error("No projects data");
+  throw new Error("No projects data provided");
 }
 
 const t = useTranslations(lang);
 ---
 
-<main id="projects" class="mx-auto w-full max-w-3xl scroll-mt-20">
-  <h3
-    class="text-3xl font-bold mt-16 mb-8 max-w-3xl mx-auto dark:text-amber-200 text-amber-500 text-center md:text-left"
-  >
-    {t("projects.h3")}
-  </h3>
-  <ul class="flex flex-col gap-y-8 mt-2">
+<main id="projects" class="mx-auto w-full max-w-3xl scroll-mt-20 mt-16 mb-16">
+  <div class="mb-8">
+    <h3
+      class="text-3xl font-bold dark:text-amber-200 text-amber-500 text-center md:text-left"
+    >
+      {t("projects.h3")}
+    </h3>
+  </div>
+
+  <ul class="flex flex-col gap-y-8">
     {
-      projects.map(({ data: project }, index) => (
+      projects.map(({ data: project }) => (
         <li
-          class={`group border rounded-lg transition-all p-6 border-yellow-300 dark:border-yellow-900 md:hover:border-orange-500 md:dark:hover:border-orange-500 shadow-md md:hover:shadow-2xl md:hover:shadow-orange-500/20 md:cursor-pointer md:hover:scale-[1.02] animate-fade-in-up animate-delay-${index * 100}`}
+          class="group rounded-2xl border border-neutral-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/40 backdrop-blur-sm p-6 sm:p-7 shadow-xs hover:shadow-md hover:border-amber-500/50 dark:hover:border-amber-500/40 transition-all duration-300"
         >
-          <section class="flex flex-col md:flex-row gap-x-8 gap-y-4 w-full">
-            <div class="flex flex-col basis-1/2 gap-y-2 items-center justify-between w-full">
+          <article class="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+            <!-- Left Info Panel -->
+            <div class="flex flex-col justify-between basis-1/2 space-y-4">
               <div>
-                <h4 class="text-xl font-bold dark:text-amber-200 text-amber-500 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 mb-2.5">
+                  <span>{t("projects.badge.caseStudy")}</span>
+                </div>
+                <h4 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
                   {project.name}
                 </h4>
-                <ul class="list-none py-2 text-pretty text-base dark:text-amber-50 text-amber-950">
+                <ul class="list-none pt-3 space-y-1.5 text-sm text-neutral-600 dark:text-neutral-300">
                   {project.description
                     .split(".")
-                    .map((sentence, index, array) => (
-                      <span>
-                        {index !== array.length - 1 ? (
-                          <li class="py-1">✔ {sentence}.</li>
-                        ) : (
-                          sentence
-                        )}
-                      </span>
+                    .filter((sentence) => sentence.trim().length > 0)
+                    .map((sentence) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-emerald-600 dark:text-emerald-400 font-bold shrink-0">✓</span>
+                        <span class="leading-relaxed">{sentence.trim()}.</span>
+                      </li>
                     ))}
                 </ul>
               </div>
-              <div class="flex gap-4 justify-center items-center">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex flex-col justify-center items-center gap-1 px-4 py-2 rounded-lg
-                  bg-gray-100 dark:bg-gray-950
-                  text-gray-700 dark:text-gray-300
-                  hover:bg-amber-700 hover:text-white
-                  dark:hover:bg-amber-600 dark:hover:text-white
-                  transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                >
-                  <GithubAltIcon class="size-6" />
-                  <span class="text-xs font-medium">Source</span>
-                </a>
+
+              <!-- Action Links -->
+              <div class="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex flex-col justify-center items-center gap-1 px-4 py-2 rounded-lg
-                  bg-gray-100 dark:bg-gray-900
-                  text-gray-700 dark:text-gray-300
-                  hover:bg-sky-700 hover:text-white
-                  dark:hover:bg-sky-600 dark:hover:text-white
-                  transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500/15 dark:bg-amber-400/10 border border-amber-600/30 dark:border-amber-400/30 text-amber-900 dark:text-amber-200 hover:bg-amber-500/25 dark:hover:bg-amber-400/20 hover:border-amber-500/50 transition-all duration-200 shadow-2xs active:scale-95"
                 >
-                  <LinkIcon class="size-6" />
-                  <span class="text-xs font-medium">Demo</span>
+                  <LinkIcon class="size-4" />
+                  <span>{t("projects.demo")}</span>
+                </a>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border border-neutral-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-zinc-800/80 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all duration-200 shadow-2xs active:scale-95"
+                >
+                  <GithubAltIcon class="size-4" />
+                  <span>{t("projects.source")}</span>
                 </a>
               </div>
             </div>
-            <div class="flex flex-col gap-2 flex-1 basis-1/2 w-full items-start justify-around">
-              <div class="relative group/image overflow-hidden rounded-lg">
+
+            <!-- Right Media & Tech Stack Panel -->
+            <div class="flex flex-col justify-between basis-1/2 gap-4">
+              <div class="relative overflow-hidden rounded-xl border border-neutral-200/60 dark:border-zinc-800/60 bg-neutral-900">
                 <Picture
                   src={project.cover}
                   format={project.cover.format}
                   width="500"
-                  height="350"
+                  height="320"
                   alt={project.imageAlt}
-                  class="rounded-md transition-transform duration-500 group-hover:scale-110"
+                  class="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <ul class="flex items-center justify-center gap-3 group flex-wrap md:flex-nowrap w-full text-xs dark:text-amber-50 text-amber-950">
-                {project.tech.map((t) => {
-                  switch (t) {
-                    case TECHNOLOGIES.Typescript:
-                      return (
-                        <li
-                          class="flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <TypeScriptIcon class="size-8 md:group-hover:animate-squeeze md:group-hover:animate-duration-1000" />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    case TECHNOLOGIES.React:
-                      return (
-                        <li
-                          class="flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <ReactIcon class="size-8 md:group-hover:animate-spin-clockwise md:group-hover:animate-duration-1000" />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    case TECHNOLOGIES.Appwrite:
-                      return (
-                        <li
-                          class="flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <AppwriteIcon class="size-8 md:group-hover:animate-tada md:group-hover:animate-duration-1000" />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    case TECHNOLOGIES.TailwindCSS:
-                      return (
-                        <li
-                          class="flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <TailwindIcon class="size-8 md:group-hover:animate-dancing md:group-hover:animate-duration-1000" />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    case TECHNOLOGIES.ShadCN:
-                      return (
-                        <li
-                          class="flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <ShadcnIcon
-                            class={
-                              "size-8 md:group-hover:animate-pulse-fade-in md:group-hover:animate-duration-1000"
-                            }
-                          />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    case TECHNOLOGIES.JavaSpring:
-                      return (
-                        <li
-                          class="
-                          flex flex-col items-center justify-center"
-                          title={t}
-                        >
-                          <JavaSpringIcon
-                            class={
-                              "size-8 md:group-hover:animate-swing-drop-in md:group-hover:animate-duration-1000"
-                            }
-                          />
-                          <span>{t}</span>
-                        </li>
-                      );
-                    default:
-                      return null;
-                  }
+
+              <!-- Tech Stack Badges -->
+              <ul class="flex flex-wrap items-center gap-2 text-xs">
+                {project.tech.map((technologyIdentifier) => {
+                  let TechIconComponent = null;
+                  if (technologyIdentifier === TECHNOLOGIES.Typescript) TechIconComponent = TypeScriptIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.React) TechIconComponent = ReactIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.Appwrite) TechIconComponent = AppwriteIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.TailwindCSS) TechIconComponent = TailwindIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.ShadCN) TechIconComponent = ShadcnIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.JavaSpring) TechIconComponent = JavaSpringIcon;
+                  else if (technologyIdentifier === TECHNOLOGIES.Java) TechIconComponent = JavaIcon;
+
+                  return (
+                    <li
+                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-neutral-200/70 dark:border-zinc-800/70 bg-white/60 dark:bg-zinc-900/50 text-neutral-700 dark:text-neutral-300 text-[11px] font-medium"
+                      title={technologyIdentifier}
+                    >
+                      {TechIconComponent && <TechIconComponent class="size-3.5" />}
+                      <span>{technologyIdentifier}</span>
+                    </li>
+                  );
                 })}
               </ul>
             </div>
-          </section>
+          </article>
         </li>
       ))
     }

@@ -5,85 +5,38 @@ import type { Params } from "pages/[...lang].astro";
 
 const { lang: currentLang } = Astro.params as Params;
 const t = useTranslations(currentLang);
+
+const languageFlags = [
+  { code: LANGUAGES.en, flag: "🇺🇸", label: "English" },
+  { code: LANGUAGES.es, flag: "🇵🇪", label: "Español" },
+  { code: LANGUAGES.cs, flag: "🇨🇿", label: "Čeština" },
+  { code: LANGUAGES.de, flag: "🇩🇪", label: "Deutsch" },
+];
 ---
 
-<ul
-  class="flex justify-end gap-x-2 border-yellow-400 px-2 py-1 rounded-md basis-1/2"
->
-  <li
-    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
-  >
-    <a
-      href={`/${LANGUAGES.en}/`}
-      target="_self"
-      class:list={[
-        "transition-colors hover:text-red-500 dark:hover:text-red-200",
-        {
-          "text-orange-600 dark:text-orange-400": LANGUAGES.en === currentLang,
-          underline: LANGUAGES.en === currentLang,
-        },
-      ]}
-      data-astro-reload
-    >
-      🇺🇸
-      <span class="sr-only">{t("Changelang.a")}</span>
-    </a>
-  </li>
-  <li
-    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
-  >
-    <a
-      href={`/${LANGUAGES.es}/`}
-      target="_self"
-      class:list={[
-        "transition-colors hover:text-red-500 dark:hover:text-red-200",
-        {
-          "text-orange-600 dark:text-orange-400": LANGUAGES.es === currentLang,
-          underline: LANGUAGES.es === currentLang,
-        },
-      ]}
-      data-astro-reload
-    >
-      🇵🇪
-      <span class="sr-only">{t("Changelang.a")}</span>
-    </a>
-  </li>
-  <li
-    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
-  >
-    <a
-      href={`/${LANGUAGES.cs}/`}
-      target="_self"
-      class:list={[
-        "transition-colors hover:text-red-500 dark:hover:text-red-200",
-        {
-          "text-orange-600 dark:text-orange-400": LANGUAGES.cs === currentLang,
-          underline: LANGUAGES.cs === currentLang,
-        },
-      ]}
-      data-astro-reload
-    >
-      🇨🇿
-      <span class="sr-only">{t("Changelang.a")}</span>
-    </a>
-  </li>
-  <li
-    class="text-md md:text-lg font-semibold text-amber-500 dark:text-amber-200"
-  >
-    <a
-      href={`/${LANGUAGES.de}/`}
-      target="_self"
-      class:list={[
-        "transition-colors hover:text-red-500 dark:hover:text-red-200",
-        {
-          "text-orange-600 dark:text-orange-400": LANGUAGES.de === currentLang,
-          underline: LANGUAGES.de === currentLang,
-        },
-      ]}
-      data-astro-reload
-    >
-      🇩🇪
-      <span class="sr-only">{t("Changelang.a")}</span>
-    </a>
-  </li>
+<ul class="flex items-center gap-1 bg-neutral-100/80 dark:bg-zinc-900/80 px-1.5 py-0.5 rounded-full border border-neutral-200/50 dark:border-zinc-800/50">
+  {
+    languageFlags.map(({ code, flag, label }) => {
+      const isActive = code === currentLang;
+      return (
+        <li>
+          <a
+            href={`/${code}/`}
+            target="_self"
+            class:list={[
+              "inline-flex items-center justify-center size-7 rounded-full text-sm transition-all duration-200 active:scale-90",
+              isActive
+                ? "bg-white dark:bg-zinc-800 shadow-xs ring-1 ring-amber-500/40 opacity-100 scale-105"
+                : "opacity-60 hover:opacity-100 hover:bg-white/50 dark:hover:bg-zinc-800/50",
+            ]}
+            title={label}
+            data-astro-reload
+          >
+            <span>{flag}</span>
+            <span class="sr-only">{label}</span>
+          </a>
+        </li>
+      );
+    })
+  }
 </ul>

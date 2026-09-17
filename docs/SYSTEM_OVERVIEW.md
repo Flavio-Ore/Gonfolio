@@ -2,7 +2,7 @@
 
 ## Purpose & Scope
 
-**Gonfolio** is the personal, multilingual portfolio website of **Flavio Gon. Oré.**, a Software Engineer and Full-Stack Developer. The website showcases professional experience, technical competencies, featured engineering projects, and contact channels.
+**Gonfolio** is the professional personal brand and portfolio website of **Flavio Oré**, a **Full-Stack Software Engineer**. The platform is engineered to build authority, trust, and business opportunities by showcasing production-grade operational systems, ERPs, business process automations, and scalable cloud microservices.
 
 The project is architected for maximum performance, clean visual aesthetics, search engine visibility (SEO), and accessible multilingual content delivery.
 
@@ -10,16 +10,17 @@ The project is architected for maximum performance, clean visual aesthetics, sea
 
 ## High-Level Capabilities
 
-1. **Multilingual Architecture**: Fully localized support for 4 languages:
+1. **Brand Authority & Value Positioning**: Positions engineering capabilities across operational systems (ERPs, inventory Kardex, billing), business workflow automations, and full-stack microservices (React, Angular, NestJS, Spring Boot, AWS).
+2. **Multilingual Architecture**: Fully localized support for 4 languages:
    - 🇪🇸 Spanish (`es` - default language)
    - 🇺🇸 English (`en`)
    - 🇨🇿 Czech (`cs`)
    - 🇩🇪 German (`de`)
-2. **Static Site Generation (SSG)**: Zero-server runtime overhead. Pages are pre-rendered at build time with Astro.
-3. **Strict Content Layer Validation**: Type-safe Markdown content collections driven by Zod schemas for biographical data and project portfolios.
-4. **Adaptive Theme Engine**: Client-side theme switcher supporting `Light`, `Dark`, and `System` preference with localStorage persistence and CSS transition smoothing.
-5. **Interactive UI & Motion**: Micro-animations powered by `@midudev/tailwind-animations`, scroll reveal observers, and smooth anchor navigation.
-6. **SEO & Social Optimization**: Built-in Open Graph metadata, Twitter Cards, auto-generated `robots.txt`, and canonical link tags.
+3. **Static Site Generation (SSG)**: Zero-server runtime overhead. Pages are pre-rendered at build time with Astro 7.
+4. **Strict Content Layer Validation**: Type-safe Markdown content collections driven by Zod schemas for biographical data and project case studies.
+5. **Adaptive Theme Engine**: Client-side theme switcher supporting `Light`, `Dark`, and `System` preference with localStorage persistence and CSS transition smoothing.
+6. **High-Conversion Contact Hub**: One-click email copy to clipboard with toast confirmation, direct verified social channels, and a 24-hour response guarantee.
+7. **SEO & Social Optimization**: Built-in Open Graph metadata, Twitter Cards, auto-generated `robots.txt`, and canonical link tags.
 
 ---
 
@@ -28,7 +29,7 @@ The project is architected for maximum performance, clean visual aesthetics, sea
 ```mermaid
 graph TD
     A[Astro 7.1 SSG Framework] --> B[TypeScript 5.8 Strictest]
-    A --> C[Tailwind CSS 3.4 & Animations]
+    A --> C[Tailwind CSS 3.4 & Obsidian/Amber Palette]
     A --> D[Astro Content Layer & Zod]
     A --> E[Fontsource Typography]
     A --> F[astro-robots-txt & SEO]

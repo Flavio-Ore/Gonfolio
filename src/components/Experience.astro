@@ -1,93 +1,121 @@
 ---
+import ComputerIcon from "components/icons/ComputerIcon.astro";
 import UniversityIcon from "components/icons/UniversityIcon.astro";
 import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
 import { experiences } from "values/experiences";
 
+export interface Props {
+  // Optional custom props
+}
+
 const { lang } = Astro.params as Params;
 const t = useTranslations(lang);
 
-const langExperiences = experiences[lang];
+const localizedExperiences = experiences[lang];
 ---
 
-<section id="experience" class="w-full max-w-3xl mx-auto mt-16 scroll-mt-20">
-  <h3
-    class="text-3xl font-bold mb-8 dark:text-amber-200 text-amber-500 text-center md:text-left"
-  >
-    {t("experience.title")}
-  </h3>
-
-  <div class="relative">
-    <!-- Timeline line -->
-    <div
-      class="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-amber-500 to-yellow-500"
+<section id="experience" class="w-full max-w-3xl mx-auto mt-16 mb-16 scroll-mt-20">
+  <div class="mb-8">
+    <h3
+      class="text-3xl font-bold dark:text-amber-200 text-amber-500 text-center md:text-left"
     >
-    </div>
+      {t("experience.title")}
+    </h3>
+  </div>
 
-    <div class="space-y-8">
-      {
-        langExperiences.map((exp, index) => (
-          <div
-            class={`relative pl-12 md:pl-20 animate-fade-in-left animate-delay-${index * 100}`}
-          >
-            <!-- Timeline dot -->
-            <div class="absolute left-2 md:left-6 top-2 size-5 rounded-full bg-orange-500 border-4 border-light dark:border-dark shadow-lg" />
+  <!-- Continuous Solid Timeline Spine -->
+  <div class="relative ml-4 sm:ml-5 border-l-2 border-neutral-200/90 dark:border-zinc-800/90 space-y-8 my-6">
+    {
+      localizedExperiences.map((experienceItem, index) => {
+        const isCurrentRole = index === 0;
+        const IconComponent = isCurrentRole ? ComputerIcon : UniversityIcon;
 
-            <div class="group border border-yellow-300 dark:border-yellow-900 rounded-lg p-6 bg-white/50 dark:bg-black/20 shadow-md hover:shadow-xl transition-all duration-300 hover:border-orange-500 dark:hover:border-orange-500">
-              <div class="flex items-start justify-between flex-wrap gap-2 mb-3">
+        return (
+          <div class="relative pl-6 sm:pl-8 group">
+            <!-- Timeline Icon Node on Spine -->
+            <div class="absolute -left-[17px] sm:-left-[19px] top-3 flex items-center justify-center size-8 sm:size-9 rounded-full bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 shadow-xs ring-4 ring-[#fafafa] dark:ring-[#09090b] group-hover:border-amber-500/60 group-hover:scale-110 transition-all duration-200">
+              <IconComponent class="size-4 sm:size-4.5 text-neutral-600 dark:text-neutral-400 group-hover:text-amber-500 transition-colors" />
+              {isCurrentRole && (
+                <span
+                  class="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#09090b] animate-pulse"
+                  title="Active Current Role"
+                />
+              )}
+            </div>
+
+            <!-- Content Card -->
+            <article class="rounded-2xl border border-neutral-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/40 backdrop-blur-sm p-5 sm:p-6 shadow-xs hover:border-amber-500/40 dark:hover:border-amber-500/30 transition-all duration-300">
+              <!-- Header Row -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                 <div>
-                  <h4 class="text-xl font-bold dark:text-amber-200 text-amber-600 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
-                    {exp.title}
+                  <h4 class="text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                    {experienceItem.title}
                   </h4>
-                  <div class="flex items-center gap-2 mt-1 text-amber-700 dark:text-amber-300">
-                    <UniversityIcon class="size-5" />
-                    <span class="font-medium">{exp.organization}</span>
-                  </div>
+                  <p class="text-sm font-medium text-amber-700 dark:text-amber-400/90 mt-0.5">
+                    {experienceItem.organization}
+                  </p>
                 </div>
-                <span class="text-sm font-semibold px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
-                  {exp.period}
+                <span class="self-start sm:self-center text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 whitespace-nowrap">
+                  {experienceItem.period}
                 </span>
               </div>
 
-              <p class="text-base dark:text-amber-100 text-amber-900 mb-4">
-                {exp.description}
+              <!-- Role Summary -->
+              <p class="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 mb-4">
+                {experienceItem.description}
               </p>
 
+              <!-- Key Achievements -->
               <div class="space-y-2">
-                <p class="text-sm font-semibold dark:text-amber-300 text-amber-700">
+                <p class="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                   {t("experience.keyProjects")}
                 </p>
-                <ul class="space-y-1">
-                  {exp.achievements.map((achievement) => (
-                    <li class="flex items-start gap-2 text-sm dark:text-amber-100 text-amber-900">
-                      <span class="text-orange-500 mt-1 flex-shrink-0">▸</span>
-                      <span>{achievement}</span>
+                <ul class="space-y-1.5">
+                  {experienceItem.achievements.map((achievementText) => (
+                    <li class="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                      <span class="text-amber-500 font-bold shrink-0 mt-0.5">▸</span>
+                      <span class="leading-relaxed">{achievementText}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+
+              <!-- Tech Stack Tags -->
+              {
+                "technologies" in experienceItem &&
+                  Array.isArray(experienceItem.technologies) && (
+                    <div class="flex flex-wrap gap-1.5 pt-3.5 mt-3.5 border-t border-neutral-100 dark:border-zinc-800/60">
+                      {experienceItem.technologies.map((techName: string) => (
+                        <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-neutral-100/80 dark:bg-zinc-900/80 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-zinc-800/60">
+                          {techName}
+                        </span>
+                      ))}
+                    </div>
+                  )
+              }
+            </article>
           </div>
-        ))
-      }
-    </div>
+        );
+      })
+    }
   </div>
 
-  <!-- Stats Section -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+  <!-- Trust Stats Summary Strip -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-10">
     {
       [
         { label: t("experience.stats.projects"), value: "10+" },
         { label: t("experience.stats.technologies"), value: "20+" },
         { label: t("experience.stats.repos"), value: "38+" },
         { label: t("experience.stats.contributions"), value: "800+" },
-      ].map((stat) => (
-        <div class="text-center p-4 rounded-lg bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/20 dark:to-amber-900/20 border border-yellow-300 dark:border-yellow-900 hover:scale-105 transition-transform">
-          <div class="text-2xl md:text-3xl font-bold text-orange-600 dark:text-orange-400">
-            {stat.value}
+      ].map((statItem) => (
+        <div class="text-center p-4 rounded-xl border border-neutral-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/30 backdrop-blur-xs hover:border-amber-500/30 transition-colors">
+          <div class="text-2xl sm:text-3xl font-bold text-amber-600 dark:text-amber-400">
+            {statItem.value}
           </div>
-          <div class="text-sm font-medium text-amber-700 dark:text-amber-300 mt-1">
-            {stat.label}
+          <div class="text-xs font-medium text-neutral-600 dark:text-neutral-400 mt-1">
+            {statItem.label}
           </div>
         </div>
       ))
