@@ -11,5 +11,3 @@ overrides:
   defu: ^6.1.5
   nanoid: ^3.3.18
   postcss: ^8.5.18
-  rollup: ^4.59.0
-  vite: ^6.4.3
