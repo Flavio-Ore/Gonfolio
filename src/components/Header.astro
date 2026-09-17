@@ -1,0 +1,56 @@
+---
+import UserIcon from '@components/icons/UserIcon.astro'
+---
+
+<header
+  class="flex flex-col md:flex-row justify-between gap-4 w-full font-inder"
+>
+  <div class="flex flex-col justify-center items-center">
+    <div class="flex items-center gap-4">
+      <UserIcon />
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        Flavio Gonzalo Oré Chávez
+      </h1>
+    </div>
+    <h2 class="text-h3 font-medium leading-default tracking-tighter mt-2">
+      <div
+        class="inline-flex gap-2 sm:gap-10 flex-wrap items-center justify-center"
+      >
+        <span>Computer Science</span>
+        <span>Systems</span>
+        <span>Software</span>
+      </div>
+    </h2>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-1 flex-col gap-8 p-2 justify-center items-center">
+      <img
+        class="aspect-square object-cover rounded-lg shadow-lg"
+        width={64}
+        height={64}
+        src="/assets/imgs/photo.jpg"
+        alt="Flavio Gonzalo Oré Chávez"
+      />
+    </div>
+    <a
+      href="https://www.linkedin.com/in/flavio-gonzalo-or%C3%A9-ch%C3%A1vez-80b768270/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center transition md:justify-center md:hover:scale-105 group"
+    >
+      <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
+        <span
+          class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
+        ></span>
+        <div
+          class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-obscure bg-blue-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap"
+        >
+          <span
+            class="inline-flex group-hover:animate-background-shine dark:group-hover:bg-[linear-gradient(110deg,#f2f2f2,20%,#ffb620,50%,#f2f2f2)] group-hover:bg-[linear-gradient(110deg,#020202,20%,#ffb620,50%,#020202)] group-hover:bg-[length:250%_100%] group-hover:bg-clip-text group-hover:text-transparent"
+            >Open to work</span
+          >
+        </div>
+      </span>
+    </a>
+  </div>
+</header>
