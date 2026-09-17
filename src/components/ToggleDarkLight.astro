@@ -2,7 +2,7 @@
 import MoonIcon from "components/icons/MoonIcon.astro";
 import SunIcon from "components/icons/SunIcon.astro";
 import { getLangFromUrl } from "i18n/utils";
-import ComputerIcon from "./icons/ComputerIcon.astro";
+import ComputerIcon from "components/icons/ComputerIcon.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -11,6 +11,8 @@ const language = lang == null ? "es" : lang;
 const THEMES = {
   en: ["Light", "Dark", "System"],
   es: ["Claro", "Oscuro", "Sistema"],
+  cs: ["Světlo", "Tma", "Systém"],
+  de: ["Hell", "Dunkel", "System"],
 };
 
 const chooseTheme = language === "es" ? "Elige un tema" : "Choose a theme";
