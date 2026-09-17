@@ -2,7 +2,10 @@
 
 My first personal portfolio web created with Astro and Tailwind. (Apr, 2024)
 
-(Nov, 2026)
+(Aug, 2026)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f5072e43-6bd2-4042-a48c-d986677cfec3" />
+
+(Nov, 2025)
 <img width="1282" height="961" alt="image" src="https://github.com/user-attachments/assets/2ff98bd5-8556-453b-b348-e05c92185adb" />
 
 (Apr, 2024)
