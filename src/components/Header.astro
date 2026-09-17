@@ -1,8 +1,8 @@
 ---
 import myPhoto from "assets/photo.avif";
 import { Picture } from "astro:assets";
-import EmailIcon from "components/icons/EmailIcon.astro";
 import GithubIcon from "components/icons/GithubIcon.astro";
+import GmailIcon from "components/icons/GmailIcon.astro";
 import LinkedInIcon from "components/icons/LinkedInIcon.astro";
 import { useTranslations } from "i18n/utils";
 import type { Params } from "pages/[...lang].astro";
@@ -24,7 +24,7 @@ const t = useTranslations(lang);
       class="aspect-square object-cover rounded-full"
     />
     <h3
-      class="text-md font-normal md:font-semibold text-center sm:text-left sm:text-xl dark:text-amber-200 text-amber-500"
+      class="text-md font-normal md:font-semibold sm:text-xl dark:text-amber-200 text-amber-500"
     >
       Flavio Gonzalo Oré
     </h3>
@@ -36,7 +36,7 @@ const t = useTranslations(lang);
       rel="noopener noreferrer"
       class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
     >
-      <LinkedInIcon class="size-8 md:size-7 md:hover:animate-sway" />
+      <LinkedInIcon class="size-7 md:size-8 md:hover:animate-sway" />
       <span class="sr-only">LinkedIn</span>
     </a>
     <a
@@ -45,7 +45,7 @@ const t = useTranslations(lang);
       rel="noopener noreferrer"
       class="relative md:transition-opacity md:hover:opacity-90 flex flex-col justify-center items-start group"
     >
-      <EmailIcon class="size-8 md:size-7 md:hover:animate-sway" />
+      <GmailIcon class="size-7 md:size-8 md:hover:animate-sway" />
       <span class="sr-only">{t("header.Email")}</span>
     </a>
 
@@ -55,7 +55,7 @@ const t = useTranslations(lang);
       target="_blank"
       rel="noopener noreferrer"
     >
-      <GithubIcon class="size-8 md:size-7" />
+      <GithubIcon class="size-7 md:size-8" />
       <span class="sr-only">Github</span>
     </a>
   </nav>
